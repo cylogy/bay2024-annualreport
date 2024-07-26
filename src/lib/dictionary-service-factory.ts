@@ -27,6 +27,7 @@ export class DictionaryServiceFactory {
             Otherwise, if your Sitecore instance only has 1 JSS App (i.e. in a Sitecore XP setup), you can specify the root item ID here.
             rootItemId: '{GUID}'
           */
+          rootItemId: '{1110DF4D-C848-44BA-82C1-B7B7A2F2860E}',
           /*
             GraphQL endpoint may reach its rate limit with the amount of requests it receives and throw a rate limit error.
             GraphQL Dictionary and Layout Services can handle rate limit errors from server and attempt a retry on requests.
