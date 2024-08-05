@@ -1,4 +1,4 @@
-import React, { SVGAttributes } from "react";
+import React, { SVGAttributes } from 'react';
 
 export default function LocationIcon(props: SVGAttributes<SVGElement>) {
   return (

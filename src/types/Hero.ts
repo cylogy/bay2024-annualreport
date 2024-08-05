@@ -1,14 +1,14 @@
 type HeroMain = {
-  variant: "main";
+  variant: 'main';
   video: string;
 };
 
 type HeroSecondary = {
-  variant: "secondary";
+  variant: 'secondary';
 };
 
 type HeroDownload = {
-  variant: "download";
+  variant: 'download';
   cta: string;
 };
 
@@ -21,12 +21,10 @@ type HeroContent = {
 export type HeroProps = HeroContent & (HeroMain | HeroSecondary | HeroDownload);
 
 export const isHeroMain = (props: HeroProps): props is HeroMain & HeroContent =>
-  props.variant === "main";
+  props.variant === 'main';
 
-export const isHeroSecondary = (
-  props: HeroProps
-): props is HeroSecondary & HeroContent => props.variant === "secondary";
+export const isHeroSecondary = (props: HeroProps): props is HeroSecondary & HeroContent =>
+  props.variant === 'secondary';
 
-export const isHeroDownload = (
-  props: HeroProps
-): props is HeroDownload & HeroContent => props.variant === "download";
+export const isHeroDownload = (props: HeroProps): props is HeroDownload & HeroContent =>
+  props.variant === 'download';
