@@ -1,0 +1,116 @@
+footer {
+  background: linear-gradient(0deg, #3f74a9, #1a65af), linear-gradient(180deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.2) 100%);
+  color: #fff;
+  text-align: center;
+
+  @include respond-to('md') {
+    text-align: left;
+  }
+
+  .logo-footer {
+    padding-bottom: 30px;
+    margin: 0 auto;
+
+    @include respond-to('md') {
+      margin: 0;
+    }
+  }
+
+  nav {
+    display: grid;
+    gap: 50px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 80px;
+      padding-bottom: 147px;
+    }
+
+    p {
+      font-size: 1.125rem;
+
+      &.phone {
+        padding-top: 30px;
+      }
+
+    }
+
+    .footer-title {
+      font-size: 1.3125rem;
+      line-height: 1.6rem;
+      font-weight: 700;
+      padding-bottom: 20px;
+    }
+
+    ul {
+      li {
+        padding-bottom: 12px;
+        line-height: 1.6rem;
+
+        &:last-of-type {
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    .link-icon {
+      font-size: 1.125rem;
+      line-height: 1.6rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include respond-to('md') {
+        justify-content: left;
+      }
+
+      svg {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 50px;
+    gap: 30px;
+
+    @include respond-to('md') {
+      flex-direction: row;
+      padding-bottom: 70px;
+    }
+
+    p {
+      max-width: 250px;
+
+      @include respond-to('md') {
+        max-width: 100%;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @include respond-to('md') {
+        flex-direction: row;
+      }
+
+      li {
+        padding: 15px 0;
+
+        @include respond-to('md') {
+          border-right: 1px solid white;
+          padding: 0 20px;
+        }
+      }
+    }
+  }
+}
