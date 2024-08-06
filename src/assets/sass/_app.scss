@@ -16,6 +16,7 @@ body {
   background: $page-bg;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   height: auto !important;
+
   &.on-page-editor {
     background: $page-bg-editor !important;
   }
@@ -25,6 +26,7 @@ a {
   color: $text-basic;
   cursor: pointer;
   font-size: 0.85em;
+
   &:hover {
     color: $text-basic-active;
   }
@@ -87,17 +89,15 @@ ul li {
   display: none;
 }
 
-#header, #content, #footer, .sc-jss-empty-placeholder {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-}
+#header,
+#content,
+#footer,
+.sc-jss-empty-placeholder {}
 
 .sc-jss-placeholder-error {
   background: #ff0000;
   outline: 5px solid #e36565;
   padding: 10px;
-  color:#fff;
+  color: #fff;
   max-width: 500px;
 }

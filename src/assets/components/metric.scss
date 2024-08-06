@@ -1,0 +1,52 @@
+.metric {
+  display: inline-block;
+  padding-block: 1.25rem;
+  padding-inline: .75rem;
+  border-radius: .625rem;
+  background: rgba(182, 209, 88, 0.20);
+  text-align: center;
+  max-width: 13.75rem;
+
+  @include respond-to(lg) {
+    padding: 1.25rem;
+  }
+
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both
+  }
+
+  .animatedFadeInUp {
+    opacity: 0
+  }
+
+  .fadeInUp {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 40px, 0)
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 40px, 0)
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+}

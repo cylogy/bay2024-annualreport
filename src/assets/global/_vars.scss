@@ -1,0 +1,39 @@
+:root {
+  --dark-blue: #253e7b;
+  --lighter-green: #DAE8AB;
+  --light-green: #b6d158;
+  --powder-blue: #1a65af;
+  --mint: #96d1b4;
+  --sage: #7e822b;
+  --ocean: #519ca7;
+  --fern: #555c1f;
+  --white: #ffffff;
+  --soft-white: #f5f5f5;
+  
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
+$breakpoints: (
+  'xs': (min-width: 480px),
+  'sm': (min-width: 640px),
+  'md': (min-width: 768px),
+  'lg': (min-width: 1024px),
+  'xl': (min-width: 1280px),
+  'xxl': (min-width: 1536px),
+);
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(type-of($raw-query)=='string', unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  }
+
+  @else {
+    @error 'No value found for `#{$breakpoint}`. '+'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
