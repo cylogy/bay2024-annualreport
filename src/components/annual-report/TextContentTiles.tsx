@@ -40,15 +40,17 @@ export const Default = (props: TextContentTilesProps): JSX.Element => {
 export const Variant2 = (props: TextContentTilesProps): JSX.Element => {
   const phKey = `textcontenttiles-${props.params.DynamicPlaceholderId}`;
   return (
-    <section>
-      <div>Variant 2</div>
-      <Text field={props.fields.Headline} />
-      <Text field={props.fields.Description} />
-      <Placeholder
-        name={phKey}
-        rendering={props.rendering}
-        render={(components) => injectDynamicParams(components, { variant: 'Variant1' })}
-      />
+    <section className="py-[60px] md:py-[120px] bg-soft-white">
+      <Text tag="h2" field={props.fields.Headline} />
+      <section className="grid gap-[40px]">
+        <div className="grid gap-[80px] w-full timeline relative">
+          <Placeholder
+            name={phKey}
+            rendering={props.rendering}
+            render={(components) => injectDynamicParams(components, { variant: 'Variant1' })}
+          />
+        </div>
+      </section>
     </section>
   );
 };
@@ -56,15 +58,15 @@ export const Variant2 = (props: TextContentTilesProps): JSX.Element => {
 export const Variant3 = (props: TextContentTilesProps): JSX.Element => {
   const phKey = `textcontenttiles-${props.params.DynamicPlaceholderId}`;
   return (
-    <section>
-      <div>Variant 3</div>
-      <Text field={props.fields.Headline} />
-      <Text field={props.fields.Description} />
-      <Placeholder
-        name={phKey}
-        rendering={props.rendering}
-        render={(components) => injectDynamicParams(components, { variant: 'Variant2' })}
-      />
+    <section className="py-[60px] md:py-[120px] bg-soft-white">
+      <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
+      <div className="grid grid-cols-1 gap-[48px]">
+        <Placeholder
+          name={phKey}
+          rendering={props.rendering}
+          render={(components) => injectDynamicParams(components, { variant: 'Variant2' })}
+        />
+      </div>
     </section>
   );
 };
