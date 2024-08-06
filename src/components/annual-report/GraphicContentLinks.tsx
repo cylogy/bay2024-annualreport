@@ -11,7 +11,7 @@ import {
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 
-type CTAProps = ComponentProps & {
+type GraphicContentLinksProps = ComponentProps & {
   layoutData: LayoutServiceData;
   rendering: ComponentRendering;
   fields: {
@@ -21,11 +21,11 @@ type CTAProps = ComponentProps & {
   };
 };
 
-export const Default = (props: CTAProps): JSX.Element => {
+export const Default = (props: GraphicContentLinksProps): JSX.Element => {
   const phKey = `graphiccontentlinks-${props.params.DynamicPlaceholderId}`;
   return (
     <section>
-      <div>Default</div>
+      <div>GraphicContentLinks</div>
       <Text field={props.fields.Headline} />
       <RichText field={props.fields.Description} />
       <Image field={props.fields?.Image} />

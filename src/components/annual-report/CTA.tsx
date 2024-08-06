@@ -8,7 +8,7 @@ import {
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 
-type GraphicContentLinksProps = ComponentProps & {
+type CTAProps = ComponentProps & {
   layoutData: LayoutServiceData;
   rendering: ComponentRendering;
   fields: {
@@ -18,9 +18,10 @@ type GraphicContentLinksProps = ComponentProps & {
   };
 };
 
-export const Default = (props: GraphicContentLinksProps): JSX.Element => {
+export const Default = (props: CTAProps): JSX.Element => {
   return (
     <section>
+      <div>CTA</div>
       <Text field={props.fields.Headline} />
       <Text field={props.fields.Subheadline} />
       <Link field={props.fields?.CTA} />
