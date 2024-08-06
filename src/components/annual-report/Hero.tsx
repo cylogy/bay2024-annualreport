@@ -5,6 +5,7 @@ import {
   Image as JssImage,
   ImageField,
   LinkField,
+  Link,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
@@ -31,7 +32,7 @@ interface Fields {
   Description: Field<string>;
   Video: Field<string>;
   Image: ImageField;
-  Cta: LinkField;
+  CTA: LinkField;
 }
 
 export type HeroProps = {
@@ -40,8 +41,6 @@ export type HeroProps = {
 };
 
 export const Default = (props: HeroProps): JSX.Element => {
-  const id = props.params.RenderingIdentifier;
-
   const playerRef = useRef<YouTubePlayer | null>(null);
   const [Playing, setPlaying] = useState(true);
   const isMobile = useIsMobile(1024);
@@ -56,7 +55,6 @@ export const Default = (props: HeroProps): JSX.Element => {
     setPlaying((v) => !v);
   };
 
-  console.log(props?.fields);
   return (
     <>
       <div
@@ -94,61 +92,36 @@ export const Default = (props: HeroProps): JSX.Element => {
       />
     </>
   );
-
-  return (
-    <div
-      className={`component rich-text ${props.params.styles.trimEnd()}`}
-      id={id ? id : undefined}
-    >
-      <div className="component-content">
-        <h1>{props?.fields?.Headline?.value}</h1>
-        <Text tag="h1" className="" field={props.fields.Headline} />
-        <Text field={props.fields.Description} />
-        {/* <div>{props.fields.HeroVideo}</div> */}
-        <JssImage field={props.fields.Image} />
-        {/* <div>{props.fields.HeroCta}</div> */}
-      </div>
-    </div>
-  );
 };
 
 export const Secondary = (props: HeroProps): JSX.Element => {
-  const id = props.params.RenderingIdentifier;
-
   return (
     <div
-      className={`component rich-text ${props.params.styles.trimEnd()}`}
-      id={id ? id : undefined}
+      className="hero relative hero--secondary"
+      style={{
+        backgroundImage: `url('${props.fields.Image.value?.src}')`,
+      }}
     >
-      <div className="component-content">
-        <h1>Secondary</h1>
-        <h1>{props?.fields?.Headline?.value}</h1>
-        <Text tag="h1" className="" field={props.fields.Headline} />
-        <Text field={props.fields.Description} />
-        {/* <div>{props.fields.HeroVideo}</div> */}
-        <JssImage field={props.fields.Image} />
-        {/* <div>{props.fields.HeroCta}</div> */}
+      <div className="hero__background" />
+      <div className="hero__content text-center space-y-6 flex flex-col items-center container">
+        <Text tag="h1" field={props.fields.Headline} />
+        <Text field={props.fields.Description} tag="p" />
       </div>
+      <Curve />
     </div>
   );
 };
 
 export const Download = (props: HeroProps): JSX.Element => {
-  const id = props.params.RenderingIdentifier;
-
   return (
-    <div
-      className={`component rich-text ${props.params.styles.trimEnd()}`}
-      id={id ? id : undefined}
-    >
-      <div className="component-content">
-        <h1>Download</h1>
-        <h1>{props?.fields?.Headline?.value}</h1>
-        <Text tag="h1" className="" field={props.fields.Headline} />
-        <Text field={props.fields.Description} />
-        {/* <div>{props.fields.HeroVideo}</div> */}
-        <JssImage field={props.fields.Image} />
-        {/* <div>{props.fields.HeroCta}</div> */}
+    <div className="mx-[30px] lg:mx-auto container">
+      <div className="hero relative hero--download">
+        <JssImage field={props.fields.Image} className="hero--download__image" />
+        <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
+          <Text tag="h3" field={props.fields.Headline} />
+          <Text field={props.fields.Description} tag="p" />
+          <Link field={props.fields.CTA} className="btn" />
+        </div>
       </div>
     </div>
   );

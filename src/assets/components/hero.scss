@@ -10,6 +10,7 @@
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 
   @include respond-to(lg) {
     height: 45rem;
@@ -34,6 +35,7 @@
   &--download {
     flex-direction: column;
     justify-content: start;
+    align-items: start;
     gap: 0;
     height: auto;
     background-color: var(--powder-blue);
