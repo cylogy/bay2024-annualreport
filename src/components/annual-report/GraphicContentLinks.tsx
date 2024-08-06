@@ -22,14 +22,13 @@ type GraphicContentLinksProps = ComponentProps & {
 };
 
 export const Default = (props: GraphicContentLinksProps): JSX.Element => {
-  const phKey = `graphiccontentlinks-${props.params.DynamicPlaceholderId}`;
   return (
     <section>
       <div>GraphicContentLinks</div>
       <Text field={props.fields.Headline} />
       <RichText field={props.fields.Description} />
       <Image field={props.fields?.Image} />
-      <Placeholder name={phKey} rendering={props.rendering} />
+      <Placeholder name={`graphic-content-links`} rendering={props.rendering} />
     </section>
   );
 };
