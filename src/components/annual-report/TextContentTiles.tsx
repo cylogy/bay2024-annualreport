@@ -18,14 +18,13 @@ type TextContentTilesProps = ComponentProps & {
 };
 
 export const Default = (props: TextContentTilesProps): JSX.Element => {
-  const phKey = `textcontenttiles-${props.params.DynamicPlaceholderId}`;
   return (
     <section>
       <div>Default</div>
       <Text field={props.fields.Headline} />
       <Text field={props.fields.Description} />
       <Placeholder
-        name={phKey}
+        name={`text-content-tiles`}
         rendering={props.rendering}
         render={(components) => injectDynamicParams(components, { variant: 'Default' })}
       />
@@ -34,14 +33,13 @@ export const Default = (props: TextContentTilesProps): JSX.Element => {
 };
 
 export const Variant2 = (props: TextContentTilesProps): JSX.Element => {
-  const phKey = `textcontenttiles-${props.params.DynamicPlaceholderId}`;
   return (
     <section>
       <div>Variant 2</div>
       <Text field={props.fields.Headline} />
       <Text field={props.fields.Description} />
       <Placeholder
-        name={phKey}
+        name={`text-content-tiles`}
         rendering={props.rendering}
         render={(components) => injectDynamicParams(components, { variant: 'Variant1' })}
       />
@@ -50,14 +48,13 @@ export const Variant2 = (props: TextContentTilesProps): JSX.Element => {
 };
 
 export const Variant3 = (props: TextContentTilesProps): JSX.Element => {
-  const phKey = `textcontenttiles-${props.params.DynamicPlaceholderId}`;
   return (
     <section>
       <div>Variant 3</div>
       <Text field={props.fields.Headline} />
       <Text field={props.fields.Description} />
       <Placeholder
-        name={phKey}
+        name={`text-content-tiles`}
         rendering={props.rendering}
         render={(components) => injectDynamicParams(components, { variant: 'Variant2' })}
       />
