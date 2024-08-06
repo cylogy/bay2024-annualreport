@@ -17,10 +17,20 @@ type ContentTileItemProps = ComponentProps & {
 export const Default = (props: ContentTileItemProps): JSX.Element => {
   return props.params.variant === 'Default' ? (
     <div style={{ backgroundColor: 'lightblue' }}>
-      TILE Variant Default
-      <Text field={props.fields.Headline} />
-      <RichText field={props.fields.Subheadline} />
-      <Text field={props.fields.Number} />
+      <article className="text-white bg-powder-blue p-[40px] rounded-[20px] relative">
+        <img
+          src="/images/textContentTiles-bg.png"
+          alt=""
+          className="object-cover w-full absolute top-0 left-0"
+        />
+        <Text
+          tag="h4"
+          className="mb-[10px] text-[1.625rem] leading-[1.980625rem]  md:text-[2rem] md:leading-[2.4375rem]"
+          field={props.fields.Headline}
+        />
+
+        <RichText className="text-[1rem] leading-[1.6rem]" field={props.fields.Subheadline} />
+      </article>
     </div>
   ) : props.params.variant === 'Variant2' ? (
     <div style={{ backgroundColor: 'purple' }}>
