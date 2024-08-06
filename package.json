@@ -29,7 +29,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@next/font": "^14.2.5",
     "@sitecore-jss/sitecore-jss-nextjs": "~22.0.0",
     "bootstrap": "^5.1.3",
     "font-awesome": "^4.7.0",
