@@ -4,6 +4,7 @@ import {
   Placeholder,
   LayoutServiceData,
   ComponentRendering,
+  RichText,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { injectDynamicParams } from 'lib/dynamic-params';
@@ -20,15 +21,18 @@ type TextContentTilesProps = ComponentProps & {
 export const Default = (props: TextContentTilesProps): JSX.Element => {
   const phKey = `textcontenttiles-${props.params.DynamicPlaceholderId}`;
   return (
-    <section>
-      <div>Default</div>
-      <Text field={props.fields.Headline} />
-      <Text field={props.fields.Description} />
-      <Placeholder
-        name={phKey}
-        rendering={props.rendering}
-        render={(components) => injectDynamicParams(components, { variant: 'Default' })}
-      />
+    <section className="py-[60px] md:py-[120px] bg-dark-blue">
+      <div className="container md:px-[70px]">
+        <Text tag="h2" className="text-center text-white mb-[10px]" field={props.fields.Headline} />
+        <RichText className="text-center text-white" field={props.fields.Description} />
+        <section className="grid md:grid-cols-3 gap-[40px] mt-[80px]">
+          <Placeholder
+            name={phKey}
+            rendering={props.rendering}
+            render={(components) => injectDynamicParams(components, { variant: 'Default' })}
+          />
+        </section>
+      </div>
     </section>
   );
 };
