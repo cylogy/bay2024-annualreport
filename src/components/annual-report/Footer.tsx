@@ -11,21 +11,11 @@ export type FooterProps = {
 };
 
 export const Default = (props: FooterProps): JSX.Element => {
-  console.log('Im Footer');
-  console.log(props);
   const text = props.fields ? (
     <JssRichText field={props.fields.Footer} />
   ) : (
     <span className="is-empty-hint">Rich text</span>
   );
-  const id = props.params.RenderingIdentifier;
 
-  return (
-    <div
-      className={`component rich-text ${props.params.styles.trimEnd()}`}
-      id={id ? id : undefined}
-    >
-      <div className="component-content">{text}</div>
-    </div>
-  );
+  return <div className="container">{text}</div>;
 };

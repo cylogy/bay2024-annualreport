@@ -18,17 +18,20 @@ type TextContentTilesProps = ComponentProps & {
   };
 };
 
-export const Default = (props: TextContentTilesProps): JSX.Element => {
+export const ThreeColumns = (props: TextContentTilesProps): JSX.Element => {
   return (
     <section className="py-[60px] md:py-[120px] bg-dark-blue">
       <div className="container md:px-[70px]">
         <Text tag="h2" className="text-center text-white mb-[10px]" field={props.fields.Headline} />
-        <RichText className="text-center text-white" field={props.fields.Description} />
+        <RichText
+          className="text-center text-white text-[1.125rem] leading-[1.8rem]"
+          field={props.fields.Description}
+        />
         <section className="grid md:grid-cols-3 gap-[40px] mt-[80px]">
           <Placeholder
             name={`text-content-tiles`}
             rendering={props.rendering}
-            render={(components) => injectDynamicParams(components, { variant: 'Default' })}
+            render={(components) => injectDynamicParams(components, { variant: 'ThreeColumns' })}
           />
         </section>
       </div>
@@ -36,7 +39,7 @@ export const Default = (props: TextContentTilesProps): JSX.Element => {
   );
 };
 
-export const Variant2 = (props: TextContentTilesProps): JSX.Element => {
+export const Stacked = (props: TextContentTilesProps): JSX.Element => {
   return (
     <section className="py-[60px] md:py-[120px] bg-soft-white">
       <Text tag="h2" field={props.fields.Headline} />
@@ -45,7 +48,7 @@ export const Variant2 = (props: TextContentTilesProps): JSX.Element => {
           <Placeholder
             name={`text-content-tiles`}
             rendering={props.rendering}
-            render={(components) => injectDynamicParams(components, { variant: 'Variant1' })}
+            render={(components) => injectDynamicParams(components, { variant: 'Stacked' })}
           />
         </div>
       </section>
@@ -53,7 +56,7 @@ export const Variant2 = (props: TextContentTilesProps): JSX.Element => {
   );
 };
 
-export const Variant3 = (props: TextContentTilesProps): JSX.Element => {
+export const Numbered = (props: TextContentTilesProps): JSX.Element => {
   return (
     <section className="py-[60px] md:py-[120px] bg-soft-white">
       <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
@@ -61,7 +64,7 @@ export const Variant3 = (props: TextContentTilesProps): JSX.Element => {
         <Placeholder
           name={`text-content-tiles`}
           rendering={props.rendering}
-          render={(components) => injectDynamicParams(components, { variant: 'Variant2' })}
+          render={(components) => injectDynamicParams(components, { variant: 'Numbered' })}
         />
       </div>
     </section>
