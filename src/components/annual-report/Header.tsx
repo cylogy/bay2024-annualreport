@@ -31,7 +31,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
   return <></>;
 };
 
-export const getStaticProps: GetStaticComponentProps = async (rendering, layoutData, context) => {
+export const getStaticProps: GetStaticComponentProps = async () => {
   return {
     mainMenuItems: await getHeaderMenu(MENU_ITEM),
   };

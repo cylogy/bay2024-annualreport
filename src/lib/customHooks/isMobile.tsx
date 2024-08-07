@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useIsMobile = (breakpoint: number) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -6,7 +6,7 @@ const useIsMobile = (breakpoint: number) => {
   useEffect(() => {
     const handleResize = () => {
       const isMobileDevice = window.matchMedia(
-        `(max-width: ${breakpoint ? `${breakpoint}px` : "768px"})`
+        `(max-width: ${breakpoint ? `${breakpoint}px` : '768px'})`
       ).matches;
       setIsMobile(isMobileDevice);
     };
@@ -15,11 +15,11 @@ const useIsMobile = (breakpoint: number) => {
     handleResize();
 
     // Event listener for window resize
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     // Cleanup the event listener on unmount
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, [breakpoint]);
 
