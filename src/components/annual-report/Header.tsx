@@ -8,11 +8,11 @@ import { ComponentProps } from 'lib/component-props';
 import { HeaderMenuQueryResult } from 'lib/graphql-queries/HeaderMenu';
 import { getHeaderMenu } from 'lib/graphql-utils';
 import { MENU_ITEM } from 'lib/constants';
+import { useEffect, useState } from 'react';
 import Globe from 'assets/svg/Globe';
 import LinkIcon from 'assets/svg/LinkIcon';
 import ChevronDown from 'assets/svg/ChevronDown';
-import { useEffect, useState } from 'react';
-import useIsMobile from './lib/customHooks/isMobile';
+import useIsMobile from 'lib/customHooks/isMobile';
 
 type HeaderProps = ComponentProps & {
   layoutData: LayoutServiceData;
