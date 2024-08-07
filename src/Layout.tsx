@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { Placeholder, LayoutServiceData, Field, HTMLLink } from '@sitecore-jss/sitecore-jss-nextjs';
 import config from 'temp/config';
 import Scripts from 'src/Scripts';
-import { Newsreader } from "next/font/google";
+import { Newsreader } from 'next/font/google';
 
 // Prefix public assets with a public URL to enable compatibility with Sitecore Experience Editor.
 // If you're not supporting the Experience Editor, you can remove this.
@@ -23,9 +23,9 @@ interface RouteFields {
 }
 
 const newsreader = Newsreader({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-newsreader",
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-newsreader',
 });
 
 const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
