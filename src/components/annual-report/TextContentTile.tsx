@@ -17,21 +17,19 @@ type ContentTileItemProps = ComponentProps & {
 };
 export const Default = (props: ContentTileItemProps): JSX.Element => {
   return props.params.variant === 'ThreeColumns' ? (
-    <div style={{ backgroundColor: 'lightblue' }}>
-      <article className="text-white bg-powder-blue p-[40px] rounded-[20px] relative">
-        <img
-          src="/images/textContentTiles-bg.png"
-          alt=""
-          className="object-cover w-full absolute top-0 left-0"
-        />
-        <Text
-          tag="h4"
-          className="mb-[10px] text-[1.625rem] leading-[1.980625rem]  md:text-[2rem] md:leading-[2.4375rem]"
-          field={props.fields.Headline}
-        />
-        <RichText className="text-[1rem] leading-[1.6rem]" field={props.fields.Subheadline} />
-      </article>
-    </div>
+    <article className="text-white bg-powder-blue p-[40px] rounded-[20px] relative">
+      <img
+        src="/images/textContentTiles-bg.png"
+        alt=""
+        className="object-cover w-full absolute top-0 left-0"
+      />
+      <Text
+        tag="h4"
+        className="mb-[10px] text-[1.625rem] leading-[1.980625rem]  md:text-[2rem] md:leading-[2.4375rem]"
+        field={props.fields.Headline}
+      />
+      <RichText className="text-[1rem] leading-[1.6rem]" field={props.fields.Subheadline} />
+    </article>
   ) : props.params.variant === 'Stacked' ? (
     <article className="text-dark-blue">
       <Text tag="h4" className="mb-[12px] year" field={props.fields.Number} />

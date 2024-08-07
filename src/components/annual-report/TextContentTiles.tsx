@@ -23,7 +23,10 @@ export const ThreeColumns = (props: TextContentTilesProps): JSX.Element => {
     <section className="py-[60px] md:py-[120px] bg-dark-blue">
       <div className="container md:px-[70px]">
         <Text tag="h2" className="text-center text-white mb-[10px]" field={props.fields.Headline} />
-        <RichText className="text-center text-white" field={props.fields.Description} />
+        <RichText
+          className="text-center text-white text-[1.125rem] leading-[1.8rem]"
+          field={props.fields.Description}
+        />
         <section className="grid md:grid-cols-3 gap-[40px] mt-[80px]">
           <Placeholder
             name={`text-content-tiles`}
