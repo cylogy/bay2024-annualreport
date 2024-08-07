@@ -37,7 +37,7 @@ export const Default = (props: ContentTileItemProps): JSX.Element => {
       <RichText field={props.fields.Description} />
       <Text field={props.fields.Number} /> */}
       <div className="mb-[24px] flex flex-col md:flex-row items-start md:items-center gap-[24px]">
-        <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex items-center text-white justify-center text-[2.875rem] leading-[2.875rem]">
+        <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex items-center text-white justify-center text-[2.875rem] leading-[2.875rem] font-newsreader">
           <Text field={props.fields.Number} />
           <div className="absolute bottom-0">
             <svg
