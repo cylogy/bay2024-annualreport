@@ -9,10 +9,13 @@ const publicUrl = jssConfig.publicUrl;
 const nextConfig = {
   // Set assetPrefix to our public URL
   assetPrefix: publicUrl,
+  assetPrefix: process.env.BUILD_STANDALONE === "true" ? publicUrl+"/"+process.env.ASSETS_BASE_FOLDER_PREFIX+"-"+process.env.CODEBUILD_BUILD_NUMBER : publicUrl,
 
   // Allow specifying a distinct distDir when concurrently running app in a container
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
 
+  output: process.env.BUILD_STANDALONE === "true" ? 'standalone' : undefined,
+  
   // Make the same PUBLIC_URL available as an environment variable on the client bundle
   env: {
     PUBLIC_URL: publicUrl,
