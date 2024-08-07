@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       fontFamily: {
         montserrat: ["var(--font-montserrat)"],
+        newsreader: ["var(--font-newsreader)"],
       },
       colors: {
         "dark-blue": "var(--dark-blue)",
