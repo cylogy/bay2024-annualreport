@@ -1,0 +1,74 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - pwd
+      - export FE_SOURCE=${CODEBUILD_SRC_DIR}
+      - cd $FE_SOURCE
+      - printenv
+      - printenv|grep OSH_AMP_.*|sed 's/OSH_AMP_//gI'>> .env.local
+      - printenv|grep CODEBUILD_BUILD_NUMBER >> .env.local
+      - cat .env.local
+      - aws lambda get-function --function-name ${LAMBDA_FUNCTION_NAME}
+      - npm install
+  build:
+    commands:
+      - echo "Building nextjs application"
+      - ls
+      - pwd
+      - echo "started Builing nextjs app"
+      - npm run build
+      - echo "finished building nextjs app"
+  post_build:
+    commands:
+        # move necessary files into .next folder and remove folders
+      - mv ${FE_SOURCE}/public ${FE_SOURCE}/.next/standalone
+      - mv ${FE_SOURCE}/run.sh ${FE_SOURCE}/.next
+      - mv ${FE_SOURCE}/.env.local ${FE_SOURCE}/.next/standalone
+      - rm -rf ${FE_SOURCE}/.next/cache
+      - rm -rf ${FE_SOURCE}/.next/server
+      
+        # move assets for s3 bucket
+      - mkdir assets
+      - export ASSETS_BASE_FOLDER=${ASSETS_BASE_FOLDER_PREFIX}-${CODEBUILD_BUILD_NUMBER}
+      - echo ${ASSETS_BASE_FOLDER}
+      - mkdir assets/${ASSETS_BASE_FOLDER}
+      - mkdir assets/${ASSETS_BASE_FOLDER}/_next
+      - mv ${FE_SOURCE}/.next/static assets/${ASSETS_BASE_FOLDER}/_next/
+
+        # set artifact sources.
+      - export ARTIFACT1_SRC=${FE_SOURCE}/.next
+      - export ARTIFACT2_SRC=${FE_SOURCE}/assets
+      
+      # copy assets to s3
+      - aws s3 cp ${FE_SOURCE}/assets s3://${ASSETS_S3_BUCKET}/ --recursive
+      
+      # deploy zip to lambda function
+      - cd $ARTIFACT1_SRC
+      - zip -r artifact1.zip ./*
+      - aws lambda get-alias --function-name=${LAMBDA_FUNCTION_NAME} --name=${LAMBDA_ALIAS_NAME} --query "to_number(FunctionVersion)"
+      - publishedVersion=$(aws lambda update-function-code --function-name=${LAMBDA_FUNCTION_NAME} --zip-file fileb://artifact1.zip --publish --query "Version" --output text)
+      - echo $publishedVersion
+      - sleep 10
+
+      # warm up lambda and update alias for going live
+      - aws lambda invoke --function-name=${LAMBDA_FUNCTION_NAME} --qualifier=$publishedVersion response.json
+      - cat response.json
+      - aws lambda update-alias --function-name=${LAMBDA_FUNCTION_NAME} --name=${LAMBDA_ALIAS_NAME} --function-version $publishedVersion
+
+      # purge cloudfront
+      - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/" "/*" 
+      
+artifacts:
+  files:
+    - '**.*'
+  secondary-artifacts:
+    artifact1:
+      base-directory: ${ARTIFACT1_SRC}
+      files:
+        - '**/*'
+    artifact2:
+      base-directory: ${ARTIFACT2_SRC}
+      files:
+        - '**/*'
