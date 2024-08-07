@@ -2,12 +2,12 @@ import {
   ImageField,
   LayoutServiceData,
   useComponentProps,
-  GetStaticComponentProps,
+  // GetStaticComponentProps,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { HeaderMenuQueryResult } from 'lib/graphql-queries/HeaderMenu';
-import { getHeaderMenu } from 'lib/graphql-utils';
-import { MENU_ITEM } from 'lib/constants';
+// import { getHeaderMenu } from 'lib/graphql-utils';
+// import { MENU_ITEM } from 'lib/constants';
 import { useEffect, useState } from 'react';
 import Globe from 'assets/svg/Globe';
 import LinkIcon from 'assets/svg/LinkIcon';
@@ -344,8 +344,8 @@ export const Default = (props: HeaderProps): JSX.Element => {
   );
 };
 
-export const getStaticProps: GetStaticComponentProps = async (rendering, layoutData, context) => {
-  return {
-    mainMenuItems: await getHeaderMenu(MENU_ITEM),
-  };
-};
+// export const getStaticProps: GetStaticComponentProps = async (rendering, layoutData, context) => {
+//   return {
+//     mainMenuItems: await getHeaderMenu(MENU_ITEM),
+//   };
+// };

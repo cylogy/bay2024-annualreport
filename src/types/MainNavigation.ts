@@ -1,1 +1,3 @@
-export interface MainNavigationProps {}
+export interface MainNavigationProps {
+  dummy: string;
+}
