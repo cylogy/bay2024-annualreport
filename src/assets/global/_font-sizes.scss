@@ -13,12 +13,13 @@ h1,
 h2,
 .h2 {
   font-size: 2.375rem;
-  line-height: normal;
+  line-height: 2.895rem;
   font-style: normal;
   font-weight: 700;
 
   @include respond-to(lg) {
     font-size: 3.5rem;
+    line-height: 4.26625rem;
   }
 }
 
@@ -26,11 +27,12 @@ h3,
 .h3 {
   font-size: 1.8125rem;
   font-style: normal;
-  line-height: normal;
+  line-height: 2.209375rem;
   font-weight: 700;
 
   @include respond-to(lg) {
     font-size: 2.25rem;
+    line-height: 2.7425rem;
   }
 }
 
@@ -38,11 +40,12 @@ h4,
 .h4 {
   font-size: 1.625rem;
   font-style: normal;
-  line-height: normal;
+  line-height: 1.980625rem;
   font-weight: 700;
 
   @include respond-to(lg) {
     font-size: 2rem;
+    line-height: 2.438125rem;
   }
 }
 
@@ -66,7 +69,8 @@ h6,
   font-weight: 500;
 }
 
-p {
+p,
+.p1 {
   font-size: 1.125rem;
   line-height: 1.8rem;
   font-style: normal;

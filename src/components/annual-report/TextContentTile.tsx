@@ -4,59 +4,41 @@ import {
   LayoutServiceData,
   RichTextField,
   RichText,
-  Image,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 type ContentTileItemProps = ComponentProps & {
   layoutData: LayoutServiceData;
   fields: {
     Headline: Field<string>;
-    Subheadline: RichTextField;
+    Description: RichTextField;
     Number: Field<string>;
   };
 };
 export const Default = (props: ContentTileItemProps): JSX.Element => {
   return props.params.variant === 'ThreeColumns' ? (
-    <article className="text-white bg-powder-blue p-[40px] rounded-[20px] relative">
+    <article className="text-white bg-powder-blue p-[40px] rounded-[20px] relative tct">
       <img
         src="/images/textContentTiles-bg.png"
         alt=""
-        className="object-cover w-full absolute top-0 left-0"
+        className="object-cover w-full absolute top-0 left-0 decoration"
       />
-      <Text
-        tag="h4"
-        className="mb-[10px] text-[1.625rem] leading-[1.980625rem]  md:text-[2rem] md:leading-[2.4375rem]"
-        field={props.fields.Headline}
-      />
-      <RichText className="text-[1rem] leading-[1.6rem]" field={props.fields.Subheadline} />
+      <Text tag="h4" className="mb-[10px]" field={props.fields.Headline} />
+      <RichText className="p2" field={props.fields.Description} />
     </article>
   ) : props.params.variant === 'Stacked' ? (
-    <article className="text-dark-blue">
-      <Text tag="h4" className="mb-[12px] year" field={props.fields.Number} />
-      <Text tag="h3" className="mb-[12px] year" field={props.fields.Headline} />
-      <Image
-        className="py-[24px]"
-        src=""
-        alt=""
-        width={1200} // Original width of the image
-        height={675} // Original height of the image (example for a 16:9 aspect ratio)
-        style={{
-          width: '100%', // Makes the image responsive
-          height: 'auto', // Maintains the aspect ratio
-          objectFit: 'cover', // Ensures the image covers the container without distortion
-          objectPosition: 'center', // Centers the image within the container
-        }}
-      />
-      <RichText className="p1" field={props.fields.Subheadline} />
+    <article className="text-dark-blue tct">
+      <Text tag="p" className="mb-[12px] year h4" field={props.fields.Number} />
+      <Text tag="p" className="mb-[12px] h3" field={props.fields.Headline} />
+      <RichText className="p1" field={props.fields.Description} />
     </article>
   ) : (
-    <article className="text-dark-blue bg-white p-[40px] rounded-[40px] relative">
-      <Text field={props.fields.Headline} />
-      <RichText field={props.fields.Subheadline} />
-      <Text field={props.fields.Number} />
-      {/* <h3 className="mb-[24px] flex flex-col md:flex-row items-start md:items-center gap-[24px]">
-        <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex items-center text-white justify-center">
-          {index + 1}
+    <article className="text-dark-blue bg-white p-[40px] rounded-[40px] relative tct">
+      {/* <Text field={props.fields.Headline} />
+      <RichText field={props.fields.Description} />
+      <Text field={props.fields.Number} /> */}
+      <div className="mb-[24px] flex flex-col md:flex-row items-start md:items-center gap-[24px]">
+        <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex items-center text-white justify-center text-[2.875rem] leading-[2.875rem] font-newsreader">
+          <Text field={props.fields.Number} />
           <div className="absolute bottom-0">
             <svg
               width="75"
@@ -72,9 +54,9 @@ export const Default = (props: ContentTileItemProps): JSX.Element => {
             </svg>
           </div>
         </span>
-        <span>{tile.title}</span>
-      </h3>
-      <p>{tile.text}</p> */}
+        <Text tag="h3" field={props.fields.Headline} />
+      </div>
+      <RichText className="p1" field={props.fields.Description} />
     </article>
   );
 };

@@ -20,13 +20,11 @@ type TextContentTilesProps = ComponentProps & {
 
 export const ThreeColumns = (props: TextContentTilesProps): JSX.Element => {
   return (
+    /* Blue 3 cols */
     <section className="py-[60px] md:py-[120px] bg-dark-blue">
       <div className="container md:px-[70px]">
         <Text tag="h2" className="text-center text-white mb-[10px]" field={props.fields.Headline} />
-        <RichText
-          className="text-center text-white text-[1.125rem] leading-[1.8rem]"
-          field={props.fields.Description}
-        />
+        <RichText className="text-center text-white p1" field={props.fields.Description} />
         <section className="grid md:grid-cols-3 gap-[40px] mt-[80px]">
           <Placeholder
             name={`text-content-tiles`}
@@ -41,8 +39,9 @@ export const ThreeColumns = (props: TextContentTilesProps): JSX.Element => {
 
 export const Stacked = (props: TextContentTilesProps): JSX.Element => {
   return (
+    /* Timeline */
     <section className="py-[60px] md:py-[120px] bg-soft-white">
-      <Text tag="h2" field={props.fields.Headline} />
+      <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
       <section className="grid gap-[40px]">
         <div className="grid gap-[80px] w-full timeline relative">
           <Placeholder
