@@ -1,0 +1,45 @@
+.timeline {
+  padding-left: 40px;
+
+  &:before {
+    content: "";
+    width: 5px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    @apply bg-light-green
+  }
+
+  .year {
+    position: relative;
+
+    &:before {
+      content: "";
+      width: 22px;
+      height: 22px;
+      display: block;
+      position: absolute;
+      top: 9px;
+      left: -48px;
+      border-radius: 50%;
+      @apply bg-powder-blue;
+    }
+  }
+}
+
+.tct {
+  img:not(.decoration) {
+    width: 100% !important;
+    height: 281px !important;
+    max-width: 100%;
+    display: block;
+    margin: 24px 0;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+}
