@@ -68,7 +68,7 @@ const nextConfig = {
           },
           {
             key: 'Set-Cookie',
-            value: 'SameSite=Strict; Secure; HttpOnly; Path=/;',
+            value: 'SameSite=None; Secure; HttpOnly; Path=/;',
           },
           {
             key: process.env.NODE_ENV !== 'development' ? 'Content-Security-Policy' : 'Content-Security-Policy-Report-Only',
