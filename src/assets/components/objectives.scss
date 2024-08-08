@@ -1,0 +1,63 @@
+.objectives {
+  margin-top: 3.75rem;
+
+  &__group-image {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+
+    svg {
+      position: relative;
+      z-index: 2;
+      min-width: 60px;
+    }
+
+    .bg {
+      background: linear-gradient(90deg,
+          #1a65af 36.88%,
+          rgba(26, 101, 175, 0) 100%);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+
+    img {
+      max-height: 21.0625rem;
+      width: 100%;
+      z-index: 0;
+      object-fit: cover;
+    }
+  }
+
+  &__accordions {
+    padding-block: 3.75rem;
+
+    @include respond-to(lg) {
+      padding-block: 7.5rem;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 3;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 18rem;
+    top: 16%;
+    left: 22%;
+
+    @include respond-to(md) {
+      max-width: 35rem;
+      top: 36%;
+    }
+
+    @include respond-to(lg) {
+      top: 20%;
+      left: 16%;
+      max-width: 45rem;
+    }
+  }
+}

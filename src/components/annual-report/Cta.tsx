@@ -15,7 +15,7 @@ type CTAProps = ComponentProps & {
   fields: {
     Headline: Field<string>;
     Subheadline: Field<string>;
-    CTA: LinkField;
+    Cta: LinkField;
   };
 };
 
@@ -25,7 +25,7 @@ export const Default = withDatasourceCheck()<CTAProps>((props: CTAProps): JSX.El
       <div>CTA</div>
       <Text field={props.fields.Headline} />
       <Text field={props.fields.Subheadline} />
-      <Link field={props.fields?.CTA} />
+      <Link field={props.fields?.Cta} />
     </section>
   );
 });

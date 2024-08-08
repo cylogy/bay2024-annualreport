@@ -104,6 +104,7 @@ p,
 }
 
 .text-callout {
+  font-family: var(--font-newsreader);
   display: inline-block;
   font-size: 1.3125rem;
   font-style: normal;
@@ -115,5 +116,15 @@ p,
   @include respond-to(lg) {
     font-size: 2.125rem;
     line-height: 47.6px;
+  }
+}
+
+.cta,
+.richtext>a {
+  font-weight: 700;
+  @extend p;
+
+  &.underlined {
+    text-decoration: underline;
   }
 }
