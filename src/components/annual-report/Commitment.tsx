@@ -18,31 +18,25 @@ type CommitmentProps = ComponentProps & {
   fields: Fields;
 };
 
-export const Default = (props: CommitmentProps): JSX.Element => {
-  //const id = props.params.RenderingIdentifier;
-  console.log('CommitmentProps');
-  console.log(props);
-
+export const Default = ({
+  fields: { ActionPlans, Name, PerformanceHeadline, ResourcesHeadline },
+  rendering,
+}: CommitmentProps): JSX.Element => {
   return (
-    <div className="component-content" style={{ height: '100%', width: '100%', padding: '100px' }}>
-      <h2>
-        <Text field={props.fields?.Name} />
-      </h2>
-
+    <div className="text-dark-blue space-y-[3.75rem] px-5 py-10 md:p-10">
+      <Text field={Name} tag="span" className="text-callout" />
+      <JssRichText field={ActionPlans} tag="div" className="richtext space-y-5" />
       <div>
-        <JssRichText field={props.fields?.ActionPlans} />
+        <Text field={PerformanceHeadline} className="font-bold pb-[30px]" tag="h6" />
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 items-start">
+          <Placeholder name={'commitment-metric-container'} rendering={rendering} />
+        </div>
       </div>
-      <div className="component-content" style={{ height: '100%', width: '100%' }}>
-        <h3>
-          <Text field={props.fields?.PerformanceHeadline} />
-        </h3>
-        <Placeholder name={'commitment-metric-container'} rendering={props.rendering} />
-      </div>
-      <div className="component-content" style={{ height: '100%', width: '100%' }}>
-        <h3>
-          <Text field={props.fields?.ResourcesHeadline} />
-        </h3>
-        <Placeholder name={'commitment-resources-container'} rendering={props.rendering} />
+      <div>
+        <Text field={ResourcesHeadline} className="font-bold pb-[30px]" tag="h6" />
+        <div className="space-y-5 inline-block">
+          <Placeholder name={'commitment-resources-container'} rendering={rendering} />
+        </div>
       </div>
     </div>
   );

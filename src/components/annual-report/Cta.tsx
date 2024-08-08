@@ -16,7 +16,7 @@ type CTAProps = ComponentProps & {
   fields: {
     Headline: Field<string>;
     Subheadline: Field<string>;
-    CTA: LinkField;
+    Cta: LinkField;
   };
 };
 
