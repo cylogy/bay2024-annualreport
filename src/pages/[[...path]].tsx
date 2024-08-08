@@ -93,9 +93,9 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const props = await sitecorePagePropsFactory.create(context);
   const revalidate =
-  process.env.ISR_REVALIDATE && !isNaN(+process.env.ISR_REVALIDATE)
-    ? +process.env.ISR_REVALIDATE
-    : 5;
+    process.env.ISR_REVALIDATE && !isNaN(+process.env.ISR_REVALIDATE)
+      ? +process.env.ISR_REVALIDATE
+      : 5;
 
   return {
     props,
