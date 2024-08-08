@@ -22,7 +22,7 @@ export const Default = (props: GlossaryProps): JSX.Element => {
   return <></>;
 };
 
-export const getStaticProps: GetStaticComponentProps = async (rendering, layoutData, context) => {
+export const getStaticProps: GetStaticComponentProps = async () => {
   return {
     glossaryItems: await getMainGlossary(GLOSSARY_ITEM),
   };
