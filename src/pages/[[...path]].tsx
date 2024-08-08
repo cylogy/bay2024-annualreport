@@ -92,13 +92,17 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 // revalidation (or fallback) is enabled and a new request comes in.
 export const getStaticProps: GetStaticProps = async (context) => {
   const props = await sitecorePagePropsFactory.create(context);
+  const revalidate =
+  process.env.ISR_REVALIDATE && !isNaN(+process.env.ISR_REVALIDATE)
+    ? +process.env.ISR_REVALIDATE
+    : 5;
 
   return {
     props,
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 5 seconds
-    revalidate: 900, // In seconds
+    revalidate: revalidate, // In seconds
     notFound: props.notFound, // Returns custom 404 page with a status code of 404 when true
   };
 };
