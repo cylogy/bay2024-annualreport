@@ -26,8 +26,8 @@ type StrategyProps = ComponentProps & {
 
 export const Default = (props: StrategyProps): JSX.Element => {
   //const id = props.params.RenderingIdentifier;
-  console.log('StrategyProps');
-  console.log(props);
+  // console.log('StrategyProps');
+  // console.log(props);
   const modifyImageProps = {
     ...props.fields.Image,
     editable: props?.fields?.Image?.editable
