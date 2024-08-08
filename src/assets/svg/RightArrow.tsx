@@ -1,6 +1,4 @@
-import { SVGAttributes } from 'react';
-
-export default function RightArrow(props: SVGAttributes<SVGElement>) {
+export default function RightArrow() {
   return (
     <div className="w-[60px] h-[60px] bg-light-green rounded-[10px] grow-0 shrink-0 flex items-center justify-center arrow">
       <svg
