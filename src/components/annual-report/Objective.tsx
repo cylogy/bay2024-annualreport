@@ -19,8 +19,8 @@ type ObjectiveProps = ComponentProps & {
 };
 
 export const Default = (props: ObjectiveProps): JSX.Element => {
-  console.log('ObjectiveProps');
-  console.log(props);
+  // console.log('ObjectiveProps');
+  // console.log(props);
   const modifyImageProps = {
     ...props.fields.Image,
     editable: props?.fields?.Image?.editable
