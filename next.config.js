@@ -73,7 +73,7 @@ const nextConfig = {
           {
             key: process.env.NODE_ENV !== 'development' ? 'Content-Security-Policy' : 'Content-Security-Policy-Report-Only',
             value:
-              "default-src 'none' ; script-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com/ http://www.youtube.com/iframe_api https://static.doubleclick.net; style-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://fonts.googleapis.com https://cdnjs.cloudflare.com https://www.youtube.com; object-src 'none'; base-uri 'self'; connect-src 'self' https://*.vercel.app/ https://*.oshyn.com/; font-src 'self' https://fonts.gstatic.com/ https://cdnjs.cloudflare.com; frame-src 'self' https://www.youtube.com/; img-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com; manifest-src 'self'; worker-src 'none'; frame-ancestors 'self'; form-action 'self';" 
+              "default-src 'none' ; script-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com/ http://www.youtube.com/iframe_api https://static.doubleclick.net; style-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://fonts.googleapis.com https://cdnjs.cloudflare.com https://www.youtube.com; object-src 'none'; base-uri 'self'; connect-src 'self' https://*.vercel.app/ https://*.oshyn.com/; font-src 'self' https://fonts.gstatic.com/ https://cdnjs.cloudflare.com; frame-src 'self' https://www.youtube.com/; img-src 'self' https://sc-dev-baaqmd.oshyn.com/* https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com; manifest-src 'self'; worker-src 'none'; frame-ancestors 'self'; form-action 'self';"
           },
         ],
       },
