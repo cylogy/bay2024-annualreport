@@ -8,6 +8,7 @@ import {
   ImageField,
   RichText,
   Image,
+  withDatasourceCheck,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 
@@ -21,14 +22,16 @@ type GraphicContentLinksProps = ComponentProps & {
   };
 };
 
-export const Default = (props: GraphicContentLinksProps): JSX.Element => {
-  return (
-    <section>
-      <div>GraphicContentLinks</div>
-      <Text field={props.fields.Headline} />
-      <RichText field={props.fields.Description} />
-      <Image field={props.fields?.Image} />
-      <Placeholder name={`graphic-content-links`} rendering={props.rendering} />
-    </section>
-  );
-};
+export const Default = withDatasourceCheck()<GraphicContentLinksProps>(
+  (props: GraphicContentLinksProps): JSX.Element => {
+    return (
+      <section>
+        <div>GraphicContentLinks</div>
+        <Text field={props.fields.Headline} />
+        <RichText field={props.fields.Description} />
+        <Image field={props.fields?.Image} />
+        <Placeholder name={`graphic-content-links`} rendering={props.rendering} />
+      </section>
+    );
+  }
+);
