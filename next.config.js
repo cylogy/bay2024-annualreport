@@ -11,7 +11,7 @@ const nextConfig = {
   assetPrefix: publicUrl,
   assetPrefix: process.env.BUILD_STANDALONE === "true" ? publicUrl+"/"+process.env.ASSETS_BASE_FOLDER_PREFIX+"-"+process.env.CODEBUILD_BUILD_NUMBER : publicUrl,
 
-  cacheHandler: require.resolve('./cache-handler.js'),
+  cacheHandler: process.env.BUILD_STANDALONE === "true" ? require.resolve('./cache-handler.js'):undefined,
   // Allow specifying a distinct distDir when concurrently running app in a container
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
 
