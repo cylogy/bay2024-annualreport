@@ -35,6 +35,7 @@ phases:
       - echo ${ASSETS_BASE_FOLDER}
       - mkdir assets/${ASSETS_BASE_FOLDER}
       - mkdir assets/${ASSETS_BASE_FOLDER}/_next
+      - cp -r ${FE_SOURCE}/.next/standalone/public/* assets/
       - mv ${FE_SOURCE}/.next/static assets/${ASSETS_BASE_FOLDER}/_next/
 
         # set artifact sources.
