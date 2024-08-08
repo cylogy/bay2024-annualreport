@@ -1,13 +1,13 @@
 import {
+  GetStaticComponentProps,
   ImageField,
   LayoutServiceData,
   useComponentProps,
-  // GetStaticComponentProps,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { HeaderMenuQueryResult } from 'lib/graphql-queries/HeaderMenu';
-// import { getHeaderMenu } from 'lib/graphql-utils';
-// import { MENU_ITEM } from 'lib/constants';
+import { getHeaderMenu } from 'lib/graphql-utils';
+import { MENU_ITEM } from 'lib/constants';
 import { useEffect, useState } from 'react';
 import Globe from 'assets/svg/Globe';
 import LinkIcon from 'assets/svg/LinkIcon';
@@ -55,12 +55,12 @@ export const Default = (props: HeaderProps): JSX.Element => {
       firstElement.focus();
     }, 0);
   };
-
-  console.log('menu items');
-  console.log(componentProps);
+  //const MenuItems = componentProps?.menuItems?.headerMenu?.children?.results;
   const info = props;
-  console.log('item props');
-  console.log(info);
+  console.log('MainMenu', componentProps);
+  console.log('MainMenu', componentProps?.menuItems?.headerMenu.children.results);
+  console.log('item props', info);
+
   return (
     <section id="mainNavigation" className="absolute w-full">
       <section
@@ -87,7 +87,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
           </a>
         </div>
       </section>
-      <section className="container z-10 relative bg-white md:bg-transparent">
+      <section className="container z-10 relative bg-white md:!bg-transparent">
         <nav
           aria-labelledby="mainmenulabel"
           className="!flex justify-between items-center py-[15px]"
@@ -170,121 +170,49 @@ export const Default = (props: HeaderProps): JSX.Element => {
               </button>
             )}
             <ul className="mt-[80px] md:mt-0">
-              <li
-                className={`${activeMenuItem === 'home' ? 'active' : ''}`}
-                onClick={() => handleMenuItemClick('home')}
-              >
-                <a href="#">
-                  <span>Goal & Strategies</span>
-                  <ChevronDown className={`${activeMenuItem === 'about' ? 'active' : ''}`} />
-                </a>
-                <ul className={`submenu ${activeMenuItem === 'home' ? 'show' : ''}`}>
-                  <li className="">
-                    <a href="#">
-                      <img className="rounded-full" src="/images/archieve-impact.svg" alt="" />
-                      <div>
-                        <p className="menu-title">Achieve Impact</p>
-                        <p className="menu-description">
-                          Includes Reducing the health impact of air pollution, holding violators
-                          accountable, and mitigating climate changes
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img className="rounded-full" src="images/advance-environmental.svg" alt="" />
-                      <div>
-                        <p className="menu-title">Advance Environmental Justice</p>
-                        <p className="menu-description">
-                          Includes: Building partnerships with the community and managing
-                          disparities
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img className="rounded-full" src="images/foster-cohesion.svg" alt="" />
-                      <div>
-                        <p className="menu-title">Foster Cohesion and Inclusion</p>
-                        <p className="menu-description">
-                          Includes: Embodying diversity, equity, and inclusion and creating a sense
-                          of belonging
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img
-                        className="rounded-full"
-                        src="images/effective-accountablesvg.svg"
-                        alt=""
+              {componentProps?.menuItems?.headerMenu?.children?.results.map((item) => (
+                <li
+                  key={item.id}
+                  className={`${activeMenuItem === item.title.jsonValue.value ? 'active' : ''}`}
+                  onClick={() => handleMenuItemClick(item.title.jsonValue.value)}
+                >
+                  <a href={item.cta.jsonValue.value.href}>
+                    <span>{item.title.jsonValue.value}</span>
+                    {item.hasChildren && (
+                      <ChevronDown
+                        className={`${
+                          activeMenuItem === item.title.jsonValue.value ? 'active' : ''
+                        }`}
                       />
-                      <div>
-                        <p className="menu-title">
-                          Be Effective, Accountable, and Customer-Oriented
-                        </p>
-                        <p className="menu-description">
-                          Includes: Improving permitting, monitoring, and enforcement, building
-                          relationships, and enhancing communication
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li
-                className={`${activeMenuItem === 'about' ? 'active' : ''}`}
-                onClick={() => handleMenuItemClick('about')}
-              >
-                <a href="#">
-                  <span>About</span>
-                  <ChevronDown className={`${activeMenuItem === 'about' ? 'active' : ''}`} />
-                </a>
-                <ul className={`submenu ${activeMenuItem === 'about' ? 'show' : ''}`}>
-                  <li>
-                    <a href="#">
-                      <img className="rounded-full" src="images/strategic-plan.svg" alt="" />
-                      <div>
-                        <p className="menu-title">Strategic Plan Overview and Scope</p>
-                        <p className="menu-description">
-                          Learn about the vision behind the Strategic Plan and factors guiding its
-                          creation
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img className="rounded-full" src="images/envorimental-justice.svg" alt="" />
-                      <div>
-                        <p className="menu-title">Environmental Justice Priorities</p>
-                        <p className="menu-description">
-                          Explore our commitment to and strategic focus on environmental justice
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img className="rounded-full" src="images/glossary.svg" alt="" />
-                      <div>
-                        <p className="menu-title">Glossary of Terms</p>
-                        <p className="menu-description">
-                          Find definitions for terms frequently used throughout the Strategic Plan
-                        </p>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="">
-                <a href="#">
-                  <span>Contact</span>
-                </a>
-              </li>
+                    )}
+                  </a>
+                  {item.hasChildren && (
+                    <ul
+                      className={`submenu ${
+                        activeMenuItem === item.title.jsonValue.value ? 'show' : ''
+                      }`}
+                    >
+                      {item.children.results.map((child, childIndex) => (
+                        <li key={childIndex}>
+                          <a href={child.cta.jsonValue.value.href}>
+                            <img
+                              className="rounded-full"
+                              src={child.image.jsonValue.value.src}
+                              alt={child.image.jsonValue.value.alt}
+                            />
+                            <div>
+                              <p className="menu-title">{child.name}</p>
+                              <p className="menu-description">
+                                {child.description.jsonValue.value}
+                              </p>
+                            </div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
             </ul>
 
             {mobile && (
@@ -344,8 +272,9 @@ export const Default = (props: HeaderProps): JSX.Element => {
   );
 };
 
-// export const getStaticProps: GetStaticComponentProps = async (rendering, layoutData, context) => {
-//   return {
-//     mainMenuItems: await getHeaderMenu(MENU_ITEM),
-//   };
-// };
+export const getStaticProps: GetStaticComponentProps = async () => {
+  const menuItems = await getHeaderMenu(MENU_ITEM);
+  return {
+    menuItems,
+  };
+};
