@@ -29,6 +29,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@neshca/cache-handler": "^1.5.1",
     "@sitecore-jss/sitecore-jss-nextjs": "~22.0.0",
     "bootstrap": "^5.1.3",
     "font-awesome": "^4.7.0",
