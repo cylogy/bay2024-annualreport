@@ -48,7 +48,7 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            value: 'None',
           },
           {
             key: 'X-XSS-Protection',
@@ -64,7 +64,11 @@ const nextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'same-origin',
+            value: 'strict-origin',
+          },
+          {
+            key: 'Set-Cookie',
+            value: 'SameSite=Strict; Secure; HttpOnly; Path=/;',
           },
           {
             key: process.env.NODE_ENV !== 'development' ? 'Content-Security-Policy' : 'Content-Security-Policy-Report-Only',
