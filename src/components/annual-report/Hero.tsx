@@ -12,7 +12,7 @@ type MutePlayer = {
   };
 };
 
-export const Default = ({
+export const Main = ({
   fields: { Description, Headline, Image, Video },
 }: HeroProps): JSX.Element => {
   const playerRef = useRef<YouTubePlayer | null>(null);
