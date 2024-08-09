@@ -21,7 +21,7 @@ const playerOpts: YouTubeProps['opts'] & MutePlayer = {
   },
 };
 
-export const Default = ({ fields }: HeroProps): JSX.Element => {
+export const Main = ({ fields }: HeroProps): JSX.Element => {
   const playerRef = useRef<YouTubePlayer | null>(null);
   const [Playing, setPlaying] = useState(true);
   const isMobile = useIsMobile(1024);
