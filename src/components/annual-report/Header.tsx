@@ -56,10 +56,10 @@ export const Default = (props: HeaderProps): JSX.Element => {
     }, 0);
   };
   //const MenuItems = componentProps?.menuItems?.headerMenu?.children?.results;
-  const info = props;
-  console.log('MainMenu', componentProps);
-  console.log('MainMenu', componentProps?.menuItems?.headerMenu.children.results);
-  console.log('item props', info);
+  // const info = props;
+  // console.log('MainMenu', componentProps);
+  // console.log('MainMenu', componentProps?.menuItems?.headerMenu.children.results);
+  // console.log('item props', info);
 
   return (
     <section id="mainNavigation" className="absolute w-full">

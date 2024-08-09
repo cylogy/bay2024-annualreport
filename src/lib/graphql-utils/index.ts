@@ -4,6 +4,12 @@ import HeaderMenu, {
   HeaderMenuQueryResult,
   ItemQueryResult,
 } from 'lib/graphql-queries/HeaderMenu';
+
+import MainGlossary, {
+  GlossaryChild,
+  GlossaryQueryResult,
+  GlossaryItemQueryResult,
+} from 'lib/graphql-queries/Glossary';
 import { sitecoreApiKey, graphQLEndpoint } from 'temp/config';
 
 function getGraphQLClient(): GraphQLClient {
@@ -50,4 +56,37 @@ const getHeaderChildMenu = async <T = unknown>(menuChild: string): Promise<T[]> 
   return items;
 };
 
-export { getGraphQLClient, getHeaderMenu, getHeaderChildMenu };
+const getMainGlossary = async (glossaryItem: string): Promise<GlossaryQueryResult> => {
+  const graphQLClient = getGraphQLClient();
+  const result = await graphQLClient.request<GlossaryQueryResult>(MainGlossary(glossaryItem));
+  for (let index = 0; index < result.mainGlossary.children.results.length; index++) {
+    result.mainGlossary.children.results[index].children = { results: [] };
+    if (result.mainGlossary.children.results[index].hasChildren) {
+      result.mainGlossary.children.results[index].children.results = await getGlossaryChild(
+        result.mainGlossary.children.results[index].id
+      );
+    }
+  }
+
+  return result;
+};
+const getGlossaryChild = async <T = unknown>(glossaryChild: string): Promise<T[]> => {
+  const graphQLClient = getGraphQLClient();
+  let nextCursor = true;
+  let endCursor = '';
+  const items: T[] = [];
+  while (nextCursor) {
+    // eslint-disable-next-line
+    const result: any = await graphQLClient.request<GlossaryItemQueryResult>(
+      GlossaryChild(glossaryChild, nextCursor, endCursor)
+    );
+    if (result != undefined) {
+      items.push(...result.itemGlossary.children.results);
+      nextCursor = result.itemGlossary.children.pageInfo.hasNext;
+      endCursor = result.itemGlossary.children.pageInfo.endCursor;
+    }
+  }
+  return items;
+};
+
+export { getGraphQLClient, getHeaderMenu, getHeaderChildMenu, getMainGlossary, getGlossaryChild };
