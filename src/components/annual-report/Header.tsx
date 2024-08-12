@@ -19,8 +19,8 @@ import useIsMobile from 'lib/customHooks/isMobile';
 type HeaderProps = ComponentProps & {
   layoutData: LayoutServiceData;
   fields: {
-    logoDesktop: ImageField;
-    logoMobile: ImageField;
+    LogoDesktop: ImageField;
+    LogoMobile: ImageField;
   };
 };
 
