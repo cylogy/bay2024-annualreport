@@ -3,6 +3,7 @@ import {
   ImageField,
   LayoutServiceData,
   useComponentProps,
+  Link,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { HeaderMenuQueryResult } from 'lib/graphql-queries/HeaderMenu';
@@ -55,11 +56,8 @@ export const Default = (props: HeaderProps): JSX.Element => {
       firstElement.focus();
     }, 0);
   };
-  //const MenuItems = componentProps?.menuItems?.headerMenu?.children?.results;
-  // const info = props;
-  // console.log('MainMenu', componentProps);
-  // console.log('MainMenu', componentProps?.menuItems?.headerMenu.children.results);
-  // console.log('item props', info);
+
+  console.log(componentProps);
 
   return (
     <section id="mainNavigation" className="absolute w-full">
@@ -81,10 +79,13 @@ export const Default = (props: HeaderProps): JSX.Element => {
           </select>
 
           <span className="w-[2px] h-[23px] bg-white mx-[30px] block"></span>
-          <a href="/" className="flex item-center text-white gap-[12px]">
+          <Link
+            field={{ href: '/', title: 'Air District Main Site' }}
+            className="flex item-center text-white gap-[12px]"
+          >
             <span>Air District Main Site</span>
             <LinkIcon />
-          </a>
+          </Link>
         </div>
       </section>
       <section className="container z-10 relative bg-white md:!bg-transparent">
@@ -100,18 +101,18 @@ export const Default = (props: HeaderProps): JSX.Element => {
               Main Menu
             </h2>
             {mobile && (
-              <a aria-label="Mobile logo" href="/" className="">
+              <Link field={{ href: '/', title: 'Mobile logo' }} className="">
                 <img
                   src="/images/logo-black.png"
                   alt="Bay Area Air Quality Logo"
                   className="object-cover max-w-[200px]"
                 />
-              </a>
+              </Link>
             )}
             {!mobile && (
-              <a aria-label="Desktop logo" href="/">
+              <Link field={{ href: '/', title: 'Desktop logo' }}>
                 <img src="/images/logo-white.png" alt="Bay Area Air Quality Logo" className="" />
-              </a>
+              </Link>
             )}
           </section>
 
@@ -170,13 +171,16 @@ export const Default = (props: HeaderProps): JSX.Element => {
               </button>
             )}
             <ul className="mt-[80px] md:mt-0">
-              {componentProps?.menuItems?.headerMenu?.children?.results.map((item) => (
+              {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => (
                 <li
-                  key={item.id}
+                  key={index}
                   className={`${activeMenuItem === item.title.jsonValue.value ? 'active' : ''}`}
                   onClick={() => handleMenuItemClick(item.title.jsonValue.value)}
                 >
-                  <a href={item.cta.jsonValue.value.href}>
+                  <a
+                    href={item.cta.jsonValue.value.href || '#'}
+                    target={item.cta.jsonValue.value.target}
+                  >
                     <span>{item.title.jsonValue.value}</span>
                     {item.hasChildren && (
                       <ChevronDown
@@ -194,7 +198,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                     >
                       {item.children.results.map((child, childIndex) => (
                         <li key={childIndex}>
-                          <a href={child.cta.jsonValue.value.href}>
+                          <Link field={child.cta.jsonValue.value}>
                             <img
                               className="rounded-full"
                               src={child.image.jsonValue.value.src}
@@ -206,7 +210,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                                 {child.description.jsonValue.value}
                               </p>
                             </div>
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -236,12 +240,12 @@ export const Default = (props: HeaderProps): JSX.Element => {
                     <option value="English">English</option>
                     <option value="Spanish">Spanish</option>
                   </select>
-                  <a
-                    href="/"
+                  <Link
+                    field={{ href: '/', title: 'Air District Main Site' }}
                     className="mt-[25px] text-dark-blue md:text-white w-full block text-[14px] md:text-[16px]"
                   >
                     Air District Main Site
-                  </a>
+                  </Link>
                 </div>
               </section>
             )}

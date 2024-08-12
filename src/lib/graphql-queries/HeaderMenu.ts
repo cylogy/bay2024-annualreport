@@ -63,6 +63,7 @@ type HeaderMenuQueryResult = {
                 text: string;
                 querystring: string;
                 linktype: string;
+                target?: string;
               };
             };
           };
