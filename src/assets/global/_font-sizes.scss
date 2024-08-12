@@ -128,3 +128,14 @@ p,
     text-decoration: underline;
   }
 }
+
+.p-icon {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 12px;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
