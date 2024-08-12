@@ -5,10 +5,10 @@ import {
   ComponentRendering,
   LinkField,
   withDatasourceCheck,
+  Link,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import RightArrow from 'assets/svg/RightArrow';
 import { ComponentProps } from 'lib/component-props';
-import Link from 'next/link';
 
 type CTAProps = ComponentProps & {
   layoutData: LayoutServiceData;
@@ -24,7 +24,7 @@ export const Default = withDatasourceCheck()<CTAProps>((props: CTAProps): JSX.El
   return (
     <>
       <Link
-        href={props.fields.Cta.value.href as string}
+        field={props.fields.Cta.value}
         className="text-dark-blue p-[30px] flex gap-[20px] items-end md:items-center bg-white shadow-md radius-[10px] justify-between boxShadowEffect"
       >
         <div className="">

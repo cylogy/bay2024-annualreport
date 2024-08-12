@@ -19,6 +19,17 @@
   }
 }
 
+%menu-mobile-styles {
+  border: 1px solid var(--dark-blue);
+  border-radius: 50px;
+  padding: 10px 13px;
+  display: flex;
+  gap: 5px;
+  color: var(--dark-blue);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  align-items: center;
+}
 
 
 #mainNavigation {
@@ -32,13 +43,22 @@
       -moz-appearance: none;
       background: none;
       padding: 5px;
-      font-size: 16px;
-      color: #fff;
+      font-size: 0.875rem;
+      color: var(--dark-blue);
+
+      @include respond-to('md') {
+        color: #fff;
+        font-size: 1rem;
+      }
 
       &:focus,
       &:focus-visible {
-        color: #fff;
+        color: var(--dark-blue);
         border: none;
+
+        @include respond-to('md') {
+          color: #fff;
+        }
       }
 
       option {
@@ -72,33 +92,39 @@
       position: absolute;
       top: 0px;
       right: 0;
-      width: 100%;
-      padding-left: 20%;
-      height: 0;
+      width: 0;
+      height: 100vh;
       background: rgb(0, 0, 0);
-      background: -moz-linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(204, 204, 204, 1) 20%, rgba(204, 204, 204, 1) 100%);
-      background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(204, 204, 204, 1) 20%, rgba(204, 204, 204, 1) 100%);
-      background: linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(204, 204, 204, 1) 20%, rgba(204, 204, 204, 1) 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#cccccc", GradientType=1);
+      background: -moz-linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(245, 245, 245, 1) 20%, rgba(245, 245, 245, 1) 100%);
+      background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(245, 245, 245, 1) 20%, rgba(245, 245, 245, 1) 100%);
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(245, 245, 245, 1) 20%, rgba(245, 245, 245, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#F5F5F5", GradientType=1);
       z-index: -9999;
-      opacity: 0;
+      overflow: hidden;
+
 
       @include respond-to('md') {
         display: block;
         position: relative;
+        top: 0;
+        right: 0;
         height: auto;
-        opacity: 1;
         z-index: 9;
         width: 100%;
         background: none;
+        padding-left: 0;
+        overflow: initial;
       }
 
       &.open {
         @extend %transition;
         top: 0;
+        right: 0;
         opacity: 1;
         z-index: 9999;
+        width: 100%;
         height: 100vh;
+        padding-left: 20%;
 
         @include respond-to('md') {
           display: block;
@@ -135,12 +161,16 @@
             align-items: center;
             font-size: 1.125rem;
             line-height: 1.8rem;
-            font-weight: 600;
-            color: #000;
-            padding: 15px;
+            font-weight: 700;
+            color: var(--dark-blue);
+            padding: 15px 0;
             margin: 0 15px;
-            border-bottom: 1px solid #666;
+            border-bottom: 1px solid #CECECE;
             justify-content: space-between;
+
+            svg path {
+              stroke: var(--dark-blue);
+            }
 
             @include respond-to('md') {
               color: #fff;
@@ -153,6 +183,12 @@
               svg {
                 margin-left: 5px;
                 margin-top: 4px;
+
+                path {
+                  stroke: #fff;
+                }
+
+
               }
             }
 
@@ -172,37 +208,36 @@
           &.active {
             @extend %item-hover;
             padding-bottom: 0;
-
-            @include respond-to('md') {}
-
-            a {
-              border: none;
-            }
           }
         }
 
         .submenu {
+          @extend %transition;
           overflow: hidden;
           max-height: 0;
-          background: #ccc;
-          transition: max-height 0.5s ease;
+          border-radius: 40px;
+          opacity: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
 
           @include respond-to('md') {
             position: absolute;
             top: 60px;
             right: 0;
-            background: #fff;
             width: 500px;
-            border-radius: 40px;
-            opacity: 0;
             z-index: -999;
             margin: 0;
+            padding: 0;
+            display: block;
           }
 
           &.show {
-            padding: 12px 0;
+            @extend %transition;
+            opacity: 1;
             max-height: 800px;
-            transition: max-height 0.5s ease;
+            margin: 15px 15px 0;
+            padding: 12px 0;
 
             @include respond-to('md') {
               display: block;
@@ -210,18 +245,20 @@
               z-index: 999;
               margin: 0;
               padding: 38px 36px;
-
+              background: white;
             }
-
           }
 
           li {
             border: none;
-            border-radius: 0;
+            background: white;
+            border-radius: 30px;
 
             @include respond-to('md') {
               border-bottom: 1px solid var(--light-green);
               padding: 20px 0;
+              border-radius: 0;
+              background: transparent;
 
               &:first-of-type {
                 padding-top: 0;
@@ -262,7 +299,7 @@
 
     #hamburguerContainer {
       position: absolute;
-      top: 16px;
+      top: 11px;
       right: 25px;
       display: flex;
       flex-direction: column;
@@ -284,10 +321,14 @@
         cursor: pointer;
       }
 
+      .menu-mobile-wrapper {
+        @extend %menu-mobile-styles;
+      }
+
       .hamburger-lines {
         display: block;
-        height: 20px;
-        width: 25px;
+        height: 14px;
+        width: 18px;
         z-index: 2;
         display: flex;
         flex-direction: column;
@@ -297,11 +338,25 @@
           display: block;
           height: 2px;
           width: 100%;
-          background: #333;
+          background: var(--dark-blue);
         }
 
       }
     }
 
   }
+
+  #close {
+    @extend %menu-mobile-styles;
+    width: auto;
+    position: absolute;
+    top: 12px;
+    right: 26px;
+    padding: 10px 13px;
+    width: 88px;
+    align-items: center;
+    justify-content: center;
+  }
+
+
 }
