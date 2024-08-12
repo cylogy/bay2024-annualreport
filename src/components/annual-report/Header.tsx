@@ -1,5 +1,6 @@
 import {
   GetStaticComponentProps,
+  Image,
   ImageField,
   LayoutServiceData,
   useComponentProps,
@@ -18,8 +19,8 @@ import useIsMobile from 'lib/customHooks/isMobile';
 type HeaderProps = ComponentProps & {
   layoutData: LayoutServiceData;
   fields: {
-    logoDesktop: ImageField;
-    logoMobile: ImageField;
+    LogoDesktop: ImageField;
+    LogoMobile: ImageField;
   };
 };
 
@@ -63,7 +64,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
     <section id="mainNavigation" className="absolute w-full">
       <section
         id="languagebar"
-        className="languagebar bg-powder-blue z-10 relative py-[15px] hidden md:block"
+        className="languagebar bg-powder-blue z-10 relative py-[15px] hidden lg:block"
         aria-labelledby="languagebar"
       >
         <div className="container flex items-center justify-end">
@@ -88,7 +89,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
           </Link>
         </div>
       </section>
-      <section className="container z-10 relative bg-white md:!bg-transparent">
+      <section className="container z-10 relative bg-white lg:!bg-transparent">
         <nav
           aria-labelledby="mainmenulabel"
           className="!flex justify-between items-center py-[15px]"
@@ -100,10 +101,14 @@ export const Default = (props: HeaderProps): JSX.Element => {
             <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
               Main Menu
             </h2>
-            {mobile && <Link field={{ href: '/', title: 'Mobile logo' }} className=""></Link>}
+            {mobile && (
+              <Link field={{ href: '/', title: 'Logo Mobile' }}>
+                <Image field={props.fields.LogoMobile} class="object-cover max-w-[200px]" />
+              </Link>
+            )}
             {!mobile && (
-              <Link field={{ href: '/', title: 'Desktop logo' }}>
-                <img src="/images/logo-white.png" alt="Bay Area Air Quality Logo" className="" />
+              <Link field={{ href: '/', title: 'Logo Desktop' }}>
+                <Image field={props.fields.LogoDesktop} />
               </Link>
             )}
           </section>
@@ -115,7 +120,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   setOpenMenu(!openMenu);
                 }}
                 id="close"
-                className="relative flex justify-end pt-[10px] pr-[32px] text-[30px] w-full md:hidden"
+                className="relative flex justify-end pt-[10px] pr-[32px] text-[30px] w-full lg:hidden"
               >
                 Close
                 <svg
@@ -162,7 +167,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                 </svg>
               </button>
             )}
-            <ul className="mt-[80px] md:mt-0">
+            <ul className="mt-[80px] lg:mt-0">
               {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => (
                 <li
                   key={index}
@@ -213,13 +218,13 @@ export const Default = (props: HeaderProps): JSX.Element => {
 
             {mobile && (
               <section
-                className="languagebar relative px-[20px] mt-[30px] md:hidden"
+                className="languagebar relative px-[20px] mt-[30px] lg:hidden"
                 aria-labelledby="languagebar"
               >
                 <div className="">
                   <label
                     htmlFor="language-select"
-                    className="text-dark-blue md:text-white mr-[5px] text-[14px] md:text-[16px]"
+                    className="text-dark-blue lg:text-white mr-[5px] text-[14px] lg:text-[16px]"
                   >
                     Language:
                   </label>
@@ -234,7 +239,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   </select>
                   <Link
                     field={{ href: '/', title: 'Air District Main Site' }}
-                    className="mt-[25px] text-dark-blue md:text-white w-full block text-[14px] md:text-[16px]"
+                    className="mt-[25px] text-dark-blue lg:text-white w-full block text-[14px] lg:text-[16px]"
                   >
                     Air District Main Site
                   </Link>
