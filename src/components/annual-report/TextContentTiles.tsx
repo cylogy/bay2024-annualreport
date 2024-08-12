@@ -80,3 +80,26 @@ export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
     );
   }
 );
+
+export const Cards = withDatasourceCheck()<TextContentTilesProps>(
+  (props: TextContentTilesProps): JSX.Element => {
+    return (
+      <section className="py-[60px] md:py-[120px] bg-soft-white">
+        <div className="container">
+          <Text
+            tag="h2"
+            className="text-dark-blue text-[2.625rem] md:text-[3.875rem] mb-[10px] border-b-[3px] border-solid pb-[20px] "
+            field={props.fields.Headline}
+          />
+          <div className="grid md:grid-cols-3 gap-[40px] mt-[50px]">
+            <Placeholder
+              name={`text-content-tiles`}
+              rendering={props.rendering}
+              render={(components) => injectDynamicParams(components, { variant: 'Cards' })}
+            />
+          </div>
+        </div>
+      </section>
+    );
+  }
+);

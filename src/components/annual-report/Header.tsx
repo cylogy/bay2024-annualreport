@@ -57,7 +57,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
     }, 0);
   };
 
-  console.log(componentProps);
+  console.log(props);
 
   return (
     <section id="mainNavigation" className="absolute w-full">
@@ -100,15 +100,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
             <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
               Main Menu
             </h2>
-            {mobile && (
-              <Link field={{ href: '/', title: 'Mobile logo' }} className="">
-                <img
-                  src="/images/logo-black.png"
-                  alt="Bay Area Air Quality Logo"
-                  className="object-cover max-w-[200px]"
-                />
-              </Link>
-            )}
+            {mobile && <Link field={{ href: '/', title: 'Mobile logo' }} className=""></Link>}
             {!mobile && (
               <Link field={{ href: '/', title: 'Desktop logo' }}>
                 <img src="/images/logo-white.png" alt="Bay Area Air Quality Logo" className="" />

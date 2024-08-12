@@ -5,6 +5,7 @@ import {
   RichTextField,
   RichText,
   withDatasourceCheck,
+  Image,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 type ContentTileItemProps = ComponentProps & {
@@ -19,10 +20,9 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
   (props: ContentTileItemProps): JSX.Element => {
     return props.params.variant === 'ThreeColumns' ? (
       <article className="text-white bg-powder-blue p-[40px] rounded-[20px] relative tct">
-        <img
-          src="/images/textContentTiles-bg.png"
-          alt=""
+        <Image
           className="object-cover w-full absolute top-0 left-0 decoration"
+          field={{ src: '/images/textContentTiles-bg.png', alt: '' }}
         />
         <Text tag="h4" className="mb-[10px]" field={props.fields.Headline} />
         <RichText className="p2" field={props.fields.Description} />
@@ -33,11 +33,17 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
         <Text tag="p" className="mb-[12px] h3" field={props.fields.Headline} />
         <RichText className="p1" field={props.fields.Description} />
       </article>
+    ) : props.params.variant === 'Cards' ? (
+      <article className="text-dark-blue bg-white p-[40px] rounded-[20px] relative">
+        <Text
+          tag="h4"
+          className="mb-[10px] pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+          field={props.fields.Headline}
+        />
+        <RichText className="p1" field={props.fields.Description} />
+      </article>
     ) : (
       <article className="text-dark-blue bg-white p-[40px] rounded-[40px] relative tct">
-        {/* <Text field={props.fields.Headline} />
-      <RichText field={props.fields.Description} />
-      <Text field={props.fields.Number} /> */}
         <div className="mb-[24px] flex flex-col md:flex-row items-start md:items-center gap-[24px]">
           <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex items-center text-white justify-center text-[2.875rem] leading-[2.875rem] font-newsreader">
             <Text field={props.fields.Number} />
