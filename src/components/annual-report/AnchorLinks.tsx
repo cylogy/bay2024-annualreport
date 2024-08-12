@@ -2,7 +2,6 @@ import {
   Field,
   Text,
   ComponentRendering,
-  LinkField,
   withDatasourceCheck,
   Placeholder,
 } from '@sitecore-jss/sitecore-jss-nextjs';
