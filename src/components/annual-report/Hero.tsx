@@ -76,10 +76,12 @@ export const Main = ({
             <LiteYouTubeEmbed
               id={Video.value}
               ref={iframeRef}
-              wrapperClass="size-full absolute top-0 left-0 block"
               title="Video"
+              wrapperClass="size-full absolute top-0 left-0 block"
               params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1&autoplay=1`}
+              rel="0"
               muted
+              webp
             />
           </div>
         )}
