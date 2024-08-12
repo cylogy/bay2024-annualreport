@@ -24,7 +24,7 @@ export const Default = withDatasourceCheck()<CTAProps>((props: CTAProps): JSX.El
   return (
     <>
       <Link
-        href="http://www.google.com"
+        href={props.fields.Cta.value.href as string}
         className="text-dark-blue p-[30px] flex gap-[20px] items-end md:items-center bg-white shadow-md radius-[10px] justify-between boxShadowEffect"
       >
         <div className="">
