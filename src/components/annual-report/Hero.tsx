@@ -22,25 +22,35 @@ export const Main = ({
     const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
     if (playButton) playButton.click();
 
-    const loadYouTubeIframeAPI = () => {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    };
+    const onPageLoad = () => {
+      const loadYouTubeIframeAPI = () => {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+      };
 
-    if (!window.YT) loadYouTubeIframeAPI();
+      if (!window.YT) loadYouTubeIframeAPI();
 
-    window.onYouTubeIframeAPIReady = () => {
-      if (!iframeRef.current) return;
-      playerRef.current = new window.YT.Player(iframeRef.current, {
-        events: {
-          onReady: (event: YTEvent) => {
-            event.target.playVideo();
+      window.onYouTubeIframeAPIReady = () => {
+        if (!iframeRef.current) return;
+        playerRef.current = new window.YT.Player(iframeRef.current, {
+          events: {
+            onReady: (event: YTEvent) => {
+              event.target.playVideo();
+            },
           },
-        },
-      });
+        });
+      };
     };
+
+    if (document.readyState === 'complete') {
+      onPageLoad();
+      return;
+    } else {
+      window.addEventListener('load', onPageLoad);
+      return () => window.removeEventListener('load', onPageLoad);
+    }
   }, []);
 
   const toggleVideo = () => {
@@ -58,7 +68,7 @@ export const Main = ({
             field={Image}
             placeholder="empty"
             fetchpriority="high"
-            priority={true}
+            priority
           />
         </picture>
         {!isMobile && (
@@ -103,7 +113,7 @@ export const Secondary = ({ fields: { Image, Headline, Description } }: HeroProp
           field={Image}
           placeholder="empty"
           fetchpriority="high"
-          priority={true}
+          priority
         />
       </picture>
       <div className="hero__background" />
@@ -127,7 +137,6 @@ export const Download = ({
           className="hero--download__image"
           placeholder="blur"
           fetchpriority="low"
-          priority={false}
         />
         <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />
