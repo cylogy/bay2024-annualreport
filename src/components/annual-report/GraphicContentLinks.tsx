@@ -26,13 +26,13 @@ export const Default = withDatasourceCheck()<GraphicContentLinksProps>(
   (props: GraphicContentLinksProps): JSX.Element => {
     return (
       <section>
-        <section className="py-[60px] md:py-[120px] bg-soft-white">
+        <section className="py-[60px] lg:py-[120px] bg-soft-white">
           <div className="container">
-            <section className="grid md:grid-cols-2 gap-[60px] md:gap-[140px] text-dark-blue">
-              <div className="column order-last md:!order-first" role="region">
+            <section className="grid lg:grid-cols-2 gap-[60px] lg:gap-[140px] text-dark-blue">
+              <div className="column order-last lg:!order-first" role="region">
                 <Text
                   tag="h2"
-                  className="pb-[12px] md:max-w-[500px]"
+                  className="pb-[12px] lg:max-w-[500px]"
                   field={props.fields.Headline}
                 />
                 <RichText className="h6" field={props.fields.Description} />

@@ -3,7 +3,7 @@ footer {
   color: #fff;
   text-align: center;
 
-  @include respond-to('md') {
+  @include respond-to('lg') {
     text-align: left;
   }
 
@@ -11,7 +11,7 @@ footer {
     padding-bottom: 30px;
     margin: 0 auto;
 
-    @include respond-to('md') {
+    @include respond-to('lg') {
       margin: 0;
     }
   }
@@ -22,7 +22,7 @@ footer {
     padding-top: 80px;
     padding-bottom: 80px;
 
-    @include respond-to('md') {
+    @include respond-to('lg') {
       grid-template-columns: repeat(4, 1fr);
       gap: 80px;
       padding-bottom: 147px;
@@ -63,7 +63,7 @@ footer {
       align-items: center;
       justify-content: center;
 
-      @include respond-to('md') {
+      @include respond-to('lg') {
         justify-content: left;
       }
 
@@ -81,7 +81,7 @@ footer {
     padding-bottom: 50px;
     gap: 30px;
 
-    @include respond-to('md') {
+    @include respond-to('lg') {
       flex-direction: row;
       padding-bottom: 70px;
     }
@@ -90,7 +90,7 @@ footer {
       @extend .p3;
       max-width: 250px;
 
-      @include respond-to('md') {
+      @include respond-to('lg') {
         max-width: 100%;
       }
     }
@@ -100,7 +100,7 @@ footer {
       flex-direction: column;
       align-items: center;
 
-      @include respond-to('md') {
+      @include respond-to('lg') {
         flex-direction: row;
       }
 
@@ -108,7 +108,7 @@ footer {
         padding: 15px 0;
         @extend .p3;
 
-        @include respond-to('md') {
+        @include respond-to('lg') {
           border-right: 1px solid white;
           padding: 0 20px;
 
