@@ -15,3 +15,25 @@ body {
   padding-bottom: 10px;
   border-bottom: 1px solid var(--dark-blue);
 }
+
+
+.boxShadowEffect {
+  @extend %transition;
+
+  .arrow svg {
+    @extend %transition;
+  }
+
+  &:hover {
+    @extend %transition;
+    box-shadow: 0px 0px 20px 9px #bfbfbfa6;
+    transform: scale(1.01);
+
+    .arrow svg {
+      @extend %transition;
+      transform: translatex(5px);
+    }
+  }
+
+
+}
