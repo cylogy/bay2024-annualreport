@@ -2,8 +2,9 @@ import { Image as JssImage, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
+import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
-import YouTube, { YouTubePlayer, YouTubeProps } from 'react-youtube';
+import { YouTubePlayer, YouTubeProps } from 'react-youtube';
 import { HeroProps } from 'src/types/Hero';
 
 type MutePlayer = {
@@ -11,6 +12,8 @@ type MutePlayer = {
     mute: number;
   };
 };
+
+const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
 
 export const Main = ({
   fields: { Description, Headline, Image, Video },
