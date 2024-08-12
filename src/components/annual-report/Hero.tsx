@@ -2,8 +2,9 @@ import { Image as JssImage, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
+import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
-import YouTube, { YouTubePlayer, YouTubeProps } from 'react-youtube';
+import type { YouTubePlayer, YouTubeProps } from 'react-youtube';
 import { HeroProps } from 'src/types/Hero';
 
 type MutePlayer = {
@@ -11,6 +12,8 @@ type MutePlayer = {
     mute: number;
   };
 };
+
+const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
 
 export const Main = ({
   fields: { Description, Headline, Image, Video },
@@ -22,7 +25,6 @@ export const Main = ({
   const playerOpts: YouTubeProps['opts'] & MutePlayer = {
     playerVars: {
       rel: 0,
-      autoplay: 1,
       mute: 1,
       controls: 0,
       showinfo: 0,
@@ -33,6 +35,7 @@ export const Main = ({
 
   const onReady: YouTubeProps['onReady'] = (event) => {
     playerRef.current = event.target;
+    playerRef.current.playVideo();
   };
 
   const toggleVideo = () => {
@@ -45,7 +48,12 @@ export const Main = ({
     <>
       <div className="hero relative">
         <picture>
-          <JssImage className="hero__bg-image" field={Image} placeholder="blur" />
+          <JssImage
+            className="hero__bg-image"
+            field={Image}
+            placeholder="blur"
+            fetchpriority="high"
+          />
         </picture>
         {!isMobile && (
           <div className="hero__video-player">
@@ -83,7 +91,12 @@ export const Secondary = ({ fields: { Image, Headline, Description } }: HeroProp
   return (
     <div className="hero relative hero--secondary">
       <picture>
-        <JssImage className="hero__bg-image" field={Image} placeholder="blur" />
+        <JssImage
+          className="hero__bg-image"
+          field={Image}
+          placeholder="empty"
+          fetchpriority="high"
+        />
       </picture>
       <div className="hero__background" />
       <div className="hero__content text-center space-y-6 flex flex-col items-center container">
