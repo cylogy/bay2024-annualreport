@@ -27,6 +27,7 @@ const newsreader = Newsreader({
   weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-newsreader',
+  adjustFontFallback: false,
 });
 
 const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
