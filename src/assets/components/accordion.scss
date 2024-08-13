@@ -22,9 +22,7 @@
     visibility: hidden;
     overflow: hidden;
     max-height: 0;
-    transition-timing-function: cubic-bezier(0.895, 0.03, 0.685, 0.22);
-    transition-duration: 0.2s;
-    transition-property: max-height, visibility;
+    transition: max-height 400ms ease-in-out, visibility 0ms 400ms;
   }
 
   &__info-box {
@@ -44,7 +42,16 @@
     #{ $self }__content {
       visibility: visible;
       max-height: 1000rem;
-      transition: all 200ms ease-in-out 0ms;
+      transition: max-height 400ms ease-in-out, visibility 0ms;
     }
+
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  .arrow {
+    transform: rotate(0deg);
+    transition: 0.25s transform ease;
   }
 }

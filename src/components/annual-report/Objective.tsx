@@ -50,12 +50,12 @@ export const Default = ({
             fill="#B6D158"
           />
         </svg>
-        <div className="bg"></div>
+        <div className="bg" />
         <div className="objectives__content space-y-3">
           <Text field={Name} tag="h2" />
           <Text field={Description} tag="p" />
         </div>
-        <JssImage field={modifyImageProps} />
+        <JssImage field={modifyImageProps} placeholder="empty" fetchpriority="low" loading="lazy" />
       </div>
       <div className="objectives__accordions container">
         <div className="max-w-[61.25rem]">
