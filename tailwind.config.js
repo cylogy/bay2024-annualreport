@@ -19,6 +19,7 @@ module.exports = {
         'light-green': 'var(--light-green)',
         'lighter-green': 'var(--lighter-green)',
         'powder-blue': 'var(--powder-blue)',
+        'dark-powder-blue': 'var(--dark-powder-blue)',
         mint: 'var(--mint)',
         sage: 'var(--sage)',
         ocean: 'var(--ocean)',
