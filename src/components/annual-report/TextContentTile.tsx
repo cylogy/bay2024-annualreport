@@ -47,10 +47,6 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
       <article className="text-dark-blue bg-white p-[40px] rounded-[40px] relative tct">
         <div className="mb-[24px] flex flex-col md:flex-row items-start md:items-center gap-[24px]">
           <BlueSquareBullet text={props.fields.Number.value} />
-
-          <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex items-center text-white justify-center text-[2.875rem] leading-[2.875rem] font-newsreader">
-            <Text field={props.fields.Number} />
-          </span>
           <Text tag="h3" field={props.fields.Headline} />
         </div>
         <RichText className="p1" field={props.fields.Description} />
