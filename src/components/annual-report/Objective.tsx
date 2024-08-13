@@ -6,7 +6,7 @@ import {
   Image as JssImage,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
-import Accordion from './Accordion';
+import Accordion from './atoms/Accordion';
 
 interface Fields {
   Name: Field<string>;

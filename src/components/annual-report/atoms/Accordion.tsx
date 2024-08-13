@@ -40,7 +40,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
         behavior: 'smooth',
         block: 'start',
       });
-    }, 600);
+    }, 500);
   };
 
   return (
@@ -52,6 +52,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
         aria-controls={`accordion-item-body-${Name}`}
         aria-expanded={isOpened}
         className="accordion-item__header"
+        aria-label={Name}
       >
         {isMobile ? (
           <div className="flex justify-between w-full">
@@ -77,12 +78,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
           </>
         )}
       </button>
-      <div
-        id={`accordion-item-body-${Name}`}
-        role="region"
-        aria-labelledby={Name}
-        className="accordion-item__content"
-      >
+      <div id={`accordion-item-body-${Name}`} role="region" className="accordion-item__content">
         <div className="py-10">{children}</div>
       </div>
     </div>

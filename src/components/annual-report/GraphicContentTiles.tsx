@@ -20,25 +20,21 @@ type GraphicContentTilesProps = ComponentProps & {
 };
 
 export const GraphicContentTiles = withDatasourceCheck()<GraphicContentTilesProps>(
-  (props: GraphicContentTilesProps): JSX.Element => {
+  ({ fields: { Description, Headline }, rendering }: GraphicContentTilesProps): JSX.Element => {
     return (
-      <section className="py-[60px] md:py-[120px] bg-dark-blue">
-        <div className="container md:px-[70px]">
-          <Text
-            tag="h4"
-            className="text-center text-white mb-[10px]"
-            field={props.fields.Headline}
+      <section className="py-20 md:py-[7.5rem] container flex flex-col items-center gap-14 md:gap-20">
+        <div className="text-center max-w-[56.25rem] space-y-3 text-dark-blue">
+          <Text tag="h4" field={Headline} />
+          <RichText field={Description} tag="p" className="richtext" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <Placeholder
+            name={`graphic-content-tiles`}
+            rendering={rendering}
+            render={(components) =>
+              injectDynamicParams(components, { variant: 'GraphicContentTiles' })
+            }
           />
-          <RichText className="text-center text-white p1" field={props.fields.Description} />
-          <section className="grid md:grid-cols-3 gap-[40px] mt-[80px]">
-            <Placeholder
-              name={`graphic-content-tiles`}
-              rendering={props.rendering}
-              render={(components) =>
-                injectDynamicParams(components, { variant: 'GraphicContentTiles' })
-              }
-            />
-          </section>
         </div>
       </section>
     );
