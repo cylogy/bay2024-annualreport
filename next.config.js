@@ -64,7 +64,7 @@ const nextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'no-referrer-when-downgrade',
+            value: 'no-referrer',
           },
           {
             key: 'Set-Cookie',
@@ -72,7 +72,7 @@ const nextConfig = {
           },
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=604800; includeSubDomains;'
+            value: 'max-age=63072000; includeSubDomains;'
           },
           {
             key: process.env.NODE_ENV !== 'development' ? 'Content-Security-Policy' : 'Content-Security-Policy-Report-Only',
