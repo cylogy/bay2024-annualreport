@@ -1,7 +1,7 @@
 %item-hover {
   @extend %transition;
 
-  @include respond-to('md') {
+  @include respond-to('lg') {
     background: #fff;
     border: 1px solid var(--powder-blue);
   }
@@ -9,7 +9,7 @@
   a {
     @extend %transition;
 
-    @include respond-to('md') {
+    @include respond-to('lg') {
       @apply text-powder-blue;
 
       svg path {
@@ -46,7 +46,7 @@
       font-size: 0.875rem;
       color: var(--dark-blue);
 
-      @include respond-to('md') {
+      @include respond-to('lg') {
         color: #fff;
         font-size: 1rem;
       }
@@ -56,7 +56,7 @@
         color: var(--dark-blue);
         border: none;
 
-        @include respond-to('md') {
+        @include respond-to('lg') {
           color: #fff;
         }
       }
@@ -99,11 +99,11 @@
       background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(245, 245, 245, 1) 20%, rgba(245, 245, 245, 1) 100%);
       background: linear-gradient(90deg, rgba(0, 0, 0, 0.5410539215686274) 20%, rgba(245, 245, 245, 1) 20%, rgba(245, 245, 245, 1) 100%);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#F5F5F5", GradientType=1);
-      z-index: -9999;
+      //z-index: -9999;
       overflow: hidden;
 
 
-      @include respond-to('md') {
+      @include respond-to('lg') {
         display: block;
         position: relative;
         top: 0;
@@ -126,7 +126,7 @@
         height: 100vh;
         padding-left: 20%;
 
-        @include respond-to('md') {
+        @include respond-to('lg') {
           display: block;
           height: auto;
         }
@@ -136,7 +136,7 @@
         display: flex;
         flex-direction: column;
 
-        @include respond-to('md') {
+        @include respond-to('lg') {
           gap: 25px;
           flex-direction: row;
           justify-content: flex-end;
@@ -148,7 +148,7 @@
           margin: 0 15px;
           border-bottom: 1px solid #666;*/
 
-          @include respond-to('md') {
+          @include respond-to('lg') {
             border: 1px solid #fff;
             border-radius: 15px;
             padding: 10px 24px;
@@ -172,7 +172,7 @@
               stroke: var(--dark-blue);
             }
 
-            @include respond-to('md') {
+            @include respond-to('lg') {
               color: #fff;
               padding: 0;
               margin: 0;
@@ -193,7 +193,7 @@
             }
 
             span {
-              @include respond-to('md') {
+              @include respond-to('lg') {
                 margin-right: 5px;
               }
             }
@@ -202,7 +202,7 @@
           &:hover {
             @extend %item-hover;
 
-            @include respond-to('md') {}
+            @include respond-to('lg') {}
           }
 
           &.active {
@@ -221,7 +221,7 @@
           flex-direction: column;
           gap: 10px;
 
-          @include respond-to('md') {
+          @include respond-to('lg') {
             position: absolute;
             top: 60px;
             right: 0;
@@ -239,7 +239,7 @@
             margin: 15px 15px 0;
             padding: 12px 0;
 
-            @include respond-to('md') {
+            @include respond-to('lg') {
               display: block;
               opacity: 1;
               z-index: 999;
@@ -254,7 +254,7 @@
             background: white;
             border-radius: 30px;
 
-            @include respond-to('md') {
+            @include respond-to('lg') {
               border-bottom: 1px solid var(--light-green);
               padding: 20px 0;
               border-radius: 0;
@@ -305,7 +305,7 @@
       flex-direction: column;
       align-items: center;
 
-      @include respond-to('md') {
+      @include respond-to('lg') {
         display: none;
       }
 
