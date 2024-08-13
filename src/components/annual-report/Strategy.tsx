@@ -40,6 +40,9 @@ export const Default = ({
         <JssImage
           field={modifyImageProps}
           className="max-h-[11.25rem] md:max-h-[17.5rem] w-full object-cover rounded-[10px]"
+          placeholder="empty"
+          fetchpriority="low"
+          loading="lazy"
         />
         <div className="space-y-16">
           <div>
