@@ -20,10 +20,10 @@ export const Default = withDatasourceCheck()<AnchorLinkProps>(
     console.log(props);
     return (
       <>
-        <a href="">
-          <Text field={props.fields.Name} />
-        </a>
-        <Placeholder name={`anchor-links`} rendering={props.rendering} />
+        <Text field={props.fields.Name} />
+        <div>
+          <Placeholder name={`anchor-links`} rendering={props.rendering} />
+        </div>
       </>
     );
   }
