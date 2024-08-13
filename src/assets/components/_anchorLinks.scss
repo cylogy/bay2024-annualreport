@@ -1,0 +1,33 @@
+#anchorLinks {
+
+  ul {
+    li {
+      a {
+        @extend .p2;
+        @extend %transition;
+        display: block;
+        padding: 10px 16px;
+        position: relative;
+        font-weight: 500;
+
+        &:hover,
+        &.active {
+          @extend %transition;
+          @apply bg-light-green-10;
+          font-weight: 700;
+
+          &:before {
+            @apply bg-light-green;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -5px;
+            width: 5px;
+            height: 100%;
+
+          }
+        }
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ type ContentTileItemProps = ComponentProps & {
 export const Default = withDatasourceCheck()<ContentTileItemProps>(
   (props: ContentTileItemProps): JSX.Element => {
     return props.params.variant === 'ThreeColumns' ? (
-      <article className="text-white bg-powder-blue p-[40px] rounded-[20px] relative tct">
+      <article className="text-white bg-dark-powder-blue p-[40px] rounded-[20px] relative tct">
         <Image
           className="object-cover w-full absolute top-0 left-0 decoration"
           field={{ src: '/images/textContentTiles-bg.png', alt: '' }}
