@@ -3,7 +3,6 @@ import { ComponentProps } from 'lib/component-props';
 import { getMainGlossary } from 'lib/graphql-utils';
 import { GLOSSARY_ITEM } from 'lib/constants';
 import { GlossaryQueryResult } from 'lib/graphql-queries/Glossary';
-import { dictionaryServiceFactory } from '../../../../../../Users/pc/Downloads/DXP/src/sxastarter/src/lib/dictionary-service-factory';
 
 type GlossaryProps = ComponentProps;
 
