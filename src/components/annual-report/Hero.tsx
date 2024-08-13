@@ -53,6 +53,11 @@ export const Main = ({
     }
   }, []);
 
+  const unFocusIframe = () => {
+    const iframe = document.querySelector<HTMLIFrameElement>('.hero__video-player iframe');
+    iframe?.setAttribute('tabindex', '-1');
+  };
+
   const toggleVideo = () => {
     if (!playerRef.current) return;
     Playing ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
@@ -76,10 +81,13 @@ export const Main = ({
             <LiteYouTubeEmbed
               id={Video.value}
               ref={iframeRef}
-              wrapperClass="size-full absolute top-0 left-0 block"
               title="Video"
-              params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1&autoplay=1`}
+              onIframeAdded={unFocusIframe}
+              wrapperClass="size-full absolute top-0 left-0 block"
+              params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1`}
+              rel="0"
               muted
+              webp
             />
           </div>
         )}
