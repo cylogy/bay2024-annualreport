@@ -17,9 +17,12 @@ type AnchorLinkProps = ComponentProps & {
 
 export const Default = withDatasourceCheck()<AnchorLinkProps>(
   (props: AnchorLinkProps): JSX.Element => {
+    console.log(props);
     return (
       <>
-        <Text field={props.fields.Name} />
+        <a href="">
+          <Text field={props.fields.Name} />
+        </a>
         <Placeholder name={`anchor-links`} rendering={props.rendering} />
       </>
     );

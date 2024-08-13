@@ -17,10 +17,26 @@ type AnchorLinksProps = ComponentProps & {
 export const Default = withDatasourceCheck()<AnchorLinksProps>(
   (props: AnchorLinksProps): JSX.Element => {
     return (
-      <>
-        <Text tag="h4" className="mb-[10px]" field={props.fields.Headline} />
-        <Placeholder name={`anchor-links`} rendering={props.rendering} />
-      </>
+      <section className="py-[60px] lg:py-[120px]">
+        <div className="container">
+          <div className="grid grid-cols-2 gap-[171px]">
+            <div></div>
+            <nav
+              id="anchorLinks"
+              className="bg-white rounded-[40px] p-[40px] text-dark-blue boxShadow"
+            >
+              <Text
+                tag="h4"
+                className="text-dark-blue mb-[10px] border-b-[3px] border-solid pb-[20px]"
+                field={props.fields.Headline}
+              />
+              <ul className="mt-[30px]">
+                <Placeholder name={`anchor-links`} rendering={props.rendering} />
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
     );
   }
 );
