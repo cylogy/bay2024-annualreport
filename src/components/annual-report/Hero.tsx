@@ -28,7 +28,6 @@ export const Main = ({
         tag.src = 'https://www.youtube.com/iframe_api';
         tag.defer = true;
         tag.async = true;
-        tag.fetchPriority = 'low';
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
       };
