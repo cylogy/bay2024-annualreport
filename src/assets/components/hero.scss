@@ -110,6 +110,14 @@
     pointer-events: none;
     z-index: 1;
 
+    & article {
+      background-image: none !important;
+    }
+
+    .lty-playbtn {
+      visibility: hidden;
+    }
+
     & iframe {
       width: 300%;
       height: 100%;

@@ -2,40 +2,60 @@ import { Image as JssImage, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
-import dynamic from 'next/dynamic';
-import { useRef, useState } from 'react';
-import type { YouTubePlayer, YouTubeProps } from 'react-youtube';
+import { useEffect, useRef, useState } from 'react';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import { HeroProps } from 'src/types/Hero';
 
-type MutePlayer = {
-  playerVars: {
-    mute: number;
-  };
-};
-
-const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
+interface YTEvent {
+  target: YTPlayer;
+}
 
 export const Main = ({
   fields: { Description, Headline, Image, Video },
 }: HeroProps): JSX.Element => {
-  const playerRef = useRef<YouTubePlayer | null>(null);
-  const [Playing, setPlaying] = useState(true);
   const isMobile = useIsMobile(1024);
+  const [Playing, setPlaying] = useState(true);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+  const playerRef = useRef<YTPlayer | null>(null);
 
-  const playerOpts: YouTubeProps['opts'] & MutePlayer = {
-    playerVars: {
-      rel: 0,
-      mute: 1,
-      controls: 0,
-      showinfo: 0,
-      playlist: Video.value,
-      loop: 1,
-    },
-  };
+  useEffect(() => {
+    const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
+    if (playButton) playButton.click();
 
-  const onReady: YouTubeProps['onReady'] = (event) => {
-    playerRef.current = event.target;
-    playerRef.current.playVideo();
+    const onPageLoad = () => {
+      const loadYouTubeIframeAPI = () => {
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+      };
+
+      if (!window.YT) loadYouTubeIframeAPI();
+
+      window.onYouTubeIframeAPIReady = () => {
+        if (!iframeRef.current) return;
+        playerRef.current = new window.YT.Player(iframeRef.current, {
+          events: {
+            onReady: (event: YTEvent) => {
+              event.target.playVideo();
+            },
+          },
+        });
+      };
+    };
+
+    if (document.readyState === 'complete') {
+      onPageLoad();
+      return;
+    } else {
+      window.addEventListener('load', onPageLoad);
+      return () => window.removeEventListener('load', onPageLoad);
+    }
+  }, []);
+
+  const unFocusIframe = () => {
+    const iframe = document.querySelector<HTMLIFrameElement>('.hero__video-player iframe');
+    iframe?.setAttribute('tabindex', '-1');
   };
 
   const toggleVideo = () => {
@@ -51,18 +71,23 @@ export const Main = ({
           <JssImage
             className="hero__bg-image"
             field={Image}
-            placeholder="blur"
+            placeholder="empty"
             fetchpriority="high"
+            priority="true"
           />
         </picture>
         {!isMobile && (
           <div className="hero__video-player">
-            <YouTube
-              className="w-full h-full absolute top-0 left-0 block"
-              videoId={Video.value}
-              onReady={onReady}
-              opts={playerOpts}
-              loading="lazy"
+            <LiteYouTubeEmbed
+              id={Video.value}
+              ref={iframeRef}
+              title="Video"
+              onIframeAdded={unFocusIframe}
+              wrapperClass="size-full absolute top-0 left-0 block"
+              params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1`}
+              rel="0"
+              muted
+              webp
             />
           </div>
         )}
@@ -96,6 +121,7 @@ export const Secondary = ({ fields: { Image, Headline, Description } }: HeroProp
           field={Image}
           placeholder="empty"
           fetchpriority="high"
+          priority="true"
         />
       </picture>
       <div className="hero__background" />
@@ -114,7 +140,12 @@ export const Download = ({
   return (
     <div className="mx-[30px] lg:mx-auto container">
       <div className="hero relative hero--download">
-        <JssImage field={Image} className="hero--download__image" />
+        <JssImage
+          field={Image}
+          className="hero--download__image"
+          placeholder="blur"
+          fetchpriority="low"
+        />
         <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />
           <Text field={Description} tag="p" />
