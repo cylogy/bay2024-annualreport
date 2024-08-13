@@ -114,6 +114,10 @@
       background-image: none !important;
     }
 
+    .lty-playbtn {
+      visibility: hidden;
+    }
+
     & iframe {
       width: 300%;
       height: 100%;
