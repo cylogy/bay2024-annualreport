@@ -89,6 +89,8 @@ export const Main = ({
               onIframeAdded={unFocusIframe}
               wrapperClass="size-full absolute top-0 left-0 block"
               params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1`}
+              poster="default"
+              thumbnail=" "
               rel="0"
               muted
               webp
