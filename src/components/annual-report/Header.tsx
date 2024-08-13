@@ -58,14 +58,12 @@ export const Default = (props: HeaderProps): JSX.Element => {
     }, 0);
   };
 
-  console.log(props);
-
   return (
     <section id="mainNavigation" className="absolute w-full">
       <section
         id="languagebar"
         className="languagebar bg-powder-blue z-10 relative py-[15px] hidden lg:block"
-        aria-labelledby="languagebar"
+        aria-label="languagebar"
       >
         <div className="container flex items-center justify-end">
           <label htmlFor="language-select" className="text-white mr-[5px]">
