@@ -76,7 +76,6 @@ export const Main = ({
             placeholder="empty"
             fetchpriority="high"
             priority="true"
-            loading="lazy"
           />
         </picture>
         {!isMobile && (
@@ -125,7 +124,6 @@ export const Secondary = ({ fields: { Image, Headline, Description } }: HeroProp
           placeholder="empty"
           fetchpriority="high"
           priority="true"
-          loading="lazy"
         />
       </picture>
       <div className="hero__background" />
