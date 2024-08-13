@@ -26,6 +26,8 @@ export const Main = ({
       const loadYouTubeIframeAPI = () => {
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
+        tag.defer = true;
+        tag.async = true;
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
       };
@@ -74,6 +76,7 @@ export const Main = ({
             placeholder="empty"
             fetchpriority="high"
             priority="true"
+            loading="lazy"
           />
         </picture>
         {!isMobile && (
@@ -122,6 +125,7 @@ export const Secondary = ({ fields: { Image, Headline, Description } }: HeroProp
           placeholder="empty"
           fetchpriority="high"
           priority="true"
+          loading="lazy"
         />
       </picture>
       <div className="hero__background" />
@@ -145,6 +149,7 @@ export const Download = ({
           className="hero--download__image"
           placeholder="blur"
           fetchpriority="low"
+          loading="lazy"
         />
         <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />

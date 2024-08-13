@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import AccordionArrow from 'assets/svg/AccordionArrow';
 import useIsMobile from 'lib/customHooks/isMobile';
-import { ReactNode, useState } from 'react';
+import { MouseEvent, ReactNode, useState } from 'react';
 import { AccordionContext, useAccordionContext } from 'src/context/accordion';
 
 type ChildrenReceiver = { children?: ReactNode };
@@ -10,7 +11,7 @@ export default function Accordion({ children }: ChildrenReceiver) {
 
   return (
     <AccordionContext.Provider value={{ SelectedItem, setSelectedItem }}>
-      {children}
+      <div className="accordion">{children}</div>
     </AccordionContext.Provider>
   );
 }
@@ -28,23 +29,24 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
   const isOpened = SelectedItem === Name;
   const textUpdateDate = new Date(UpdateDate ?? '').toLocaleDateString('en-US');
 
-  const onClickItem = (Name: string) => {
+  const onClickItem = (Name: string, e: MouseEvent<HTMLButtonElement>) => {
+    const container = e.currentTarget.closest('.accordion');
     setSelectedItem(isOpened ? '' : Name);
 
     setTimeout(() => {
-      const item = document.querySelector<HTMLDivElement>(".accordion-item[data-open='true']");
+      const item = container?.querySelector<HTMLDivElement>(".accordion-item[data-open='true']");
 
       item?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-    }, 300);
+    }, 600);
   };
 
   return (
     <div className="accordion-item" data-open={isOpened}>
       <button
-        onClick={() => onClickItem(Name)}
+        onClick={(e) => onClickItem(Name, e)}
         type="button"
         id={Name}
         aria-controls={`accordion-item-body-${Name}`}
@@ -60,23 +62,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
                 {Status && <AccordionInfoBox text={Status} />}
               </div>
             </div>
-            <svg
-              className="min-w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              width="25"
-              height="16"
-              viewBox="0 0 25 16"
-              fill="none"
-            >
-              <path
-                d="M0.608545 1.371C0.960159 1.01949 1.43699 0.822021 1.93417 0.822021C2.43135 0.822021 2.90818 1.01949 3.25979 1.371L12.541 10.6522L21.8223 1.371C22.1759 1.02945 22.6496 0.84046 23.1412 0.844732C23.6328 0.849004 24.1031 1.0462 24.4507 1.39384C24.7983 1.74148 24.9955 2.21175 24.9998 2.70337C25.0041 3.19499 24.8151 3.66862 24.4735 4.02225L13.8667 14.6291C13.5151 14.9806 13.0382 15.1781 12.541 15.1781C12.0439 15.1781 11.567 14.9806 11.2154 14.6291L0.608545 4.02225C0.257037 3.67063 0.0595703 3.1938 0.0595703 2.69662C0.0595703 2.19944 0.257037 1.72261 0.608545 1.371Z"
-                fill="white"
-              />
-              <path
-                d="M0.608545 1.371C0.960159 1.01949 1.43699 0.822021 1.93417 0.822021C2.43135 0.822021 2.90818 1.01949 3.25979 1.371L12.541 10.6522L21.8223 1.371C22.1759 1.02945 22.6496 0.84046 23.1412 0.844732C23.6328 0.849004 24.1031 1.0462 24.4507 1.39384C24.7983 1.74148 24.9955 2.21175 24.9998 2.70337C25.0041 3.19499 24.8151 3.66862 24.4735 4.02225L13.8667 14.6291C13.5151 14.9806 13.0382 15.1781 12.541 15.1781C12.0439 15.1781 11.567 14.9806 11.2154 14.6291L0.608545 4.02225C0.257037 3.67063 0.0595703 3.1938 0.0595703 2.69662C0.0595703 2.19944 0.257037 1.72261 0.608545 1.371Z"
-                fill="#253E7B"
-              />
-            </svg>
+            <AccordionArrow className="arrow min-w-6" />
           </div>
         ) : (
           <>
@@ -86,22 +72,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
             </div>
             <div className="flex gap-10 items-center">
               {Status && <AccordionInfoBox text={Status} />}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="16"
-                viewBox="0 0 25 16"
-                fill="none"
-              >
-                <path
-                  d="M0.608545 1.371C0.960159 1.01949 1.43699 0.822021 1.93417 0.822021C2.43135 0.822021 2.90818 1.01949 3.25979 1.371L12.541 10.6522L21.8223 1.371C22.1759 1.02945 22.6496 0.84046 23.1412 0.844732C23.6328 0.849004 24.1031 1.0462 24.4507 1.39384C24.7983 1.74148 24.9955 2.21175 24.9998 2.70337C25.0041 3.19499 24.8151 3.66862 24.4735 4.02225L13.8667 14.6291C13.5151 14.9806 13.0382 15.1781 12.541 15.1781C12.0439 15.1781 11.567 14.9806 11.2154 14.6291L0.608545 4.02225C0.257037 3.67063 0.0595703 3.1938 0.0595703 2.69662C0.0595703 2.19944 0.257037 1.72261 0.608545 1.371Z"
-                  fill="white"
-                />
-                <path
-                  d="M0.608545 1.371C0.960159 1.01949 1.43699 0.822021 1.93417 0.822021C2.43135 0.822021 2.90818 1.01949 3.25979 1.371L12.541 10.6522L21.8223 1.371C22.1759 1.02945 22.6496 0.84046 23.1412 0.844732C23.6328 0.849004 24.1031 1.0462 24.4507 1.39384C24.7983 1.74148 24.9955 2.21175 24.9998 2.70337C25.0041 3.19499 24.8151 3.66862 24.4735 4.02225L13.8667 14.6291C13.5151 14.9806 13.0382 15.1781 12.541 15.1781C12.0439 15.1781 11.567 14.9806 11.2154 14.6291L0.608545 4.02225C0.257037 3.67063 0.0595703 3.1938 0.0595703 2.69662C0.0595703 2.19944 0.257037 1.72261 0.608545 1.371Z"
-                  fill="#253E7B"
-                />
-              </svg>
+              <AccordionArrow className="arrow min-w-6" />
             </div>
           </>
         )}
