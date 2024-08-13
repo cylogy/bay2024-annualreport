@@ -1,5 +1,6 @@
 :root {
   --dark-blue: #253e7b;
+  --light-green-10: #B6D1581A;
   --lighter-green: #DAE8AB;
   --light-green: #b6d158;
   --powder-blue: #1a65af;
@@ -13,6 +14,7 @@
   --light-cyan: #1a65af1a;
   --font-montserrat: 'Montserrat', sans-serif;
 }
+
 
 $breakpoints: (
   'xs': (min-width: 480px),

@@ -16,6 +16,9 @@ body {
   border-bottom: 1px solid var(--dark-blue);
 }
 
+.boxShadow {
+  box-shadow: 0px 4px 34px 0px #00000026;
+}
 
 .boxShadowEffect {
   @extend %transition;
