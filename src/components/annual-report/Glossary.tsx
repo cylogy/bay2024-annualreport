@@ -19,7 +19,15 @@ export const Default = (props: GlossaryProps): JSX.Element => {
   const info = props;
   console.log('item props');
   console.log(info);
-  return <></>;
+  return (
+    <div className="pt-[200px]">
+      <section className="py-[60px] lg:py-[120px]">
+        <div className="container">
+          <h1>Hello</h1>
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export const getStaticProps: GetStaticComponentProps = async () => {
