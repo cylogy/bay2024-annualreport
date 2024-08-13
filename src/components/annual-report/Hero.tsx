@@ -19,8 +19,10 @@ export const Main = ({
   const playerRef = useRef<YTPlayer | null>(null);
 
   useEffect(() => {
-    const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
-    if (playButton) playButton.click();
+    setTimeout(() => {
+      const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
+      if (playButton) playButton.click();
+    }, 500);
 
     const onPageLoad = () => {
       const loadYouTubeIframeAPI = () => {
