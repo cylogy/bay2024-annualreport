@@ -43,7 +43,7 @@ export const Default = withDatasourceCheck()<GraphicContentTileItemProps>(
         </div>
         <div className="p-5 xl:p-10 col-span-7 flex flex-col justify-between">
           <div className="space-y-5">
-            <Text tag="h4" className="underlined-header" field={Headline} />
+            <Text tag="span" className="h4 block underlined-header" field={Headline} />
             <RichText field={Subheadline} className="richtext" />
           </div>
           <div className="flex justify-end">
