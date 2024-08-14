@@ -3,7 +3,6 @@ import {
   Text,
   ComponentRendering,
   withDatasourceCheck,
-  Placeholder,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 
@@ -12,6 +11,7 @@ type AnchorLinkProps = ComponentProps & {
   fields: {
     Name: Field<string>;
     AnchorID: Field<string>;
+    Level: Field<string>;
   };
 };
 
@@ -20,10 +20,8 @@ export const Default = withDatasourceCheck()<AnchorLinkProps>(
     console.log(props);
     return (
       <>
+        <Text field={props.fields.Level} />
         <Text field={props.fields.Name} />
-        <div>
-          <Placeholder name={`anchor-links`} rendering={props.rendering} />
-        </div>
       </>
     );
   }
