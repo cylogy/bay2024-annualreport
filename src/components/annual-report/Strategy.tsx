@@ -1,13 +1,13 @@
 import {
-  ImageField,
   Field,
-  Text,
-  Placeholder,
-  DateField,
-  RichText as JssRichText,
+  ImageField,
   Image as JssImage,
+  RichText as JssRichText,
+  Placeholder,
+  Text,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
+import Accordion from './atoms/Accordion';
 
 interface Fields {
   Name: Field<string>;
@@ -24,44 +24,40 @@ type StrategyProps = ComponentProps & {
   fields: Fields;
 };
 
-export const Default = (props: StrategyProps): JSX.Element => {
-  //const id = props.params.RenderingIdentifier;
-  // console.log('StrategyProps');
-  // console.log(props);
+export const Default = ({
+  fields: { Description, Headline, Image, Intro, Name, Status, UpdateDate },
+  rendering,
+}: StrategyProps): JSX.Element => {
   const modifyImageProps = {
-    ...props.fields.Image,
-    editable: props?.fields?.Image?.editable
-      ?.replace(`width="${props?.fields?.Image?.value?.width}"`, 'width="20%"')
-      .replace(`height="${props?.fields?.Image?.value?.height}"`, 'height="20%"'),
+    ...Image,
+    editable: Image?.editable
+      ?.replace(`width="${Image?.value?.width}"`, 'width="20%"')
+      .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
   };
   return (
-    <div className="component-content" style={{ height: '100%', width: '100%', padding: '100px' }}>
-      <h2>
-        Name:
-        <Text field={props.fields?.Name} />
-      </h2>
-      <p>
-        UpdatedDate:
-        <DateField field={props.fields?.UpdateDate} />
-      </p>
-      <p>
-        Status:
-        <Text field={props.fields?.Status} />
-      </p>
-      <div>
-        <JssImage field={modifyImageProps} />
+    <Accordion.Item Name={Name.value} Status={Status.value} UpdateDate={UpdateDate.value}>
+      <div className="space-y-11 text-dark-blue">
+        <JssImage
+          field={modifyImageProps}
+          className="max-h-[11.25rem] md:max-h-[17.5rem] w-full object-cover rounded-[10px]"
+          placeholder="empty"
+          fetchpriority="low"
+          loading="lazy"
+        />
+        <div className="space-y-16">
+          <div>
+            <h4 className="pb-3">Description</h4>
+            <JssRichText field={Description} className="richtext" />
+          </div>
+          <div>
+            <Text field={Headline} tag="h4" className="pb-3" />
+            <JssRichText field={Intro} className="richtext" />
+          </div>
+        </div>
+        <div className="space-y-12">
+          <Placeholder name={'strategy-commitment-container'} rendering={rendering} />
+        </div>
       </div>
-      <div>
-        <JssRichText field={props.fields?.Description} />
-      </div>
-
-      <div>
-        <h1>
-          <Text field={props.fields?.Headline} />
-        </h1>
-        <JssRichText field={props.fields?.Intro} />
-      </div>
-      <Placeholder name={'strategy-commitment-container'} rendering={props.rendering} />
-    </div>
+    </Accordion.Item>
   );
 };

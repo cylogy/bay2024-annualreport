@@ -19,13 +19,17 @@ export const Main = ({
   const playerRef = useRef<YTPlayer | null>(null);
 
   useEffect(() => {
-    const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
-    if (playButton) playButton.click();
+    setTimeout(() => {
+      const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
+      if (playButton) playButton.click();
+    }, 500);
 
     const onPageLoad = () => {
       const loadYouTubeIframeAPI = () => {
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
+        tag.defer = true;
+        tag.async = true;
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
       };
@@ -53,6 +57,11 @@ export const Main = ({
     }
   }, []);
 
+  const unFocusIframe = () => {
+    const iframe = document.querySelector<HTMLIFrameElement>('.hero__video-player iframe');
+    iframe?.setAttribute('tabindex', '-1');
+  };
+
   const toggleVideo = () => {
     if (!playerRef.current) return;
     Playing ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
@@ -76,10 +85,15 @@ export const Main = ({
             <LiteYouTubeEmbed
               id={Video.value}
               ref={iframeRef}
-              wrapperClass="size-full absolute top-0 left-0 block"
               title="Video"
-              params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1&autoplay=1`}
+              onIframeAdded={unFocusIframe}
+              wrapperClass="size-full absolute top-0 left-0 block"
+              params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1`}
+              poster="default"
+              thumbnail=" "
+              rel="0"
               muted
+              webp
             />
           </div>
         )}
@@ -137,6 +151,7 @@ export const Download = ({
           className="hero--download__image"
           placeholder="blur"
           fetchpriority="low"
+          loading="lazy"
         />
         <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />

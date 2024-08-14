@@ -18,6 +18,7 @@ type AnchorLinkProps = ComponentProps & {
 
 export const Default = withDatasourceCheck()<AnchorLinkProps>(
   (props: AnchorLinkProps): JSX.Element => {
+    console.log(props);
     return (
       <>
         <Text field={props.fields.Level} />
