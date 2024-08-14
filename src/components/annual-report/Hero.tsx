@@ -144,7 +144,7 @@ export const Download = ({
   fields: { Image, CTA, Description, Headline },
 }: HeroProps): JSX.Element => {
   return (
-    <div className="mx-[30px] lg:mx-auto container">
+    <div className="px-[30px] xl:px-[7.5rem]">
       <div className="hero relative hero--download">
         <JssImage
           field={Image}
