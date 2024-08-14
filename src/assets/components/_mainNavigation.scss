@@ -70,23 +70,6 @@
 
 
   nav {
-    #skip {
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin-left: 1.25rem;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      white-space: nowrap;
-
-      &:focus {
-        width: auto;
-        height: auto;
-
-      }
-    }
-
     #main-menu {
       @extend %transition;
       position: absolute;
@@ -358,5 +341,29 @@
     justify-content: center;
   }
 
+  .skip-main {
+    left: -999px;
+    position: absolute;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    z-index: -999;
+
+    &:focus,
+    &:active {
+      color: var(--dark-blue);
+      background-color: var(--white);
+      left: 5px;
+      top: 5px;
+      width: auto;
+      height: auto;
+      overflow: auto;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-align: center;
+      z-index: 999;
+    }
+  }
 
 }
