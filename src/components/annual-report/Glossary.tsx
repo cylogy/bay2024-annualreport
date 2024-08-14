@@ -18,11 +18,6 @@ type GlossaryQueryProps = {
 
 export const Default = (props: GlossaryProps): JSX.Element => {
   const componentProps = useComponentProps<GlossaryQueryProps>(props.rendering.uid);
-  //const parentItems = componentProps?.glossaryItems?.mainGlossary?.children?.results;
-  console.log('glossary componentProps', componentProps);
-  //console.log('glossary items', parentItems);
-  //console.log('item props', props);
-
   return (
     <div className="pt-[200px]">
       <section className="py-[60px] lg:py-[120px]">
