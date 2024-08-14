@@ -28,7 +28,7 @@ export const Default = withDatasourceCheck()<CTAProps>((props: CTAProps): JSX.El
       className={
         props.resource
           ? 'p2 flex items-center px-4 md:px-5 py-2 gap-2 md:gap-5 bg-powder-blue rounded text-white !font-bold'
-          : 'text-dark-blue p-[30px] flex gap-5 items-end lg:items-center bg-white shadow-md radius-[10px] justify-between boxShadowEffect'
+          : 'text-dark-blue p-[30px] flex gap-5 items-end lg:items-center bg-white shadow-md rounded-[10px] justify-between boxShadowEffect'
       }
     >
       {props.resource ? (
