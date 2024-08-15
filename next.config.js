@@ -24,7 +24,7 @@ const nextConfig = {
 
   output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined,
 
-  // Make the same PUBLIC_URL available as an environment variable on the client bundle
+  // Make the same PUBLIC_URL available as an environment variable on the client bundle 
   env: {
     PUBLIC_URL: publicUrl,
   },
