@@ -22,7 +22,7 @@ export const Main = ({
     setTimeout(() => {
       const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
       if (playButton) playButton.click();
-    }, 500);
+    }, 100);
 
     const onPageLoad = () => {
       const loadYouTubeIframeAPI = () => {
