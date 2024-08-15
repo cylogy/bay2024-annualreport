@@ -15,6 +15,7 @@ type ContentTileItemProps = ComponentProps & {
     Headline: Field<string>;
     Description: RichTextField;
     Number: Field<string>;
+    AnchorID: Field<string>;
   };
 };
 export const Default = withDatasourceCheck()<ContentTileItemProps>(
@@ -29,7 +30,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
         <RichText className="p2" field={props.fields.Description} />
       </article>
     ) : props.params.variant === 'Stacked' ? (
-      <article className="text-dark-blue tct">
+      <article className="text-dark-blue tct" id={props.fields.AnchorID.value}>
         <Text tag="p" className="mb-[12px] year h4" field={props.fields.Number} />
         <Text tag="p" className="mb-[12px] h3" field={props.fields.Headline} />
         <RichText className="p1" field={props.fields.Description} />
