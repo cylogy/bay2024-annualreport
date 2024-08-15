@@ -24,7 +24,7 @@ const nextConfig = {
 
   output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined,
 
-  // Make the same PUBLIC_URL available as an environment variable on the client bundle
+  // Make the same PUBLIC_URL available as an environment variable on the client bundle 
   env: {
     PUBLIC_URL: publicUrl,
   },
@@ -77,7 +77,7 @@ const nextConfig = {
           {
             key: process.env.NODE_ENV !== 'development' ? 'Content-Security-Policy' : 'Content-Security-Policy-Report-Only',
             value:
-              "default-src 'none' ; script-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com/ https://www.youtube.com/iframe_api https://static.doubleclick.net; style-src 'self' 'unsafe-inline' https://*.vercel.app/ https://*.oshyn.com/ https://fonts.googleapis.com https://cdnjs.cloudflare.com https://www.youtube.com; object-src 'none'; base-uri 'self'; connect-src 'self' https://*.vercel.app/ https://*.oshyn.com/; font-src 'self' https://fonts.gstatic.com/ https://cdnjs.cloudflare.com; frame-src 'self' https://www.youtube-nocookie.com/; img-src 'self' https://i.ytimg.com/ https://sc-dev-baaqmd.oshyn.com/* https://sc-dev-strategicplan.baaqmd.gov/* https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com; manifest-src 'self'; worker-src 'none'; frame-ancestors 'self'; form-action 'self';"
+              "default-src 'none' ; script-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com/ https://www.youtube.com/iframe_api https://static.doubleclick.net; style-src 'self' 'unsafe-inline' https://*.vercel.app/ https://*.oshyn.com/ https://fonts.googleapis.com https://cdnjs.cloudflare.com https://www.youtube.com; object-src 'none'; base-uri 'self'; connect-src 'self' https://*.vercel.app/ https://*.oshyn.com/; font-src 'self' https://fonts.gstatic.com/ https://cdnjs.cloudflare.com; frame-src 'self' https://www.youtube-nocookie.com/; img-src 'self' https://i.ytimg.com/ https://sc-dev-baaqmd.oshyn.com https://sc-dev-strategicplan.baaqmd.gov https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com; manifest-src 'self'; worker-src 'none'; frame-ancestors 'self'; form-action 'self';"
           },
         ],
       },

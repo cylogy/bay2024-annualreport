@@ -137,8 +137,13 @@ p,
 .p-icon {
   display: flex;
   gap: 12px;
-  align-items: center;
   padding-bottom: 12px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
 
   &:last-child {
     padding-bottom: 0;
