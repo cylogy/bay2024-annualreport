@@ -79,7 +79,7 @@ CacheHandler.onCreation(async () => {
  
       // If the cache value has no tags, return it early.
       if (!cacheValue) {
-        //console.log("getkey cachevalue is null, return null:"+keyPrefix+key);
+        console.log("getkey cachevalue is null, return null:"+keyPrefix+key);
         return null;
       }
  
@@ -97,8 +97,8 @@ CacheHandler.onCreation(async () => {
       //console.log("setoperation:"+keyPrefix+key);
       // Redis stores strings, so we need to stringify the JSON.
       const setOperation = client.set(options, keyPrefix + key, JSON.stringify(cacheHandlerValue));
-      //console.log("setoperation sueccessful:"+keyPrefix+key);
-      //console.log(JSON.stringify(cacheHandlerValue));
+      console.log("setoperation successful:"+keyPrefix+key);
+      console.log(JSON.stringify(cacheHandlerValue));
 
       await Promise.all([setOperation]);
     },
