@@ -47,19 +47,11 @@ export const Default = (props: HeaderProps): JSX.Element => {
     }
   }, [openMenu]);
 
-  const skipToContent = () => {
-    const contentElement = document.getElementById('content');
-    const firstElement = contentElement?.querySelector(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    ) as HTMLElement;
-    if (!firstElement) return;
-    setTimeout(() => {
-      firstElement.focus();
-    }, 0);
-  };
-
   return (
     <section id="mainNavigation" className="absolute w-full">
+      <a href="#content" className="skip-main">
+        Skip to content
+      </a>
       <section
         id="languagebar"
         className="languagebar bg-powder-blue z-10 relative py-[15px] hidden lg:block"
@@ -93,9 +85,6 @@ export const Default = (props: HeaderProps): JSX.Element => {
           className="!flex justify-between items-center py-[15px]"
         >
           <section className="">
-            <button type="button" id="skip" onClick={skipToContent}>
-              Skip to content
-            </button>
             <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
               Main Menu
             </h2>
