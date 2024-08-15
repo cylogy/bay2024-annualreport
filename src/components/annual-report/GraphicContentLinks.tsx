@@ -19,13 +19,14 @@ type GraphicContentLinksProps = ComponentProps & {
     Headline: Field<string>;
     Description: RichTextField;
     Image: ImageField;
+    AnchorID: Field<string>;
   };
 };
 
 export const Default = withDatasourceCheck()<GraphicContentLinksProps>(
   (props: GraphicContentLinksProps): JSX.Element => {
     return (
-      <section>
+      <section id={props.fields.AnchorID.value}>
         <section className="py-[60px] lg:py-[120px] bg-soft-white">
           <div className="container">
             <section className="grid lg:grid-cols-2 gap-[60px] lg:gap-[140px] text-dark-blue">

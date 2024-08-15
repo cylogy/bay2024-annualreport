@@ -6,6 +6,7 @@ interface Fields {
   Video: Field<string>;
   Image: ImageField;
   CTA: LinkField;
+  AnchorID: Field<string>;
 }
 
 export type HeroProps = {
