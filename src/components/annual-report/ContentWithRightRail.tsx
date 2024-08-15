@@ -9,7 +9,6 @@ export const Default = (props: ContentWithRightRailProps): JSX.Element => {
   return (
     <>
       <div className="col-span-full md:col-span-9">
-        Left Content
         <Placeholder
           name="left-content"
           rendering={props.rendering}
@@ -18,7 +17,6 @@ export const Default = (props: ContentWithRightRailProps): JSX.Element => {
       </div>
 
       <div className="col-span-full md:col-span-3">
-        Right Content
         <Placeholder
           name="right-content"
           rendering={props.rendering}
