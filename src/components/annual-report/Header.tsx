@@ -90,12 +90,23 @@ export const Default = (props: HeaderProps): JSX.Element => {
             </h2>
             {mobile && (
               <Link field={{ href: '/', title: 'Logo Mobile' }}>
-                <Image field={props.fields.LogoMobile} class="object-cover max-w-[200px]" />
+                <Image
+                  field={props.fields.LogoMobile}
+                  class="object-cover max-w-[200px]"
+                  placeholder="blur"
+                  fetchpriority="high"
+                  priority="true"
+                />
               </Link>
             )}
             {!mobile && (
               <Link field={{ href: '/', title: 'Logo Desktop' }}>
-                <Image field={props.fields.LogoDesktop} />
+                <Image
+                  field={props.fields.LogoDesktop}
+                  placeholder="blur"
+                  fetchpriority="high"
+                  priority="true"
+                />
               </Link>
             )}
           </section>
@@ -183,10 +194,12 @@ export const Default = (props: HeaderProps): JSX.Element => {
                       {item.children.results.map((child, childIndex) => (
                         <li key={childIndex}>
                           <Link field={child.cta.jsonValue.value}>
-                            <img
+                            <Image
                               className="rounded-full"
-                              src={child.image.jsonValue.value.src}
-                              alt={child.image.jsonValue.value.alt}
+                              field={child.image.jsonValue}
+                              placeholder="empty"
+                              fetchpriority="low"
+                              loading="lazy"
                             />
                             <div>
                               <p className="menu-title">{child.name}</p>

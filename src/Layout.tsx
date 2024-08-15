@@ -36,6 +36,10 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
         {headLinks.map((headLink) => (
           <link rel={headLink.rel} key={headLink.href} href={headLink.href} />
         ))}
+        <meta
+          name="description"
+          content="The 2024-2029 Strategic Plan is centered on four primary goals: achieve impact, advance environmental justice, foster cohesion and inclusion, and maintain an effective, accountable, and customer-oriented organization."
+        />
       </Head>
 
       {/* root placeholder for the app, which we add components to using route data */}

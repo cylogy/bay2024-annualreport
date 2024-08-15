@@ -101,6 +101,11 @@ p,
   align-items: center;
   font-weight: 700;
   @extend p;
+
+  &:hover {
+    background: rgba(182, 209, 88, 0.8);
+    transition: 0.3s;
+  }
 }
 
 .text-callout {
