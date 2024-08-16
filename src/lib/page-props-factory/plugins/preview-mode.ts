@@ -1,8 +1,9 @@
 import { SiteInfo } from '@sitecore-jss/sitecore-jss-nextjs';
-import { editingDataService } from '@sitecore-jss/sitecore-jss-nextjs/editing';
+//import { editingDataService } from '@sitecore-jss/sitecore-jss-nextjs/editing';
 import { SitecorePageProps } from 'lib/page-props';
 import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
 import { Plugin } from '..';
+import { myEditingDataService } from 'lib/editing';
 
 class PreviewModePlugin implements Plugin {
   order = 1;
@@ -11,7 +12,9 @@ class PreviewModePlugin implements Plugin {
     if (!context.preview) return props;
 
     // If we're in preview (editing) mode, use data already sent along with the editing request
-    const data = await editingDataService.getEditingData(context.previewData);
+    // const data = await editingDataService.getEditingData(context.previewData);
+    const data = await myEditingDataService.getEditingData(context.previewData);
+
     if (!data) {
       throw new Error(
         `Unable to get editing data for preview ${JSON.stringify(context.previewData)}`
