@@ -1,4 +1,5 @@
 import { EditingRenderMiddleware } from '@sitecore-jss/sitecore-jss-nextjs/editing';
+import { myEditingDataService } from 'lib/editing';
 
 /**
  * This Next.js API route is used to handle POST requests from Sitecore editors.
@@ -36,6 +37,7 @@ const handler = new EditingRenderMiddleware({
   resolveServerUrl: () => {
     return `${process.env.EDITING_URL}`;
   },
+  editingDataService: myEditingDataService,
 }).getHandler();
 
 export default handler;
