@@ -11,7 +11,7 @@ interface YTEvent {
 }
 
 export const Main = ({
-  fields: { Description, Headline, Image, Video },
+  fields: { Description, Headline, Image, Video, AnchorID },
 }: HeroProps): JSX.Element => {
   const isMobile = useIsMobile(1024);
   const [Playing, setPlaying] = useState(true);
@@ -22,7 +22,7 @@ export const Main = ({
     setTimeout(() => {
       const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
       if (playButton) playButton.click();
-    }, 500);
+    }, 100);
 
     const onPageLoad = () => {
       const loadYouTubeIframeAPI = () => {
@@ -70,7 +70,7 @@ export const Main = ({
 
   return (
     <>
-      <div className="hero relative">
+      <div className="hero relative" id={AnchorID.value}>
         <picture>
           <JssImage
             className="hero__bg-image"
@@ -118,9 +118,11 @@ export const Main = ({
   );
 };
 
-export const Secondary = ({ fields: { Image, Headline, Description } }: HeroProps): JSX.Element => {
+export const Secondary = ({
+  fields: { Image, Headline, Description, AnchorID },
+}: HeroProps): JSX.Element => {
   return (
-    <div className="hero relative hero--secondary">
+    <div className="hero relative hero--secondary" id={AnchorID.value}>
       <picture>
         <JssImage
           className="hero__bg-image"
@@ -141,10 +143,10 @@ export const Secondary = ({ fields: { Image, Headline, Description } }: HeroProp
 };
 
 export const Download = ({
-  fields: { Image, CTA, Description, Headline },
+  fields: { Image, CTA, Description, Headline, AnchorID },
 }: HeroProps): JSX.Element => {
   return (
-    <div className="px-[30px] xl:px-[7.5rem]">
+    <div className="px-[30px] xl:px-[7.5rem]" id={AnchorID.value}>
       <div className="hero relative hero--download">
         <JssImage
           field={Image}

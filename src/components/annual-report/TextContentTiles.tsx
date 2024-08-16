@@ -16,6 +16,7 @@ type TextContentTilesProps = ComponentProps & {
   fields: {
     Headline: Field<string>;
     Description: Field<string>;
+    AnchorID: Field<string>;
   };
 };
 
@@ -23,7 +24,7 @@ export const ThreeColumns = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
       /* Blue 3 cols */
-      <section className="py-[60px] lg:py-[120px] bg-dark-blue">
+      <section className="py-[60px] lg:py-[120px] bg-dark-blue" id={props.fields.AnchorID.value}>
         <div className="container lg:px-[70px]">
           <Text
             tag="h2"
@@ -48,7 +49,7 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
       /* Timeline */
-      <section className="py-[60px] lg:py-[120px] bg-soft-white">
+      <section className="py-[60px] lg:py-[120px] bg-soft-white" id={props.fields.AnchorID.value}>
         <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
         <section className="grid gap-[40px]">
           <div className="grid gap-[80px] w-full timeline relative">
@@ -67,7 +68,7 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
 export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
-      <section className="py-[60px] lg:py-[120px] bg-soft-white">
+      <section className="py-[60px] lg:py-[120px] bg-soft-white" id={props.fields.AnchorID.value}>
         <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
         <div className="grid grid-cols-1 gap-[48px]">
           <Placeholder
@@ -84,7 +85,7 @@ export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
 export const Cards = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
-      <section className="py-[60px] lg:py-[120px] bg-soft-white">
+      <section className="py-[60px] lg:py-[120px] bg-soft-white" id={props.fields.AnchorID.value}>
         <div className="container lg:px-[100px]">
           <Text
             tag="h2"

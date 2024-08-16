@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { Placeholder, LayoutServiceData, Field, HTMLLink } from '@sitecore-jss/sitecore-jss-nextjs';
 import config from 'temp/config';
 import Scripts from 'src/Scripts';
+import ScrollToTop from 'components/annual-report/atoms/ScrollToTop';
 
 // Prefix public assets with a public URL to enable compatibility with Sitecore Experience Editor.
 // If you're not supporting the Experience Editor, you can remove this.
@@ -53,6 +54,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
         <footer>
           <div id="footer">{route && <Placeholder name="headless-footer" rendering={route} />}</div>
         </footer>
+        <ScrollToTop />
       </div>
     </>
   );

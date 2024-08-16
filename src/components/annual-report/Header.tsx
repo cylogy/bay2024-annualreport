@@ -11,7 +11,6 @@ import { HeaderMenuQueryResult } from 'lib/graphql-queries/HeaderMenu';
 import { getHeaderMenu } from 'lib/graphql-utils';
 import { MENU_ITEM } from 'lib/constants';
 import { useEffect, useState } from 'react';
-import Globe from 'assets/svg/Globe';
 import LinkIcon from 'assets/svg/LinkIcon';
 import ChevronDown from 'assets/svg/ChevronDown';
 import useIsMobile from 'lib/customHooks/isMobile';
@@ -58,7 +57,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
         aria-label="languagebar"
       >
         <div className="container flex items-center justify-end">
-          <label htmlFor="language-select" className="text-white mr-[5px]">
+          {/* <label htmlFor="language-select" className="text-white mr-[5px]">
             <span className="flex items-center">
               <Globe />
               <span className="pl-[12px]">Language:</span>
@@ -69,13 +68,17 @@ export const Default = (props: HeaderProps): JSX.Element => {
             <option value="Spanish">Spanish</option>
           </select>
 
-          <span className="w-[2px] h-[23px] bg-white mx-[30px] block"></span>
+          <span className="w-[2px] h-[23px] bg-white mx-[30px] block"></span> */}
           <Link
-            field={{ href: '/', title: 'Air District Main Site' }}
-            className="flex item-center text-white gap-[12px]"
+            field={{
+              href: 'https://www.baaqmd.gov/',
+              title: 'Air District Main Site',
+              target: '_blank',
+            }}
+            className="flex items-center text-white gap-[10px]"
           >
             <span>Air District Main Site</span>
-            <LinkIcon />
+            <LinkIcon theme="light" />
           </Link>
         </div>
       </section>
@@ -222,7 +225,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                 aria-labelledby="languagebar"
               >
                 <div className="">
-                  <label
+                  {/* <label
                     htmlFor="language-select"
                     className="text-dark-blue lg:text-white mr-[5px] text-[14px] lg:text-[16px]"
                   >
@@ -236,12 +239,17 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   >
                     <option value="English">English</option>
                     <option value="Spanish">Spanish</option>
-                  </select>
+                  </select> */}
                   <Link
-                    field={{ href: '/', title: 'Air District Main Site' }}
-                    className="mt-[25px] text-dark-blue lg:text-white w-full block text-[14px] lg:text-[16px]"
+                    field={{
+                      href: 'https://www.baaqmd.gov/',
+                      title: 'Air District Main Site',
+                      target: '_blank',
+                    }}
+                    className="flex items-center text-dark-blue gap-[10px] p3"
                   >
-                    Air District Main Site
+                    <span>Air District Main Site</span>
+                    <LinkIcon theme="dark" />
                   </Link>
                 </div>
               </section>
