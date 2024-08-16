@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function StrategicPlanOverview() {
+export default function ObjectiveTiles() {
   return (
     <div>
       <h2 className="text-dark-blue pb-[12px]">Overview</h2>

@@ -9,7 +9,7 @@ import {
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { injectDynamicParams } from 'lib/dynamic-params';
-import StrategicPlanOverview from './StrategicPlanOverview';
+import ObjectiveTiles from './ObjectiveTiles';
 
 type TextContentTilesProps = ComponentProps & {
   layoutData: LayoutServiceData;
@@ -88,7 +88,7 @@ export const Cards = withDatasourceCheck()<TextContentTilesProps>(
     return (
       <section className="py-[60px] lg:py-[120px] bg-soft-white" id={props.fields.AnchorID.value}>
         <div className="container lg:px-[100px]">
-          <StrategicPlanOverview />
+          <ObjectiveTiles />
           <Text
             tag="h2"
             className="text-dark-blue mb-[10px] border-b-[3px] border-solid pb-[20px] "
