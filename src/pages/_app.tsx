@@ -3,6 +3,15 @@ import { I18nProvider } from 'next-localization';
 import { SitecorePageProps } from 'lib/page-props';
 import Bootstrap from 'src/Bootstrap';
 import 'assets/main.scss';
+import { Newsreader } from 'next/font/google';
+
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-newsreader',
+  adjustFontFallback: false,
+});
 
 function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element {
   const { dictionary, ...rest } = pageProps;
@@ -16,7 +25,9 @@ function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element
         // If your app is not multilingual, next-localization and references to it can be removed.
       */}
       <I18nProvider lngDict={dictionary} locale={pageProps.locale}>
-        <Component {...rest} />
+        <div className={newsreader.variable}>
+          <Component {...rest} />
+        </div>
       </I18nProvider>
     </>
   );
