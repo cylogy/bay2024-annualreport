@@ -33,7 +33,11 @@ module.exports = {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
+        xxl: '1536px',
       },
+      boxShadow: {
+        '3xl': '0px 4px 34px 0px #00000026',
+      }
     },
   },
   plugins: [],
