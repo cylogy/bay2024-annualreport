@@ -32,7 +32,7 @@ export const Default = ({
 
   return (
     <div className="objectives">
-      <div className="objectives__group-image">
+      <div className="objectives__group-image" id={Name.value.trim()}>
         <svg
           width="354"
           height="337"
@@ -58,7 +58,7 @@ export const Default = ({
         <JssImage field={modifyImageProps} placeholder="empty" fetchpriority="low" loading="lazy" />
       </div>
       <div className="objectives__accordions container">
-        <div className="max-w-[61.25rem]">
+        <div className="max-w-[61.25rem] xl:max-w-[56rem] xxl:max-w-[61.25rem] ">
           <Accordion>
             <Placeholder name={'objective-strategy-container'} rendering={rendering} />
           </Accordion>
