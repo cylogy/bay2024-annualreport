@@ -5,6 +5,8 @@ import {
   Text,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
+import { MouseEvent } from 'react';
+import ScrollSpy from 'react-scrollspy-navigation';
 
 type AnchorLinkProps = ComponentProps & {
   rendering: ComponentRendering;
@@ -17,14 +19,19 @@ type AnchorLinkProps = ComponentProps & {
 
 export const Default = withDatasourceCheck()<AnchorLinkProps>(
   (props: AnchorLinkProps): JSX.Element => {
-    console.log('AnchorLinks', props);
+    const onClickEach = (e: MouseEvent<HTMLAnchorElement>) => {
+      const id = e.currentTarget.getAttribute('href')?.replace('#', '');
+      document.getElementById(id ?? '')?.scrollIntoView({ behavior: 'smooth' });
+    };
     return (
-      <a
-        href={`#${props.fields.Name.value}`}
-        className={`p2 ${props.fields.Level.value === '2' ? 'indent' : ''}`}
-      >
-        <Text field={props.fields.Name} />
-      </a>
+      <ScrollSpy activeClass="active" offsetTop={0} threshold={0.9} onClickEach={onClickEach}>
+        <a
+          href={`#${props.fields.Name.value}`}
+          className={`p2 ${props.fields.Level.value === '2' ? 'indent' : ''}`}
+        >
+          <Text field={props.fields.Name} />
+        </a>
+      </ScrollSpy>
     );
   }
 );
