@@ -80,7 +80,7 @@ export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
     return (
       <div className="container" id={props.fields.AnchorID.value}>
         <div className="max-w-[879px]">
-          <section className="py-[60px] lg:py-[120px] bg-soft-white">
+          <section className="py-[60px] lg:py-[120px]">
             <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
             <div className="grid grid-cols-1 gap-[48px]">
               <Placeholder
