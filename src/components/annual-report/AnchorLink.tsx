@@ -21,7 +21,7 @@ export const Default = withDatasourceCheck()<AnchorLinkProps>(
     return (
       <a
         href={`#${props.fields.AnchorID.value}`}
-        className={props.fields.Level.value === '2' ? 'indent' : ''}
+        className={`p2 ${props.fields.Level.value === '2' ? 'indent' : ''}`}
       >
         <Text field={props.fields.Name} />
       </a>
