@@ -20,5 +20,11 @@ export const config = {
 
 // Wire up the EditingDataMiddleware handler
 const handler = new EditingDataMiddleware().getHandler();
+// Wire up the EditingDataMiddleware handler
+// const handler = new EditingDataMiddleware({
+//   editingDataCache: myEditingDataDiskCache,
+// }).getHandler();
+
+// export default handler;
 
 export default handler;
