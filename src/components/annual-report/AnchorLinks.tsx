@@ -11,7 +11,7 @@ type AnchorLinksProps = ComponentProps & {
   rendering: ComponentRendering;
   fields: {
     Headline: Field<string>;
-    FullWitdh: Field;
+    FullWidth: Field;
   };
 };
 
@@ -30,7 +30,7 @@ export const Default = withDatasourceCheck()<AnchorLinksProps>(
             </div>
           </div>
         </nav>
-        <div className={`-top-64 relative ${props.fields.FullWitdh ? 'w-full' : 'w-2/3'}`}>
+        <div className={`-top-64 relative ${props.fields.FullWidth ? 'w-full' : 'w-2/3'}`}>
           {' '}
           <Placeholder name={`anchor-content`} rendering={props.rendering} />
         </div>
