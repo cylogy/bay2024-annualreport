@@ -33,7 +33,7 @@ export const ThreeColumns = withDatasourceCheck()<TextContentTilesProps>(
             field={props.fields.Headline}
           />
           <RichText className="text-center text-white p1" field={props.fields.Description} />
-          <section className="grid grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[80px]">
+          <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[80px]">
             <Placeholder
               name={`text-content-tiles`}
               rendering={props.rendering}
@@ -107,7 +107,7 @@ export const Cards = withDatasourceCheck()<TextContentTilesProps>(
             className="text-dark-blue mb-[10px] border-b-[3px] border-solid pb-[20px] "
             field={props.fields.Headline}
           />
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[50px]">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[50px]">
             <Placeholder
               name={`text-content-tiles`}
               rendering={props.rendering}
