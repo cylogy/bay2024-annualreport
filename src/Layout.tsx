@@ -41,30 +41,24 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
           name="description"
           content="The 2024-2029 Strategic Plan is centered on four primary goals: achieve impact, advance environmental justice, foster cohesion and inclusion, and maintain an effective, accountable, and customer-oriented organization."
         />
-        {/*  <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
           rel="stylesheet"
-        /> */}
+        />
       </Head>
 
       {/* root placeholder for the app, which we add components to using route data */}
       <div className={mainClassPageEditing}>
         <header>
-          <div id="header" className="font-montserrat">
-            {route && <Placeholder name="headless-header" rendering={route} />}
-          </div>
+          <div id="header">{route && <Placeholder name="headless-header" rendering={route} />}</div>
         </header>
         <main>
-          <div id="content" className="font-montserrat">
-            {route && <Placeholder name="headless-main" rendering={route} />}
-          </div>
+          <div id="content">{route && <Placeholder name="headless-main" rendering={route} />}</div>
         </main>
         <footer>
-          <div id="footer" className="font-montserrat">
-            {route && <Placeholder name="headless-footer" rendering={route} />}
-          </div>
+          <div id="footer">{route && <Placeholder name="headless-footer" rendering={route} />}</div>
         </footer>
         <ScrollToTop />
       </div>
