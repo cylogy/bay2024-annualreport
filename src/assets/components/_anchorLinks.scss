@@ -1,8 +1,9 @@
 .anchor-links {
+  position: relative;
 
   a {
     display: block;
-    padding: 10px 16px;
+    padding: 10px 1rem;
     position: relative;
     font-weight: 500;
     @extend .p2;
@@ -10,23 +11,31 @@
 
     &:hover,
     &.active {
-      background-color: var(--light-green-10);
+      background-color: transparent;
       font-weight: 700;
       @extend %transition;
 
       &:before {
         content: "";
-        background-color: var(--light-green);
+        background-color: transparent;
         position: absolute;
         top: 0;
         left: -5px;
         width: 5px;
         height: 100%;
-      }
-    }
 
-    &.indent {
-      margin-left: 15px;
+        @include respond-to(xl) {
+          background-color: var(--light-green);
+        }
+      }
+
+      &.indent {
+        margin-left: 15px;
+      }
+
+      @include respond-to(xl) {
+        background-color: var(--light-green-10);
+      }
     }
   }
 
@@ -41,7 +50,7 @@
       margin-left: auto;
       z-index: 10;
       top: 2.5rem;
-      max-width: 350px;
+      max-width: 21.875rem;
       border-radius: 2.5rem;
       padding-inline: 0;
       padding: 2.5rem;
@@ -61,6 +70,5 @@
     @include respond-to(xl) {
       margin-top: var(--top);
     }
-
   }
 }
