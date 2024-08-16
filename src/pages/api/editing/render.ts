@@ -35,7 +35,9 @@ export const config = {
 // Wire up the EditingRenderMiddleware handler
 const handler = new EditingRenderMiddleware({
   resolveServerUrl: (req: NextApiRequest) => {
-    return `${process.env.VERCEL ? 'https' : process.env.PROD ? 'https' : 'http'}://${req.headers.host}`;
+    return `${process.env.VERCEL ? 'https' : process.env.PROD ? 'https' : 'http'}://${
+      req.headers.host
+    }`;
   },
 }).getHandler();
 
