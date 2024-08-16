@@ -41,12 +41,12 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
           name="description"
           content="The 2024-2029 Strategic Plan is centered on four primary goals: achieve impact, advance environmental justice, foster cohesion and inclusion, and maintain an effective, accountable, and customer-oriented organization."
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/*  <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
-        />
+        /> */}
       </Head>
 
       {/* root placeholder for the app, which we add components to using route data */}
