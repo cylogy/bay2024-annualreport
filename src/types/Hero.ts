@@ -1,4 +1,4 @@
-import { Field, ImageField, LinkField } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, ImageField, LayoutServiceData, LinkField } from '@sitecore-jss/sitecore-jss-nextjs';
 
 interface Fields {
   Headline: Field<string>;
@@ -12,4 +12,5 @@ interface Fields {
 export type HeroProps = {
   params: { [key: string]: string };
   fields: Fields;
+  layoutData: LayoutServiceData;
 };
