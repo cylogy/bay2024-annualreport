@@ -1,4 +1,4 @@
-import { Field, Image as JssImage, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
