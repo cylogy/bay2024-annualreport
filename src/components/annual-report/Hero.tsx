@@ -68,7 +68,7 @@ export const Main = ({
     Playing ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
     setPlaying((v) => !v);
   };
-  const breadcrumb = layoutData.sitecore.route?.fields?.Breadcrumb as Field<boolean>;
+  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
   console.log('Breadcrumb:' + breadcrumb?.value);
   return (
     <>
@@ -124,7 +124,7 @@ export const Secondary = ({
   fields: { Image, Headline, Description, AnchorID },
   layoutData,
 }: HeroProps): JSX.Element => {
-  const breadcrumb = layoutData.sitecore.route?.fields?.Breadcrumb as Field<boolean>;
+  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
   console.log('Breadcrumb:' + breadcrumb.value);
 
   return (
@@ -152,7 +152,7 @@ export const Download = ({
   fields: { Image, CTA, Description, Headline, AnchorID },
   layoutData,
 }: HeroProps): JSX.Element => {
-  const breadcrumb = layoutData.sitecore.route?.fields?.Breadcrumb as Field<boolean>;
+  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
   console.log('Breadcrumb:' + breadcrumb.value);
   return (
     <div className="px-[30px] xl:px-[7.5rem]" id={AnchorID.value}>
