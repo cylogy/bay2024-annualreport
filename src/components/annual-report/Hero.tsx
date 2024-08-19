@@ -1,4 +1,4 @@
-import { Image as JssImage, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
@@ -67,6 +67,7 @@ export const Main = ({
     Playing ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
     setPlaying((v) => !v);
   };
+  console.log('testing');
 
   return (
     <>
@@ -121,13 +122,14 @@ export const Secondary = ({
   return (
     <div className="hero relative hero--secondary" id={AnchorID.value}>
       <picture>
-        <JssImage
+        <img className="hero__bg-image" src={Image.value?.src} alt="" />
+        {/* <JssImage
           className="hero__bg-image"
           field={Image}
           placeholder="empty"
           fetchpriority="high"
           priority="true"
-        />
+        /> */}
       </picture>
       <div className="hero__background" />
       <div className="hero__content text-center space-y-6 flex flex-col items-center container">
@@ -145,13 +147,14 @@ export const Download = ({
   return (
     <div className="px-[30px] xl:px-[7.5rem]" id={AnchorID.value}>
       <div className="hero relative hero--download">
-        <JssImage
+        {/* <JssImage
           field={Image}
           className="hero--download__image"
           placeholder="blur"
           fetchpriority="low"
           loading="lazy"
-        />
+        /> */}
+        <img className="hero__bg-image" src={Image.value?.src} alt="" />
         <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />
           <Text field={Description} tag="p" />
