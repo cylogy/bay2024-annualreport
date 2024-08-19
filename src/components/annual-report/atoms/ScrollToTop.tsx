@@ -36,6 +36,8 @@ const ScrollToTop = () => {
 
   return (
     <div
+      role="region"
+      aria-label="To Top"
       onClick={handleScrollToTop}
       className={`bg-powder-blue rounded-[100%] w-[70px] h-[70px] boxShadow fixed bottom-[10px] right-[10px] md:bottom-[100px] md:right-[100px] z-[999] text-white flex flex-col gap-[5px] items-center justify-center cursor-pointer transition-opacity duration-500 ${
         isVisible ? 'opacity-100' : 'opacity-0'
