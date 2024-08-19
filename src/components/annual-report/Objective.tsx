@@ -26,7 +26,6 @@ export const Default = ({
   fields: { Description, Image, Name, AnchorID },
   rendering,
   params,
-  layoutData,
 }: ObjectiveProps): JSX.Element => {
   const modifyImageProps = {
     ...Image,
