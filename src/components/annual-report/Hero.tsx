@@ -72,13 +72,10 @@ export const Main = ({
     <>
       <div className="hero relative" id={AnchorID.value}>
         <picture>
-          <JssImage
-            className="hero__bg-image"
-            field={Image}
-            placeholder="empty"
+          <img className="hero__bg-image" src={Image.value?.src} alt="" />
+          {/* placeholder="empty"
             fetchpriority="high"
-            priority="true"
-          />
+            priority="true" */}
         </picture>
         {!isMobile && (
           <div className="hero__video-player">
