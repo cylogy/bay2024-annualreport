@@ -10,8 +10,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        montserrat: ['var(--font-montserrat)'],
-        newsreader: ['var(--font-newsreader)'],
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+        newsreader: ['var(--font-newsreader)', 'serif'],
       },
       colors: {
         'dark-blue': 'var(--dark-blue)',
@@ -33,7 +33,11 @@ module.exports = {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
+        xxl: '1536px',
       },
+      boxShadow: {
+        '3xl': '0px 4px 34px 0px #00000026',
+      }
     },
   },
   plugins: [],

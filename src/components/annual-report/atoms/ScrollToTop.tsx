@@ -37,7 +37,7 @@ const ScrollToTop = () => {
   return (
     <div
       onClick={handleScrollToTop}
-      className={`bg-powder-blue rounded-[100%] w-[70px] h-[70px] boxShadow fixed bottom-[100px] right-[100px] z-20 text-white flex flex-col gap-[5px] items-center justify-center cursor-pointer transition-opacity duration-500 ${
+      className={`bg-powder-blue rounded-[100%] w-[70px] h-[70px] boxShadow fixed bottom-[10px] right-[10px] md:bottom-[100px] md:right-[100px] z-[999] text-white flex flex-col gap-[5px] items-center justify-center cursor-pointer transition-opacity duration-500 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       style={{ pointerEvents: isVisible ? 'auto' : 'none' }} // Disable interaction when not visible
@@ -54,7 +54,7 @@ const ScrollToTop = () => {
           fill="white"
         />
       </svg>
-      <span className="text-[0.75rem] font-bold">To top</span>
+      <span className="text-[0.75rem] font-bold font-montserrat">To top</span>
     </div>
   );
 };
