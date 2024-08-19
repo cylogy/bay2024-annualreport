@@ -1,4 +1,4 @@
-import { Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, Image as JssImage, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
@@ -12,6 +12,7 @@ interface YTEvent {
 
 export const Main = ({
   fields: { Description, Headline, Image, Video, AnchorID },
+  layoutData,
 }: HeroProps): JSX.Element => {
   const isMobile = useIsMobile(1024);
   const [Playing, setPlaying] = useState(true);
@@ -67,8 +68,8 @@ export const Main = ({
     Playing ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
     setPlaying((v) => !v);
   };
-  console.log('testing');
-
+  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
+  console.log('Breadcrumb:' + breadcrumb?.value);
   return (
     <>
       <div className="hero relative" id={AnchorID.value}>
@@ -118,7 +119,11 @@ export const Main = ({
 
 export const Secondary = ({
   fields: { Image, Headline, Description, AnchorID },
+  layoutData,
 }: HeroProps): JSX.Element => {
+  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
+  console.log('Breadcrumb:' + breadcrumb.value);
+
   return (
     <div className="hero relative hero--secondary" id={AnchorID.value}>
       <picture>
@@ -143,7 +148,10 @@ export const Secondary = ({
 
 export const Download = ({
   fields: { Image, CTA, Description, Headline, AnchorID },
+  layoutData,
 }: HeroProps): JSX.Element => {
+  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
+  console.log('Breadcrumb:' + breadcrumb.value);
   return (
     <div className="px-[30px] xl:px-[7.5rem]" id={AnchorID.value}>
       <div className="hero relative hero--download">
