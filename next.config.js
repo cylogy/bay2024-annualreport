@@ -18,13 +18,14 @@ const nextConfig = {
         process.env.CODEBUILD_BUILD_NUMBER
       : publicUrl,
 
-  cacheHandler: process.env.BUILD_STANDALONE === "true" ? require.resolve('./cache-handler.js'):undefined,
+  cacheHandler:
+    process.env.BUILD_STANDALONE === 'true' ? require.resolve('./cache-handler.js') : undefined,
   // Allow specifying a distinct distDir when concurrently running app in a container
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
 
   output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined,
 
-  // Make the same PUBLIC_URL available as an environment variable on the client bundle 
+  // Make the same PUBLIC_URL available as an environment variable on the client bundle
   env: {
     PUBLIC_URL: publicUrl,
   },
@@ -72,18 +73,20 @@ const nextConfig = {
           },
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains;'
+            value: 'max-age=63072000; includeSubDomains;',
           },
           {
-            key: process.env.NODE_ENV !== 'development' ? 'Content-Security-Policy' : 'Content-Security-Policy-Report-Only',
+            key:
+              process.env.NODE_ENV !== 'development'
+                ? 'Content-Security-Policy'
+                : 'Content-Security-Policy-Report-Only',
             value:
-              "default-src 'none' ; script-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com/ https://www.youtube.com/iframe_api https://static.doubleclick.net; style-src 'self' 'unsafe-inline' https://*.vercel.app/ https://*.oshyn.com/ https://fonts.googleapis.com https://cdnjs.cloudflare.com https://www.youtube.com; object-src 'none'; base-uri 'self'; connect-src 'self' https://*.vercel.app/ https://*.oshyn.com/; font-src 'self' https://fonts.gstatic.com/ https://cdnjs.cloudflare.com; frame-src 'self' https://www.youtube-nocookie.com/; img-src 'self' https://i.ytimg.com/ https://sc-dev-baaqmd.oshyn.com https://sc-dev-strategicplan.baaqmd.gov https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com; manifest-src 'self'; worker-src 'none'; frame-ancestors 'self'; form-action 'self';"
+              "default-src 'none' ; script-src 'self' https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com/ https://www.youtube.com/iframe_api https://static.doubleclick.net; style-src 'self' 'unsafe-inline' https://*.vercel.app/ https://*.oshyn.com/ https://fonts.googleapis.com https://cdnjs.cloudflare.com https://www.youtube.com; object-src 'none'; base-uri 'self'; connect-src 'self' https://*.vercel.app/ https://*.oshyn.com/; font-src 'self' https://fonts.gstatic.com/ https://cdnjs.cloudflare.com https://*.vercel.app; frame-src 'self' https://www.youtube-nocookie.com/; img-src 'self' https://i.ytimg.com/ https://sc-dev-baaqmd.oshyn.com https://sc-dev-strategicplan.baaqmd.gov https://*.vercel.app/ https://*.oshyn.com/ https://www.youtube.com; manifest-src 'self'; worker-src 'none'; frame-ancestors 'self'; form-action 'self';",
           },
         ],
       },
     ];
   },
-
 
   // use this configuration to ensure that only images from the whitelisted domains
   // can be served from the Next.js Image Optimization API
