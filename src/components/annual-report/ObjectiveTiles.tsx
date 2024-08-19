@@ -1,13 +1,7 @@
-import {
-  Placeholder,
-  LayoutServiceData,
-  ComponentRendering,
-} from '@sitecore-jss/sitecore-jss-nextjs';
+import { Placeholder, ComponentRendering } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
-import React from 'react';
 
 type ObjectiveTilesProps = ComponentProps & {
-  layoutData: LayoutServiceData;
   rendering: ComponentRendering;
 };
 

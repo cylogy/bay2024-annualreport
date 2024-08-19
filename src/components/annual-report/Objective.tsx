@@ -32,7 +32,7 @@ export const Default = ({
   };
 
   return (
-    <div className="objectives" id={Name.value.trim()}>
+    <div className="objectives" id={AnchorID.value.trim()}>
       <div className="objectives__group-image">
         <svg
           width="354"

@@ -22,10 +22,7 @@ type GraphicContentTilesProps = ComponentProps & {
 export const GraphicContentTiles = withDatasourceCheck()<GraphicContentTilesProps>(
   ({ fields: { Description, Headline }, rendering }: GraphicContentTilesProps): JSX.Element => {
     return (
-      <section
-        className="py-20 md:py-[7.5rem] container flex flex-col items-center gap-14 md:gap-20"
-        id={AnchorID.value}
-      >
+      <section className="py-20 md:py-[7.5rem] container flex flex-col items-center gap-14 md:gap-20">
         <div className="text-center max-w-[56.25rem] space-y-3 text-dark-blue font-">
           <Text tag="h2" field={Headline} />
           <RichText field={Description} tag="p" className="richtext p1" />

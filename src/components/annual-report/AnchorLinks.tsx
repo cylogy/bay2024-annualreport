@@ -13,7 +13,6 @@ type AnchorLinksProps = ComponentProps & {
   fields: {
     Headline: Field<string>;
     FullWidth: Field<boolean>;
-    FullWidth: Field;
   };
 };
 
