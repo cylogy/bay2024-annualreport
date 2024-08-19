@@ -4,6 +4,7 @@ import {
   Placeholder,
   Text,
   Image as JssImage,
+  LayoutServiceData,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import Accordion from './atoms/Accordion';
@@ -17,12 +18,15 @@ interface Fields {
 
 type ObjectiveProps = ComponentProps & {
   params: { [key: string]: string };
+  layoutData: LayoutServiceData;
   fields: Fields;
 };
 
 export const Default = ({
   fields: { Description, Image, Name, AnchorID },
   rendering,
+  params,
+  layoutData,
 }: ObjectiveProps): JSX.Element => {
   const modifyImageProps = {
     ...Image,
@@ -30,8 +34,26 @@ export const Default = ({
       ?.replace(`width="${Image?.value?.width}"`, 'width="20%"')
       .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
   };
-
-  return (
+  return params?.variant === 'ObjectiveTiles' ? (
+    <span className="bullet-number relative w-[267px] h-[290px] rounded-[40px] bg-powder-blue overflow-hidden flex flex-col items-center text-white justify-center px-[36px] py-[36px] pb-[48px] text-center">
+      <Text tag="span" className="block h1 font-newsreader" field={Name}></Text>
+      <Text tag="span" className="h6" field={Description}></Text>
+      <div className="absolute bottom-0">
+        <svg
+          width="267"
+          height="35"
+          viewBox="0 0 267 35"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M317.5 1.60711V35H-51.5V0C14.5081 5.75871 84.7074 10.1358 143.822 10.1358C195.395 10.1358 256.983 6.51455 317.5 1.60711Z"
+            fill="#B6D158"
+          />
+        </svg>
+      </div>
+    </span>
+  ) : (
     <div className="objectives" id={AnchorID.value.trim()}>
       <div className="objectives__group-image">
         <svg
