@@ -17,6 +17,7 @@ interface Fields {
   Description: Field<string>;
   Headline: Field<string>;
   Intro: Field<string>;
+  AnchorID: Field<string>;
 }
 
 type StrategyProps = ComponentProps & {
@@ -25,7 +26,7 @@ type StrategyProps = ComponentProps & {
 };
 
 export const Default = ({
-  fields: { Description, Headline, Image, Intro, Name, Status, UpdateDate },
+  fields: { Description, Headline, Image, Intro, Name, Status, UpdateDate, AnchorID },
   rendering,
 }: StrategyProps): JSX.Element => {
   const modifyImageProps = {
@@ -36,7 +37,7 @@ export const Default = ({
   };
   return (
     <Accordion.Item Name={Name.value} Status={Status.value} UpdateDate={UpdateDate.value}>
-      <div className="space-y-11 text-dark-blue">
+      <div className="space-y-11 text-dark-blue" id={AnchorID.value}>
         <JssImage
           field={modifyImageProps}
           className="max-h-[11.25rem] md:max-h-[17.5rem] w-full object-cover rounded-[10px]"

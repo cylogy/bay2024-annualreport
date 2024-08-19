@@ -12,6 +12,7 @@ interface Fields {
   Name: Field<string>;
   Description: Field<string>;
   Image: ImageField;
+  AnchorID: Field<string>;
 }
 
 type ObjectiveProps = ComponentProps & {
@@ -20,7 +21,7 @@ type ObjectiveProps = ComponentProps & {
 };
 
 export const Default = ({
-  fields: { Description, Image, Name },
+  fields: { Description, Image, Name, AnchorID },
   rendering,
 }: ObjectiveProps): JSX.Element => {
   const modifyImageProps = {
@@ -31,7 +32,7 @@ export const Default = ({
   };
 
   return (
-    <div className="objectives" id={Name.value.trim()}>
+    <div className="objectives" id={AnchorID.value.trim()}>
       <div className="objectives__group-image">
         <svg
           width="354"
