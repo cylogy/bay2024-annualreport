@@ -52,6 +52,11 @@ footer {
         &:last-of-type {
           padding-bottom: 0;
         }
+
+        a {
+          min-height: 24px;
+          display: block;
+        }
       }
     }
 
