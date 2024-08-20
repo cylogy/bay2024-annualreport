@@ -26,7 +26,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           className="object-cover w-full absolute top-0 left-0 decoration"
           field={{ src: '/images/textContentTiles-bg.png', alt: '' }}
         />
-        <Text tag="h4" className="mb-[10px]" field={props.fields.Headline} />
+        <Text tag="p" className="mb-[10px] h4" field={props.fields.Headline} />
         <RichText className="p2" field={props.fields.Description} />
       </article>
     ) : props.params.variant === 'Stacked' ? (

@@ -39,7 +39,7 @@ footer {
 
     .footer-title {
       font-size: 1.3125rem;
-      line-height: 1.6rem;
+      line-height: 1.6;
       font-weight: 700;
       padding-bottom: 20px;
     }
@@ -51,6 +51,11 @@ footer {
 
         &:last-of-type {
           padding-bottom: 0;
+        }
+
+        a {
+          min-height: 24px;
+          display: block;
         }
       }
     }
