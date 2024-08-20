@@ -4,7 +4,6 @@ import {
   Placeholder,
   Text,
   Image as JssImage,
-  LayoutServiceData,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import Accordion from './atoms/Accordion';
@@ -18,7 +17,6 @@ interface Fields {
 
 type ObjectiveProps = ComponentProps & {
   params: { [key: string]: string };
-  layoutData: LayoutServiceData;
   fields: Fields;
 };
 
