@@ -158,7 +158,6 @@ export const Download = ({
           fetchpriority="low"
           loading="lazy"
         />
-        <img className="hero__bg-image" src={Image.value?.src} alt="" />
         <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />
           <Text field={Description} tag="p" />
