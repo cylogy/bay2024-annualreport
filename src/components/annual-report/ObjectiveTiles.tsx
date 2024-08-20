@@ -9,14 +9,14 @@ type ObjectiveTilesProps = ComponentProps & {
 
 export const Default = (props: ObjectiveTilesProps): JSX.Element => {
   return (
-    <>
-      <section className="pt-[100px] grid lg:grid-cols-3 gap-40">
+    <div className="container">
+      <section className="pt-[100px] grid gap-20 lg:grid-cols-3 gap-40 max-w-[879px]">
         <Placeholder
           name={`objective-tiles`}
           rendering={props.rendering}
           render={(components) => injectDynamicParams(components, { variant: 'ObjectiveTiles' })}
         />
       </section>
-    </>
+    </div>
   );
 };
