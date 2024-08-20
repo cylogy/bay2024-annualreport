@@ -27,7 +27,7 @@ export const Default = withDatasourceCheck()<AnchorLinksProps>(
 
     return (
       <div className="anchor-links" ref={anchorsRef}>
-        <nav className="text-dark-blue shadow-none lg:shadow-3xl" ref={navRef}>
+        <nav className="text-dark-blue shadow-none lx:shadow-3xl" ref={navRef}>
           <Text
             tag="span"
             className="h4 block mb-2.5 border-b border-solid pb-2.5"

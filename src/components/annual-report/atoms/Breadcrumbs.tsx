@@ -10,19 +10,16 @@ export default function Breadcrumbs() {
       .split('?')[0]
       .split('/')
       .filter((v) => v.length > 0);
-    const crumbs = nestedPath.map((path) => {
-      // const href = '/' + nestedPath.slice(0, idx + 1).join('/').split('#')[0];
-      const text = path.split('#')[0].replace('and', '&').split('-').join(' ');
-
-      return text;
-    });
+    const crumbs = nestedPath.map((path) =>
+      path.split('#')[0].replace('and', '&').split('-').join(' ')
+    );
 
     setBreadcrumbs([...crumbs.filter((crumb) => crumb !== '')]);
   }, [asPath]);
 
   return (
-    <nav aria-label="Breadcrumbs" className="container py-2.5">
-      <ol className="flex items-center gap-1.5 text-dark-blue capitalize p3">
+    <nav aria-label="Breadcrumbs" className="container py-[30px] lg:pt-[3.75rem] lg:pb-24">
+      <ol className="flex items-center gap-1.5 text-dark-blue capitalize p3 py-2.5">
         <li className="flex items-center gap-1.5">
           <a href="/">Home</a>
           <span>/</span>
@@ -37,7 +34,7 @@ export default function Breadcrumbs() {
               }`}
             >
               <span
-                className={isCurrentPage ? '!font-bold' : 'text-gray-500'}
+                className={isCurrentPage && Breadcrumbs.length > 1 ? '!font-bold' : 'text-gray-500'}
                 aria-current={isCurrentPage ? 'page' : undefined}
               >
                 {breadcrumb}

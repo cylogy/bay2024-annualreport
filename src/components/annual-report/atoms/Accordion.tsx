@@ -48,8 +48,6 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
       <button
         onClick={(e) => onClickItem(Name, e)}
         type="button"
-        id={Name}
-        aria-controls={`accordion-item-body-${Name}`}
         aria-expanded={isOpened}
         className="accordion-item__header"
         aria-label={Name}
@@ -78,7 +76,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
           </>
         )}
       </button>
-      <div id={`accordion-item-body-${Name}`} role="region" className="accordion-item__content">
+      <div role="region" className="accordion-item__content">
         <div className="py-10">{children}</div>
       </div>
     </div>

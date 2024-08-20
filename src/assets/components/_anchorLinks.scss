@@ -24,7 +24,7 @@
         width: 5px;
         height: 100%;
 
-        @include respond-to(xl) {
+        @include respond-to(lx) {
           background-color: var(--light-green);
         }
       }
@@ -33,7 +33,7 @@
         margin-left: 15px;
       }
 
-      @include respond-to(xl) {
+      @include respond-to(lx) {
         background-color: var(--light-green-10);
       }
     }
@@ -44,7 +44,7 @@
     padding-bottom: 3.75rem;
     background-color: var(--soft-white);
 
-    @include respond-to(xl) {
+    @include respond-to(lx) {
       position: sticky;
       background-color: var(--white);
       margin-left: auto;
@@ -57,7 +57,7 @@
       right: 3%;
     }
 
-    @include respond-to(xxl) {
+    @include respond-to(xl) {
       right: 5%;
     }
   }
@@ -67,7 +67,7 @@
     width: 100%;
     margin-top: 0;
 
-    @include respond-to(xl) {
+    @include respond-to(lx) {
       margin-top: var(--top);
     }
   }
