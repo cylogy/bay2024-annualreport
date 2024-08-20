@@ -29,7 +29,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
   const mainClassPageEditing = isPageEditing ? 'editing-mode' : 'prod-mode';
   const toTop = layoutData?.sitecore?.route?.fields?.ToTop as Field<boolean>;
 
-  console.log('To Top:' + toTop.value);
+  console.log('To Top:' + toTop?.value);
 
   return (
     <>
