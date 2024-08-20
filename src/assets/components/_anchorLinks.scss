@@ -9,6 +9,10 @@
     @extend .p2;
     @extend %transition;
 
+    &.indent {
+      margin-left: 15px;
+    }
+
     &:hover,
     &.active {
       background-color: transparent;
@@ -27,10 +31,6 @@
         @include respond-to(xl) {
           background-color: var(--light-green);
         }
-      }
-
-      &.indent {
-        margin-left: 15px;
       }
 
       @include respond-to(xl) {
