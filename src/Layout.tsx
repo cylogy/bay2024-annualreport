@@ -7,6 +7,7 @@ import { Placeholder, LayoutServiceData, Field, HTMLLink } from '@sitecore-jss/s
 import config from 'temp/config';
 import Scripts from 'src/Scripts';
 import ScrollToTop from 'components/annual-report/atoms/ScrollToTop';
+import useIsMobile from 'lib/customHooks/isMobile';
 
 // Prefix public assets with a public URL to enable compatibility with Sitecore Experience Editor.
 // If you're not supporting the Experience Editor, you can remove this.
@@ -28,8 +29,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
   const isPageEditing = layoutData.sitecore.context.pageEditing;
   const mainClassPageEditing = isPageEditing ? 'editing-mode' : 'prod-mode';
   const toTop = layoutData?.sitecore?.route?.fields?.ToTop as Field<boolean>;
-
-  console.log('To Top:' + toTop?.value);
+  const isMobile = useIsMobile(1024);
 
   return (
     <>
@@ -75,7 +75,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
             )}
           </div>
         </footer>
-        <ScrollToTop />
+        {toTop.value && !isMobile && <ScrollToTop />}
       </div>
     </>
   );

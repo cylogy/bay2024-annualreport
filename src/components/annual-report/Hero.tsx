@@ -1,10 +1,11 @@
-import { Field, Image as JssImage, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, Link, Text, Image as JssImage } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
 import { useEffect, useRef, useState } from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import { HeroProps } from 'src/types/Hero';
+import Breadcrumbs from './atoms/Breadcrumbs';
 
 interface YTEvent {
   target: YTPlayer;
@@ -12,7 +13,6 @@ interface YTEvent {
 
 export const Main = ({
   fields: { Description, Headline, Image, Video, AnchorID },
-  layoutData,
 }: HeroProps): JSX.Element => {
   const isMobile = useIsMobile(1024);
   const [Playing, setPlaying] = useState(true);
@@ -21,8 +21,8 @@ export const Main = ({
 
   useEffect(() => {
     setTimeout(() => {
-      const playButton = document.querySelector('.lty-playbtn') as HTMLButtonElement;
-      if (playButton) playButton.click();
+      const playButton = document.querySelector<HTMLButtonElement>('.lty-playbtn');
+      playButton?.click();
     }, 100);
 
     const onPageLoad = () => {
@@ -68,17 +68,17 @@ export const Main = ({
     Playing ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
     setPlaying((v) => !v);
   };
-  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
-  console.log('Breadcrumb:' + breadcrumb?.value);
+
   return (
     <>
       <div className="hero relative" id={AnchorID.value}>
-        <picture>
-          <img className="hero__bg-image" src={Image.value?.src} alt="" />
-          {/* placeholder="empty"
-            fetchpriority="high"
-            priority="true" */}
-        </picture>
+        <JssImage
+          className="hero__bg-image"
+          field={Image}
+          placeholder="empty"
+          fetchpriority="high"
+          priority="true"
+        />
         {!isMobile && (
           <div className="hero__video-player">
             <LiteYouTubeEmbed
@@ -122,11 +122,10 @@ export const Secondary = ({
   layoutData,
 }: HeroProps): JSX.Element => {
   const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
-  console.log('Breadcrumb:' + breadcrumb.value);
 
   return (
-    <div className="hero relative hero--secondary" id={AnchorID.value}>
-      <picture>
+    <>
+      <div className="hero relative hero--secondary" id={AnchorID.value}>
         <JssImage
           className="hero__bg-image"
           field={Image}
@@ -134,23 +133,21 @@ export const Secondary = ({
           fetchpriority="high"
           priority="true"
         />
-      </picture>
-      <div className="hero__background" />
-      <div className="hero__content text-center space-y-6 flex flex-col items-center container">
-        <Text tag="h1" field={Headline} />
-        <Text field={Description} tag="p" />
+        <div className="hero__background" />
+        <div className="hero__content text-center space-y-6 flex flex-col items-center container">
+          <Text tag="h1" field={Headline} />
+          <Text field={Description} tag="p" />
+        </div>
+        <Curve />
       </div>
-      <Curve />
-    </div>
+      {breadcrumb?.value && <Breadcrumbs />}
+    </>
   );
 };
 
 export const Download = ({
   fields: { Image, CTA, Description, Headline, AnchorID },
-  layoutData,
 }: HeroProps): JSX.Element => {
-  const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
-  console.log('Breadcrumb:' + breadcrumb.value);
   return (
     <div className="px-[30px] xl:px-[7.5rem]" id={AnchorID.value}>
       <div className="hero relative hero--download">
@@ -161,6 +158,7 @@ export const Download = ({
           fetchpriority="low"
           loading="lazy"
         />
+        <img className="hero__bg-image" src={Image.value?.src} alt="" />
         <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />
           <Text field={Description} tag="p" />
