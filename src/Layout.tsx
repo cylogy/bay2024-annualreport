@@ -75,7 +75,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
             )}
           </div>
         </footer>
-        {toTop.value && !isMobile && <ScrollToTop />}
+        {toTop?.value && !isMobile && <ScrollToTop />}
       </div>
     </>
   );
