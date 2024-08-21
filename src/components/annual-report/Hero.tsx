@@ -14,7 +14,7 @@ interface YTEvent {
 export const Main = ({
   fields: { Description, Headline, Image, Video, AnchorID },
 }: HeroProps): JSX.Element => {
-  const isMobile = useIsMobile(1024);
+  const isMobile = useIsMobile(1350);
   const [Playing, setPlaying] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const playerRef = useRef<YTPlayer | null>(null);
@@ -71,7 +71,7 @@ export const Main = ({
 
   return (
     <>
-      <div className="hero relative" id={AnchorID.value}>
+      <div className="hero" id={AnchorID.value}>
         <JssImage
           className="hero__bg-image"
           field={Image}
@@ -97,7 +97,7 @@ export const Main = ({
           </div>
         )}
         <div className="hero__background" />
-        <div className="hero__content text-center space-y-6 flex flex-col items-center">
+        <div className="hero__content space-y-6 flex flex-col items-center">
           <Text tag="h1" field={Headline} />
           <Text field={Description} className="hidden lg:block" tag="p" />
         </div>
@@ -125,7 +125,7 @@ export const Secondary = ({
 
   return (
     <>
-      <div className="hero relative hero--secondary" id={AnchorID.value}>
+      <div className="hero hero--secondary" id={AnchorID.value}>
         <JssImage
           className="hero__bg-image"
           field={Image}
@@ -134,7 +134,7 @@ export const Secondary = ({
           priority="true"
         />
         <div className="hero__background" />
-        <div className="hero__content text-center space-y-6 flex flex-col items-center container">
+        <div className="hero__content space-y-6 flex flex-col items-center container">
           <Text tag="h1" field={Headline} />
           <Text field={Description} tag="p" />
         </div>
@@ -150,7 +150,7 @@ export const Download = ({
 }: HeroProps): JSX.Element => {
   return (
     <div className="px-[30px] xl:px-[7.5rem]" id={AnchorID.value}>
-      <div className="hero relative hero--download">
+      <div className="hero hero--download">
         <JssImage
           field={Image}
           className="hero--download__image"
@@ -158,7 +158,7 @@ export const Download = ({
           fetchpriority="low"
           loading="lazy"
         />
-        <div className="hero__content text-center space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
+        <div className="hero__content space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />
           <Text field={Description} tag="p" />
           <Link field={CTA} className="btn" />
