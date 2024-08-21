@@ -49,7 +49,7 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
       /* Timeline */
-      <div className="container">
+      <div className="container-anchors">
         <div className="max-w-[879px]">
           <section className="py-[60px] lg:py-[120px]">
             <Text
