@@ -171,7 +171,7 @@ table {
 .container-anchors {
   @extend .container;
 
-  @include respond-to(lg) {
-    max-width: 1280px;
+  @include respond-to(md) {
+    padding-inline: 6.25rem;
   }
 }
