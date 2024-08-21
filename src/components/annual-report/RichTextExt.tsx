@@ -17,8 +17,6 @@ export const Default = (props: RichTextExtProps): JSX.Element => {
   ) : (
     <span className="is-empty-hint">Rich Text Extended</span>
   );
-  const id = props.params.RenderingIdentifier;
-
   return (
     <div
       className={`component rich-text ${props.params.styles.trimEnd()}`}
