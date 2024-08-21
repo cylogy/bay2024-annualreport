@@ -33,10 +33,10 @@ export const Default = ({
   };
   return params?.variant === 'ObjectiveTiles' ? (
     <span className="bullet-number relative lg:w-[267px] h-[290px] rounded-[40px] bg-powder-blue overflow-hidden flex flex-col items-center text-white justify-center px-[36px] py-[36px] pb-[48px] text-center">
-      <Text tag="span" className="block h1 font-newsreader" field={Name}></Text>
+      <Text tag="span" className="block h1" field={Name}></Text>
       <Text tag="span" className="h6" field={Description}></Text>
       <div className="absolute bottom-0">
-        <img src="images/Intersect.png" alt="" />
+        <img src="/images/Intersect.png" alt="" />
       </div>
     </span>
   ) : (
