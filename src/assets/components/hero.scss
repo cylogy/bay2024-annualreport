@@ -4,10 +4,9 @@
   height: 35rem;
   clip-path: url(#clipPath);
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   overflow: hidden;
+  position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -28,12 +27,13 @@
       padding-top: 0;
 
       @include respond-to(lg) {
-        padding-top: 6rem;
+        padding-top: 6.2rem;
       }
     }
   }
 
   &--download {
+    display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
@@ -82,6 +82,7 @@
 
   &__background {
     position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     z-index: 2;
@@ -91,8 +92,12 @@
   }
 
   &__content {
+    text-align: center;
     position: absolute;
     z-index: 3;
+    top: 20%;
+    left: 0;
+    right: 0;
 
     h1 {
       max-width: 78rem;
@@ -104,14 +109,19 @@
   }
 
   &__video-player {
-    overflow: hidden;
-    width: 100%;
-    aspect-ratio: 16/9;
+    position: relative;
     pointer-events: none;
     z-index: 1;
+    width: 100%;
+    height: 100%;
 
     & article {
       background-image: none !important;
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin-top: -3.75rem;
     }
 
     .lty-playbtn {
@@ -119,9 +129,11 @@
     }
 
     & iframe {
-      width: 300%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      margin-left: -100%;
       pointer-events: none;
     }
   }
