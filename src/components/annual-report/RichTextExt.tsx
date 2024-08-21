@@ -22,7 +22,7 @@ export const Default = (props: RichTextExtProps): JSX.Element => {
       className={`component rich-text ${props.params.styles.trimEnd()}`}
       id={props.fields.AnchorID.value}
     >
-      <div className="component-content">{text}</div>
+      <div className="component-content rich-text-container">{text}</div>
     </div>
   );
 };
