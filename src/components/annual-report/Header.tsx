@@ -32,7 +32,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
 
   const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const mobile = useIsMobile(1024);
+  const mobile = useIsMobile(1023);
   const handleMenuItemClick = (menuItem: string) => {
     setActiveMenuItem(activeMenuItem === menuItem ? null : menuItem);
   };
