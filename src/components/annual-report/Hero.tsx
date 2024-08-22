@@ -133,7 +133,7 @@ export const Secondary = ({
           fetchpriority="high"
           priority="true"
         />
-        <div className="hero__background" />
+        <div className="hero__background bg-soft-white" />
         <div className="hero__content space-y-6 flex flex-col items-center container">
           <Text tag="h1" field={Headline} />
           <Text field={Description} tag="p" />
