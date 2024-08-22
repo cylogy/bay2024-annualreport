@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import AccordionArrow from 'assets/svg/AccordionArrow';
 import useIsMobile from 'lib/customHooks/isMobile';
-import { MouseEvent, ReactNode, useState } from 'react';
+import { MouseEvent, ReactNode, useEffect, useState } from 'react';
 import { AccordionContext, useAccordionContext } from 'src/context/accordion';
+import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 
 type ChildrenReceiver = { children?: ReactNode };
 
@@ -28,6 +29,18 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
   const isMobile = useIsMobile(780);
   const isOpened = SelectedItem === Name;
   const textUpdateDate = new Date(UpdateDate ?? '').toLocaleDateString('en-US');
+  const context = useSitecoreContext();
+
+  useEffect(() => {
+    if (context.sitecoreContext.pageEditing) {
+      const accordionItems = document.querySelectorAll('.accordion-item');
+      accordionItems.forEach((item) => {
+        if (item.getAttribute('data-open') === 'false') {
+          item.setAttribute('data-open', 'true');
+        }
+      });
+    }
+  }, [context.sitecoreContext.pageEditing]);
 
   const onClickItem = (Name: string, e: MouseEvent<HTMLButtonElement>) => {
     const container = e.currentTarget.closest('.accordion');
@@ -35,7 +48,6 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
 
     setTimeout(() => {
       const item = container?.querySelector<HTMLDivElement>(".accordion-item[data-open='true']");
-
       item?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
@@ -44,11 +56,11 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
   };
 
   return (
-    <div className="accordion-item" data-open={isOpened}>
+    <div className="accordion-item" data-open={isOpened ? 'true' : 'false'}>
       <button
         onClick={(e) => onClickItem(Name, e)}
         type="button"
-        aria-expanded={isOpened}
+        aria-expanded={isOpened ? 'true' : 'false'}
         className="accordion-item__header"
         aria-label={Name}
       >
