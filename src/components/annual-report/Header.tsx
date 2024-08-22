@@ -172,18 +172,18 @@ export const Default = (props: HeaderProps): JSX.Element => {
               {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => (
                 <li
                   key={index}
-                  className={`${activeMenuItem === item.title.jsonValue.value ? 'active' : ''}`}
-                  onClick={() => handleMenuItemClick(item.title.jsonValue.value)}
+                  className={`${activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''}`}
+                  onClick={() => handleMenuItemClick(item?.title?.jsonValue?.value)}
                 >
                   <a
-                    href={item.cta.jsonValue.value.href || '#'}
-                    target={item.cta.jsonValue.value.target}
+                    href={item?.cta?.jsonValue?.value?.href || '#'}
+                    target={item?.cta?.jsonValue?.value?.target}
                   >
-                    <span>{item.title.jsonValue.value}</span>
+                    <span>{item?.title?.jsonValue?.value}</span>
                     {item.hasChildren && (
                       <ChevronDown
                         className={`${
-                          activeMenuItem === item.title.jsonValue.value ? 'active' : ''
+                          activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
                         }`}
                       />
                     )}
@@ -191,23 +191,23 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   {item.hasChildren && (
                     <ul
                       className={`submenu ${
-                        activeMenuItem === item.title.jsonValue.value ? 'show' : ''
+                        activeMenuItem === item?.title?.jsonValue?.value ? 'show' : ''
                       }`}
                     >
                       {item.children.results.map((child, childIndex) => (
                         <li key={childIndex}>
-                          <Link field={child.cta.jsonValue.value}>
+                          <Link field={child?.cta?.jsonValue?.value}>
                             <Image
                               className="rounded-full"
-                              field={child.image.jsonValue}
+                              field={child?.image?.jsonValue}
                               placeholder="empty"
                               fetchpriority="low"
                               loading="lazy"
                             />
                             <div>
-                              <p className="menu-title">{child.name}</p>
+                              <p className="menu-title">{child?.name}</p>
                               <p className="menu-description">
-                                {child.description.jsonValue.value}
+                                {child?.description?.jsonValue?.value}
                               </p>
                             </div>
                           </Link>

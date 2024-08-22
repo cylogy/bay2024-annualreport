@@ -25,7 +25,7 @@ export const ThreeColumns = withDatasourceCheck()<TextContentTilesProps>(
     return (
       /* Blue 3 cols */
       <section className="py-[60px] lg:py-[120px] bg-dark-blue" id={props.fields.AnchorID.value}>
-        <div className="container lg:px-[70px]">
+        <div className="container lg:px-[100px]">
           <Text
             tag="h2"
             className="text-center text-white mb-[10px]"
