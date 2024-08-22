@@ -52,7 +52,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
         behavior: 'smooth',
         block: 'start',
       });
-    }, 500);
+    }, 300);
   };
 
   return (
