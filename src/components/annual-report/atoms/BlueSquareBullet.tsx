@@ -7,7 +7,7 @@ interface BlueSquareBulletProps {
 
 const BlueSquareBullet: React.FC<BlueSquareBulletProps> = ({ text }) => {
   return (
-    <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex items-center text-white justify-center text-[2.875rem] leading-[2.875rem] font-newsreader">
+    <span className="bullet-number relative w-[75px] h-[75px] rounded-[20px] bg-powder-blue overflow-hidden flex shrink-0 items-center text-white justify-center text-[2.875rem] leading-[2.875rem] font-newsreader">
       {text}
       <div className="absolute bottom-0">
         <svg
