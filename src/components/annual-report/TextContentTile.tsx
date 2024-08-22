@@ -27,13 +27,13 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           field={{ src: '/images/textContentTiles-bg.png', alt: '' }}
         />
         <Text tag="p" className="mb-[10px] h4" field={props.fields.Headline} />
-        <RichText className="p2" field={props.fields.Description} />
+        <RichText className="p2 rich-text-container" field={props.fields.Description} />
       </article>
     ) : props.params.variant === 'Stacked' ? (
       <article className="text-dark-blue tct" id={props.fields.Number.value}>
         <Text tag="p" className="mb-[12px] year h4" field={props.fields.Number} />
         <Text tag="p" className="mb-[12px] h3" field={props.fields.Headline} />
-        <RichText className="p1" field={props.fields.Description} />
+        <RichText className="p1 rich-text-container" field={props.fields.Description} />
       </article>
     ) : props.params.variant === 'Cards' ? (
       <article className="text-dark-blue bg-white p-[40px] rounded-[20px] relative">
@@ -42,7 +42,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           className="mb-[10px] pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
           field={props.fields.Headline}
         />
-        <RichText className="p1" field={props.fields.Description} />
+        <RichText className="p1 rich-text-container" field={props.fields.Description} />
         {/*HTML FOR THE CONTACT SECTION
         <div className="py-[25px]">
           <p className="p2 p-icon">
@@ -197,7 +197,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           <BlueSquareBullet text={props.fields.Number.value} />
           <Text tag="h3" field={props.fields.Headline} />
         </div>
-        <RichText className="p1" field={props.fields.Description} />
+        <RichText className="p1 rich-text-container" field={props.fields.Description} />
       </article>
     );
   }
