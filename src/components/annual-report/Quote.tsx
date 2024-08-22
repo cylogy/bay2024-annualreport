@@ -8,11 +8,21 @@ type QuoteProps = ComponentProps & {
   };
 };
 
-export const Default = withDatasourceCheck()<QuoteProps>((props: QuoteProps): JSX.Element => {
-  return (
-    <>
-      <Text field={props.fields.Quote} />
-      <Text field={props.fields.Author} />
-    </>
-  );
-});
+export const Default = withDatasourceCheck()<QuoteProps>(
+  ({ fields: { Author, Quote } }: QuoteProps): JSX.Element => {
+    return (
+      <div className="container-anchors">
+        <div className="text-callout max-w-[56.25rem]">
+          <div className="flex flex-col gap-2.5">
+            <span className="font-newsreader">
+              “<Text field={Quote} />”
+            </span>
+            <p>
+              -- <Text field={Author} />
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+);
