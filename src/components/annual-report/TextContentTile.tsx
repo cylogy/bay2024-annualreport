@@ -197,7 +197,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           <BlueSquareBullet text={props.fields.Number.value} />
           <Text tag="h3" field={props.fields.Headline} />
         </div>
-        <RichText className="p1" field={props.fields.Description} />
+        <RichText className="p1 tct-rich-text" field={props.fields.Description} />
       </article>
     );
   }

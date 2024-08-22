@@ -42,4 +42,14 @@
     object-position: center;
   }
 
+  &-rich-text {
+    p {
+      padding-bottom: 40px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
 }
