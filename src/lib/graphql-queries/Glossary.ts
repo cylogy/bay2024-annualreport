@@ -41,7 +41,7 @@ type GlossaryQueryResult = {
     children: {
       results: [
         {
-          hasChildren: boolean;
+          hasChildren?: boolean;
           id: string;
           name: string;
           children: {
@@ -55,9 +55,9 @@ type GlossaryQueryResult = {
 type GlossaryItemQueryResult = {
   itemGlossary: {
     children: {
-      pageInfo: {
-        endCursor: string;
-        hasNext: boolean;
+      pageInfo?: {
+        endCursor?: string;
+        hasNext?: boolean;
       };
       results: ItemResult[];
     };
@@ -67,12 +67,12 @@ type ItemResult = {
   name: string;
   term: {
     jsonValue: {
-      value: string;
+      value?: string;
     };
   };
   description: {
     jsonValue: {
-      value: string;
+      value?: string;
     };
   };
 };

@@ -30,7 +30,7 @@ const getHeaderMenu = async (menuItem: string): Promise<HeaderMenuQueryResult> =
     result.headerMenu.children.results[index].children = { results: [] };
     if (result.headerMenu.children.results[index].hasChildren) {
       result.headerMenu.children.results[index].children.results = await getHeaderChildMenu(
-        result.headerMenu.children.results[index].id
+        result.headerMenu.children.results[index].id ?? ''
       );
     }
   }
@@ -63,7 +63,7 @@ const getMainGlossary = async (glossaryItem: string): Promise<GlossaryQueryResul
     result.mainGlossary.children.results[index].children = { results: [] };
     if (result.mainGlossary.children.results[index].hasChildren) {
       result.mainGlossary.children.results[index].children.results = await getGlossaryChild(
-        result.mainGlossary.children.results[index].id
+        result.mainGlossary.children.results[index].id ?? ''
       );
     }
   }
