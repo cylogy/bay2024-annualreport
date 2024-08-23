@@ -48,7 +48,14 @@ export const Default = withDatasourceCheck()<SignUpProps>(
             </div>
           </div>
         </div>
-        <img src="/images/footer-top.png" className="object-cover w-full bg-lighter-green" alt="" />
+        <img
+          src="/images/footer-top.png"
+          className="object-cover w-full bg-lighter-green"
+          fetchPriority="low"
+          loading="lazy"
+          aria-hidden="true"
+          alt=""
+        />
       </>
     );
   }
