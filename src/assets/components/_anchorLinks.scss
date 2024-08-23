@@ -19,6 +19,10 @@
       font-weight: 700;
       @extend %transition;
 
+      @include respond-to(lg) {
+        background-color: var(--light-green-10);
+      }
+
       &:before {
         content: "";
         background-color: transparent;
@@ -33,9 +37,7 @@
         }
       }
 
-      @include respond-to(xl) {
-        background-color: var(--light-green-10);
-      }
+
     }
   }
 
