@@ -58,7 +58,7 @@ type HeaderMenuQueryResult = {
           };
           cta: {
             jsonValue: {
-              value: {
+              value?: {
                 href: string;
                 text: string;
                 querystring: string;
