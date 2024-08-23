@@ -124,7 +124,7 @@ export const Secondary = ({
   const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
 
   return (
-    <>
+    <div className="bg-soft-white">
       <div className="hero hero--secondary" id={AnchorID.value}>
         <JssImage
           className="hero__bg-image"
@@ -141,7 +141,7 @@ export const Secondary = ({
         <Curve />
       </div>
       {breadcrumb?.value && <Breadcrumbs />}
-    </>
+    </div>
   );
 };
 

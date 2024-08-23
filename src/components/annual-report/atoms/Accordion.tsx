@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import AccordionArrow from 'assets/svg/AccordionArrow';
 import useIsMobile from 'lib/customHooks/isMobile';
-import { MouseEvent, ReactNode, useState } from 'react';
+import { MouseEvent, ReactNode, useEffect, useState } from 'react';
 import { AccordionContext, useAccordionContext } from 'src/context/accordion';
+import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 
 type ChildrenReceiver = { children?: ReactNode };
 
@@ -28,6 +29,19 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
   const isMobile = useIsMobile(780);
   const isOpened = SelectedItem === Name;
   const textUpdateDate = new Date(UpdateDate ?? '').toLocaleDateString('en-US');
+  const context = useSitecoreContext();
+  const validDate = UpdateDate !== '0001-01-01T00:00:00Z';
+
+  useEffect(() => {
+    if (context.sitecoreContext.pageEditing) {
+      const accordionItems = document.querySelectorAll('.accordion-item');
+      accordionItems.forEach((item) => {
+        if (item.getAttribute('data-open') === 'false') {
+          item.setAttribute('data-open', 'true');
+        }
+      });
+    }
+  }, [context.sitecoreContext.pageEditing]);
 
   const onClickItem = (Name: string, e: MouseEvent<HTMLButtonElement>) => {
     const container = e.currentTarget.closest('.accordion');
@@ -35,20 +49,19 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
 
     setTimeout(() => {
       const item = container?.querySelector<HTMLDivElement>(".accordion-item[data-open='true']");
-
       item?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-    }, 500);
+    }, 300);
   };
 
   return (
-    <div className="accordion-item" data-open={isOpened}>
+    <div className="accordion-item" data-open={isOpened ? 'true' : 'false'}>
       <button
         onClick={(e) => onClickItem(Name, e)}
         type="button"
-        aria-expanded={isOpened}
+        aria-expanded={isOpened ? 'true' : 'false'}
         className="accordion-item__header"
         aria-label={Name}
       >
@@ -57,7 +70,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
             <div className="flex flex-col gap-5 text-start">
               <span className="h5">{Name}</span>
               <div className="flex gap-2">
-                {UpdateDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
+                {UpdateDate && validDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
                 {Status && <AccordionInfoBox text={Status} />}
               </div>
             </div>
@@ -67,7 +80,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
           <>
             <div className="flex gap-5">
               <span className="h5 text-dark-blue">{Name}</span>
-              {UpdateDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
+              {UpdateDate && validDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
             </div>
             <div className="flex gap-10 items-center">
               {Status && <AccordionInfoBox text={Status} />}

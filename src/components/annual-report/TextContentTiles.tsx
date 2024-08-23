@@ -25,7 +25,7 @@ export const ThreeColumns = withDatasourceCheck()<TextContentTilesProps>(
     return (
       /* Blue 3 cols */
       <section className="py-[60px] lg:py-[120px] bg-dark-blue" id={props.fields.AnchorID.value}>
-        <div className="container lg:px-[70px]">
+        <div className="container lg:px-[100px]">
           <Text
             tag="h2"
             className="text-center text-white mb-[10px]"
@@ -80,20 +80,22 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
 export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
-      <div className="container" id={props.fields.AnchorID.value}>
-        <div className="max-w-[879px]">
-          <section className="py-[60px] lg:py-[120px]">
-            <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
-            <div className="grid grid-cols-1 gap-[48px]">
-              <Placeholder
-                name={`text-content-tiles`}
-                rendering={props.rendering}
-                render={(components) => injectDynamicParams(components, { variant: 'Numbered' })}
-              />
-            </div>
-          </section>
+      <section className="lg:bg-soft-white">
+        <div className="container" id={props.fields.AnchorID.value}>
+          <div className="max-w-[879px]">
+            <section className="py-[60px] lg:py-[120px]">
+              <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
+              <div className="grid grid-cols-1 lg:gap-[48px]">
+                <Placeholder
+                  name={`text-content-tiles`}
+                  rendering={props.rendering}
+                  render={(components) => injectDynamicParams(components, { variant: 'Numbered' })}
+                />
+              </div>
+            </section>
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 );

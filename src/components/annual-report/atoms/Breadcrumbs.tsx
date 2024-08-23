@@ -2,14 +2,15 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 export default function Breadcrumbs() {
-  const { asPath } = useRouter();
   const [Breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
+  const { asPath } = useRouter();
 
   useEffect(() => {
     const nestedPath = asPath
       .split('?')[0]
       .split('/')
       .filter((v) => v.length > 0);
+
     const crumbs = nestedPath.map((path) =>
       path.split('#')[0].replace('and', '&').split('-').join(' ')
     );
@@ -17,8 +18,13 @@ export default function Breadcrumbs() {
     setBreadcrumbs([...crumbs.filter((crumb) => crumb !== '')]);
   }, [asPath]);
 
+  if (asPath === '/') return null;
+
   return (
-    <nav aria-label="Breadcrumbs" className="container py-[30px] lg:pt-[3.75rem] lg:pb-24">
+    <nav
+      aria-label="Breadcrumbs"
+      className="container py-[30px] lg:pt-[3.75rem] lg:pb-24 bg-soft-white"
+    >
       <ol className="flex items-center gap-1.5 text-dark-blue capitalize p3 py-2.5">
         <li className="flex items-center gap-1.5">
           <a href="/">Home</a>
