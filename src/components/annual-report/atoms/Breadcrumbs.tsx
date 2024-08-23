@@ -21,7 +21,10 @@ export default function Breadcrumbs() {
   if (asPath === '/') return null;
 
   return (
-    <nav aria-label="Breadcrumbs" className="container py-[30px] lg:pt-[3.75rem] lg:pb-24">
+    <nav
+      aria-label="Breadcrumbs"
+      className="container py-[30px] lg:pt-[3.75rem] lg:pb-24 bg-soft-white"
+    >
       <ol className="flex items-center gap-1.5 text-dark-blue capitalize p3 py-2.5">
         <li className="flex items-center gap-1.5">
           <a href="/">Home</a>
