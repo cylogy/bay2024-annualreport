@@ -18,7 +18,7 @@ type AnchorLinkProps = ComponentProps & {
 };
 
 export const Default = withDatasourceCheck()<AnchorLinkProps>(
-  (props: AnchorLinkProps): JSX.Element => {
+  ({ fields: { AnchorID, Level, Name } }: AnchorLinkProps): JSX.Element => {
     const onClickEach = (e: MouseEvent<HTMLAnchorElement>) => {
       const id = e.currentTarget.getAttribute('href')?.replace('#', '');
       document.getElementById(id ?? '')?.scrollIntoView({ behavior: 'smooth' });
@@ -26,10 +26,10 @@ export const Default = withDatasourceCheck()<AnchorLinkProps>(
     return (
       <ScrollSpy activeClass="active" offsetTop={0} threshold={0.9} onClickEach={onClickEach}>
         <a
-          href={`#${props.fields.Name.value}`}
-          className={`p2 ${props.fields.Level.value === '2' ? 'indent' : ''}`}
+          href={`#${AnchorID.value.trim()}`}
+          className={`p2 ${Level.value === '2' ? 'indent' : ''}`}
         >
-          <Text field={props.fields.Name} />
+          <Text field={Name} />
         </a>
       </ScrollSpy>
     );
