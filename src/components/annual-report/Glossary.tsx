@@ -33,7 +33,7 @@ export const Default = (props: GlossaryProps): JSX.Element => {
                     <Accordion.Item Name={term.name} key={term.name}>
                       <RichText
                         field={term.description.jsonValue}
-                        className="richtext text-dark-blue p1"
+                        className="richtext text-dark-blue p1 rich-text-container"
                       />
                     </Accordion.Item>
                   ))}

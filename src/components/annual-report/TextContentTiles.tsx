@@ -31,7 +31,10 @@ export const ThreeColumns = withDatasourceCheck()<TextContentTilesProps>(
             className="text-center text-white mb-[10px]"
             field={props.fields.Headline}
           />
-          <RichText className="text-center text-white p1" field={props.fields.Description} />
+          <RichText
+            className="text-center text-white p1 rich-text-container"
+            field={props.fields.Description}
+          />
           <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[80px]">
             <Placeholder
               name={`text-content-tiles`}
