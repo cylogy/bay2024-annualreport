@@ -10,7 +10,7 @@ import { ComponentProps } from 'lib/component-props';
 import { HeaderMenuQueryResult } from 'lib/graphql-queries/HeaderMenu';
 import { getHeaderMenu } from 'lib/graphql-utils';
 import { MENU_ITEM } from 'lib/constants';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import LinkIcon from 'assets/svg/LinkIcon';
 import ChevronDown from 'assets/svg/ChevronDown';
 import useIsMobile from 'lib/customHooks/isMobile';
@@ -29,13 +29,27 @@ type MenuHeaderQueryProps = {
 
 export const Default = (props: HeaderProps): JSX.Element => {
   const componentProps = useComponentProps<MenuHeaderQueryProps>(props.rendering.uid);
-
   const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
   const [openMenu, setOpenMenu] = useState(false);
   const mobile = useIsMobile(1023);
+  const navRef = useRef<HTMLUListElement>(null); // Ref for the menu container
   const handleMenuItemClick = (menuItem: string) => {
     setActiveMenuItem(activeMenuItem === menuItem ? null : menuItem);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (navRef.current && !navRef.current.contains(event.target as Node)) {
+      setOpenMenu(false); // Close the menu if clicked outside
+      setActiveMenuItem(null); // Close active menu item
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const body = document.body;
@@ -168,7 +182,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                 </svg>
               </button>
             )}
-            <ul className="mt-[80px] lg:mt-0">
+            <ul className="mt-[80px] lg:mt-0" ref={navRef}>
               {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => {
                 if (!item) return;
                 return (
