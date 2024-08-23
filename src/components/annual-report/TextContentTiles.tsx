@@ -56,7 +56,7 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
               tag="h2"
               className="text-dark-blue mb-[48px]"
               field={props.fields.Headline}
-              id={props.fields.Headline.value}
+              id={props.fields.AnchorID.value.trim()}
             />
             <section className="grid gap-[40px]">
               <div className="grid gap-[80px] w-full timeline relative">
