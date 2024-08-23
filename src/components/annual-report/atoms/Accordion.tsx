@@ -30,7 +30,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
   const isOpened = SelectedItem === Name;
   const textUpdateDate = new Date(UpdateDate ?? '').toLocaleDateString('en-US');
   const context = useSitecoreContext();
-
+  console.log(textUpdateDate);
   useEffect(() => {
     if (context.sitecoreContext.pageEditing) {
       const accordionItems = document.querySelectorAll('.accordion-item');
