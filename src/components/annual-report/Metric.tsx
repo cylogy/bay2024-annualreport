@@ -69,8 +69,8 @@ export const Default = ({
     <div className="metric col-span-1" ref={elementRef}>
       <h2 className="flex justify-center">
         {count}
-        <Text className="uppercase" field={Prefix} editable={!!Prefix || '0'} />
-        <Text field={Suffix} editable={!!Suffix || 'K'} />
+        {Prefix.value ?? ''}
+        {Suffix.value ?? ''}
       </h2>
       <Text
         field={Description}
