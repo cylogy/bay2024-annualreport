@@ -18,11 +18,15 @@ export const Default = (props: RichTextExtProps): JSX.Element => {
     <span className="is-empty-hint">Rich Text Extended</span>
   );
   return (
-    <div
-      className={`component rich-text ${props.params.styles.trimEnd()}`}
-      id={props.fields.AnchorID.value}
-    >
-      <div className="component-content rich-text-container">{text}</div>
-    </div>
+    <section className="bg-white lg:bg-soft-white py-[36px] lg:py-[96px] ">
+      <div
+        className={`component rich-text container-anchors  lg:mr-[350px] ${props.params.styles.trimEnd()}`}
+        id={props.fields.AnchorID.value}
+      >
+        <div className="component-content rich-text-container lg:max-w-[879px] text-dark-blue">
+          {text}
+        </div>
+      </div>
+    </section>
   );
 };
