@@ -82,7 +82,7 @@ export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
           <div className="max-w-[879px]">
             <section className="py-[60px] lg:py-[120px]">
               <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
-              <div className="grid grid-cols-1 gap-[48px]">
+              <div className="grid grid-cols-1 lg:gap-[48px]">
                 <Placeholder
                   name={`text-content-tiles`}
                   rendering={props.rendering}
