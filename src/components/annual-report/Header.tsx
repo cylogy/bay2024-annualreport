@@ -169,54 +169,62 @@ export const Default = (props: HeaderProps): JSX.Element => {
               </button>
             )}
             <ul className="mt-[80px] lg:mt-0">
-              {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => (
-                <li
-                  key={index}
-                  className={`${activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''}`}
-                  onClick={() => handleMenuItemClick(item?.title?.jsonValue?.value)}
-                >
-                  <a
-                    href={item?.cta?.jsonValue?.value?.href || '#'}
-                    target={item?.cta?.jsonValue?.value?.target}
+              {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => {
+                if (!item) return;
+                return (
+                  <li
+                    key={index}
+                    className={`${
+                      activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
+                    }`}
+                    onClick={() => handleMenuItemClick(item?.title?.jsonValue?.value ?? '')}
                   >
-                    <span>{item?.title?.jsonValue?.value}</span>
-                    {item.hasChildren && (
-                      <ChevronDown
-                        className={`${
-                          activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
-                        }`}
-                      />
-                    )}
-                  </a>
-                  {item.hasChildren && (
-                    <ul
-                      className={`submenu ${
-                        activeMenuItem === item?.title?.jsonValue?.value ? 'show' : ''
-                      }`}
+                    <a
+                      href={item?.cta?.jsonValue?.value?.href || '#'}
+                      target={item?.cta?.jsonValue?.value?.target}
                     >
-                      {item.children.results.map((child, childIndex) => (
-                        <li key={childIndex}>
-                          <Link field={child?.cta?.jsonValue?.value}>
-                            <Image
-                              className="rounded-full"
-                              field={child?.image?.jsonValue}
-                              placeholder="empty"
-                              fetchpriority="low"
-                              loading="lazy"
-                            />
-                            <div>
-                              <p className="menu-title">{child?.name}</p>
-                              <p className="menu-description">
-                                {child?.description?.jsonValue?.value}
-                              </p>
-                            </div>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
+                      <span>{item?.title?.jsonValue?.value}</span>
+                      {item.hasChildren && (
+                        <ChevronDown
+                          className={`${
+                            activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
+                          }`}
+                        />
+                      )}
+                    </a>
+                    {item.hasChildren && (
+                      <ul
+                        className={`submenu ${
+                          activeMenuItem === item?.title?.jsonValue?.value ? 'show' : ''
+                        }`}
+                      >
+                        {item.children.results.map((child, childIndex) => {
+                          if (!child) return;
+                          return (
+                            <li key={childIndex}>
+                              <a href={child?.cta?.jsonValue?.value?.href}>
+                                <Image
+                                  className="rounded-full"
+                                  field={child?.image?.jsonValue}
+                                  placeholder="empty"
+                                  fetchpriority="low"
+                                  loading="lazy"
+                                />
+                                <div>
+                                  <p className="menu-title">{child?.name}</p>
+                                  <p className="menu-description">
+                                    {child?.description?.jsonValue?.value}
+                                  </p>
+                                </div>
+                              </a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
 
             {mobile && (

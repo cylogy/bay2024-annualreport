@@ -42,10 +42,10 @@ type GlossaryQueryResult = {
       results: [
         {
           hasChildren?: boolean;
-          id?: string;
-          name?: string;
+          id: string;
+          name: string;
           children: {
-            results?: ItemResult[];
+            results: ItemResult[];
           };
         }
       ];
@@ -59,12 +59,12 @@ type GlossaryItemQueryResult = {
         endCursor?: string;
         hasNext?: boolean;
       };
-      results?: ItemResult[];
+      results: ItemResult[];
     };
   };
 };
 type ItemResult = {
-  name?: string;
+  name: string;
   term: {
     jsonValue: {
       value?: string;

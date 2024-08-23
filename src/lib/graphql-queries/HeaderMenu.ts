@@ -47,31 +47,29 @@ const MenuChild = (menuChild: string, hasNext: boolean, endCursor: string) =>
 type HeaderMenuQueryResult = {
   headerMenu: {
     children: {
-      results: [
-        {
-          hasChildren?: boolean;
-          id?: string;
-          title: {
-            jsonValue: {
-              value?: string;
+      results: {
+        hasChildren?: boolean;
+        id?: string;
+        title: {
+          jsonValue: {
+            value?: string;
+          };
+        };
+        cta: {
+          jsonValue: {
+            value?: {
+              href?: string;
+              text?: string;
+              querystring?: string;
+              linktype?: string;
+              target?: string;
             };
           };
-          cta: {
-            jsonValue: {
-              value?: {
-                href?: string;
-                text?: string;
-                querystring?: string;
-                linktype?: string;
-                target?: string;
-              };
-            };
-          };
-          children: {
-            results: ItemResult[];
-          };
-        }
-      ];
+        };
+        children: {
+          results: ItemResult[];
+        };
+      }[];
     };
   };
 };
