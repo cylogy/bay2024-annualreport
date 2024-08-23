@@ -69,11 +69,11 @@ export const Default = ({
     <div className="metric col-span-1" ref={elementRef}>
       <h2 className="flex justify-center">
         {count}
-        <Text className="uppercase" field={Prefix} />
-        <Text field={Suffix} />
+        <Text className="uppercase" field={{ ...Prefix, editable: '0' }} />
+        <Text field={{ ...Suffix, editable: 'K' }} />
       </h2>
       <Text
-        field={Description}
+        field={{ ...Description, editable: '%' }}
         className={`p2 max-w-[8.125rem] mx-auto ${
           isVisible ? 'animated animatedFadeInUp fadeInUp' : ''
         }`}
