@@ -157,3 +157,30 @@ p,
     padding-bottom: 0;
   }
 }
+
+.rich-text-container {
+  ul {
+    @extend .p1;
+    list-style: disc;
+
+    li {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  ol {
+    @extend .p1;
+
+    li {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
