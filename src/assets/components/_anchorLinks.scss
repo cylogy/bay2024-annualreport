@@ -1,45 +1,6 @@
 .anchor-links {
   position: relative;
 
-  a {
-    display: block;
-    padding: 10px 1rem;
-    position: relative;
-    font-weight: 500;
-    @extend .p2;
-    @extend %transition;
-
-    &.indent {
-      margin-left: 15px;
-    }
-
-    &:hover,
-    &.active {
-      background-color: transparent;
-      font-weight: 700;
-      @extend %transition;
-
-      @include respond-to(lg) {
-        background-color: var(--light-green-10);
-      }
-
-      &:before {
-        content: "";
-        background-color: transparent;
-        position: absolute;
-        top: 0;
-        left: -5px;
-        width: 5px;
-        height: 100%;
-
-        @include respond-to(lx) {
-          background-color: var(--light-green);
-        }
-      }
-
-
-    }
-  }
 
   nav {
     padding-inline: 30px;
@@ -62,6 +23,47 @@
     @include respond-to(xl) {
       right: 8%;
     }
+
+    a {
+      display: block;
+      padding: 10px 1rem;
+      position: relative;
+      font-weight: 500;
+      @extend .p2;
+      @extend %transition;
+
+      &.indent {
+        margin-left: 15px;
+      }
+
+      &:hover,
+      &.active {
+        background-color: transparent;
+        font-weight: 700;
+        @extend %transition;
+
+        @include respond-to(lg) {
+          background-color: var(--light-green-10);
+        }
+
+        &:before {
+          content: "";
+          background-color: transparent;
+          position: absolute;
+          top: 0;
+          left: -5px;
+          width: 5px;
+          height: 100%;
+
+          @include respond-to(lx) {
+            background-color: var(--light-green);
+          }
+        }
+
+
+      }
+    }
+
   }
 
   &__content {
