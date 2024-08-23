@@ -41,11 +41,11 @@ type GlossaryQueryResult = {
     children: {
       results: [
         {
-          hasChildren: boolean;
-          id: string;
-          name: string;
+          hasChildren?: boolean;
+          id?: string;
+          name?: string;
           children: {
-            results: ItemResult[];
+            results?: ItemResult[];
           };
         }
       ];
@@ -55,24 +55,24 @@ type GlossaryQueryResult = {
 type GlossaryItemQueryResult = {
   itemGlossary: {
     children: {
-      pageInfo: {
-        endCursor: string;
-        hasNext: boolean;
+      pageInfo?: {
+        endCursor?: string;
+        hasNext?: boolean;
       };
-      results: ItemResult[];
+      results?: ItemResult[];
     };
   };
 };
 type ItemResult = {
-  name: string;
+  name?: string;
   term: {
     jsonValue: {
-      value: string;
+      value?: string;
     };
   };
   description: {
     jsonValue: {
-      value: string;
+      value?: string;
     };
   };
 };
