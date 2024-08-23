@@ -265,6 +265,14 @@
                 height: 65px;
               }
 
+              &:hover {
+                @include respond-to('lg') {
+                  .menu-title {
+                    text-decoration: underline;
+                  }
+                }
+              }
+
               .menu-title {
                 @apply text-[1rem] leading-[1.6rem] font-bold text-dark-blue pb-[5px];
               }
