@@ -30,7 +30,8 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
   const isOpened = SelectedItem === Name;
   const textUpdateDate = new Date(UpdateDate ?? '').toLocaleDateString('en-US');
   const context = useSitecoreContext();
-  console.log(textUpdateDate);
+  const validDate = UpdateDate !== '0001-01-01T00:00:00Z';
+
   useEffect(() => {
     if (context.sitecoreContext.pageEditing) {
       const accordionItems = document.querySelectorAll('.accordion-item');
@@ -69,7 +70,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
             <div className="flex flex-col gap-5 text-start">
               <span className="h5">{Name}</span>
               <div className="flex gap-2">
-                {UpdateDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
+                {UpdateDate && validDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
                 {Status && <AccordionInfoBox text={Status} />}
               </div>
             </div>
@@ -79,7 +80,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
           <>
             <div className="flex gap-5">
               <span className="h5 text-dark-blue">{Name}</span>
-              {UpdateDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
+              {UpdateDate && validDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
             </div>
             <div className="flex gap-10 items-center">
               {Status && <AccordionInfoBox text={Status} />}
