@@ -21,8 +21,7 @@ class RedirectsPlugin implements MiddlewarePlugin {
       excludeRoute: () => false,
       // This function determines if the middleware should be turned off.
       // By default it is disabled while in development mode.
-      //disabled: () => process.env.NODE_ENV === 'production',
-      disabled: () => true,
+      disabled: () => process.env.NODE_ENV === 'production',
       // Site resolver implementation
       siteResolver,
     });
