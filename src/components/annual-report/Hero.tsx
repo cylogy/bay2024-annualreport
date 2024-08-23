@@ -124,7 +124,7 @@ export const Secondary = ({
   const breadcrumb = layoutData?.sitecore?.route?.fields?.Breadcrumb as Field<boolean>;
 
   return (
-    <>
+    <div className="bg-soft-white">
       <div className="hero hero--secondary" id={AnchorID.value}>
         <JssImage
           className="hero__bg-image"
@@ -133,7 +133,7 @@ export const Secondary = ({
           fetchpriority="high"
           priority="true"
         />
-        <div className="hero__background bg-soft-white" />
+        <div className="hero__background" />
         <div className="hero__content space-y-6 flex flex-col items-center container">
           <Text tag="h1" field={Headline} />
           <Text field={Description} tag="p" />
@@ -141,7 +141,7 @@ export const Secondary = ({
         <Curve />
       </div>
       {breadcrumb?.value && <Breadcrumbs />}
-    </>
+    </div>
   );
 };
 

@@ -25,6 +25,7 @@
 
     #{ $self }__content {
       padding-top: 0;
+      top: 20%;
 
       @include respond-to(lg) {
         padding-top: 6.2rem;
@@ -95,9 +96,13 @@
     text-align: center;
     position: absolute;
     z-index: 3;
-    top: 20%;
+    top: 30%;
     left: 0;
     right: 0;
+
+    @include respond-to(lg) {
+      top: 20%;
+    }
 
     h1 {
       max-width: 78rem;
