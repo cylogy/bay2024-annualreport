@@ -15,7 +15,7 @@ interface YTEvent {
 export const Main = ({
   fields: { Description, Headline, Image, Video, AnchorID },
 }: HeroProps): JSX.Element => {
-  const isMobile = useIsMobile(1024);
+  const isMobile = useIsMobile(1350);
   const [Playing, setPlaying] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const playerRef = useRef<YTPlayer | null>(null);

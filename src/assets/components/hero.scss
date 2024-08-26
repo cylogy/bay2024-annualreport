@@ -10,7 +10,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-color: rgba(182, 209, 88, 0.40);
 
   @include respond-to(lg) {
     height: 45rem;
