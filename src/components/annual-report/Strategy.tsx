@@ -47,7 +47,7 @@ export const Default = ({
         <div className="space-y-16">
           <div>
             <span className="h4 block pb-3">Description</span>
-            <JssRichText field={Description} className="richtext" />
+            <JssRichText field={Description} className="richtext rich-text-container" />
           </div>
           <div>
             <Text field={Headline} tag="span" className="h4 block pb-3" />

@@ -35,7 +35,7 @@ export const Default = withDatasourceCheck()<GraphicContentLinksProps>(
                   className="pb-[12px] lg:max-w-[500px]"
                   field={props.fields.Headline}
                 />
-                <RichText className="h6 rich-text-container" field={props.fields.Description} />
+                <RichText className="h6" field={props.fields.Description} />
 
                 <section className="ctas mt-[60px] flex flex-col gap-[20px]">
                   <Placeholder name={`graphic-content-links`} rendering={props.rendering} />
