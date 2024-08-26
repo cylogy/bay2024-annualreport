@@ -1,19 +1,19 @@
 import {
   GetStaticComponentProps,
-  Image,
   ImageField,
   LayoutServiceData,
-  useComponentProps,
   Link,
+  useComponentProps,
 } from '@sitecore-jss/sitecore-jss-nextjs';
+import ChevronDown from 'assets/svg/ChevronDown';
+import LinkIcon from 'assets/svg/LinkIcon';
 import { ComponentProps } from 'lib/component-props';
+import { MENU_ITEM } from 'lib/constants';
+import useIsMobile from 'lib/customHooks/isMobile';
 import { HeaderMenuQueryResult } from 'lib/graphql-queries/HeaderMenu';
 import { getHeaderMenu } from 'lib/graphql-utils';
-import { MENU_ITEM } from 'lib/constants';
 import { useEffect, useRef, useState } from 'react';
-import LinkIcon from 'assets/svg/LinkIcon';
-import ChevronDown from 'assets/svg/ChevronDown';
-import useIsMobile from 'lib/customHooks/isMobile';
+import NextImage from './atoms/NextImage';
 
 type HeaderProps = ComponentProps & {
   layoutData: LayoutServiceData;
@@ -107,23 +107,17 @@ export const Default = (props: HeaderProps): JSX.Element => {
             </h2>
             {mobile && (
               <Link field={{ href: '/', title: 'Logo Mobile' }}>
-                <Image
+                <NextImage
                   field={props.fields.LogoMobile}
-                  class="object-cover max-w-[200px]"
-                  placeholder="blur"
-                  fetchpriority="high"
-                  priority="true"
+                  className="object-cover max-w-[200px]"
+                  fetchPriority="high"
+                  priority
                 />
               </Link>
             )}
             {!mobile && (
               <Link field={{ href: '/', title: 'Logo Desktop' }}>
-                <Image
-                  field={props.fields.LogoDesktop}
-                  placeholder="blur"
-                  fetchpriority="high"
-                  priority="true"
-                />
+                <NextImage field={props.fields.LogoDesktop} fetchPriority="high" priority />
               </Link>
             )}
           </section>
@@ -217,11 +211,10 @@ export const Default = (props: HeaderProps): JSX.Element => {
                           return (
                             <li key={childIndex}>
                               <a href={child?.cta?.jsonValue?.value?.href}>
-                                <Image
+                                <NextImage
                                   className="rounded-full"
                                   field={child?.image?.jsonValue}
-                                  placeholder="empty"
-                                  fetchpriority="low"
+                                  fetchPriority="low"
                                   loading="lazy"
                                 />
                                 <div>

@@ -144,7 +144,6 @@ export const Download = ({
           className="hero--download__image"
           fetchPriority="low"
           loading="lazy"
-          priority={false}
         />
         <div className="hero__content space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
           <Text tag="h3" field={Headline} />
