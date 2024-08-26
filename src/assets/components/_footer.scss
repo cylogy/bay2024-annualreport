@@ -108,7 +108,7 @@ footer {
           @extend .p3;
           border-right: 1px solid white;
           text-align: left;
-          Ft/integration padding: 0 5px;
+          padding: 0 5px;
           cursor: pointer;
 
           @include respond-to('lg') {
