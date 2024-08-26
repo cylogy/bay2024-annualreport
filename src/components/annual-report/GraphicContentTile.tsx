@@ -13,6 +13,7 @@ import {
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import RightArrow from 'assets/svg/RightArrow';
 import { ComponentProps } from 'lib/component-props';
+import NextImage from './atoms/NextImage';
 type GraphicContentTileItemProps = ComponentProps & {
   layoutData: LayoutServiceData;
   fields: {
@@ -39,8 +40,7 @@ export const Default = withDatasourceCheck()<GraphicContentTileItemProps>(
             <JssImage
               field={Image}
               className="w-full h-[250px] lg:h-full object-cover rounded-ss-[2.5rem] rounded-se-[2.5rem] lg:rounded-se-none lg:rounded-es-[2.5rem]"
-              placeholder="blur"
-              fetchpriority="low"
+              fetchPriority="low"
               loading="lazy"
             />
           </div>
@@ -64,11 +64,10 @@ export const Default = withDatasourceCheck()<GraphicContentTileItemProps>(
         className="rounded-[2.5rem] bg-soft-white text-dark-blue grid grid-cols-1 lg:grid-cols-12 min-h-[27.5rem] boxShadowEffect"
       >
         <div className="col-span-5">
-          <JssImage
+          <NextImage
             field={Image}
             className="w-full h-[250px] lg:h-full object-cover rounded-ss-[2.5rem] rounded-se-[2.5rem] lg:rounded-se-none lg:rounded-es-[2.5rem]"
-            placeholder="blur"
-            fetchpriority="low"
+            fetchPriority="low"
             loading="lazy"
           />
         </div>
