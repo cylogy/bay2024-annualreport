@@ -192,4 +192,12 @@ p,
       font-weight: bold;
     }
   }
+
+  p {
+    padding-bottom: 40px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
 }
