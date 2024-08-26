@@ -114,6 +114,15 @@ p,
     background: rgba(182, 209, 88, 0.8);
     transition: 0.3s;
   }
+
+  &-blue {
+    @extend %transition;
+    @apply p2 flex items-center px-4 md:px-5 py-2 gap-2 md:gap-5 bg-powder-blue rounded text-white !font-bold;
+
+    &:hover {
+      background-color: #124271;
+    }
+  }
 }
 
 .text-callout {
