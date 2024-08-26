@@ -105,21 +105,17 @@ export const Default = (props: HeaderProps): JSX.Element => {
             <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
               Main Menu
             </h2>
-            {mobile && (
-              <Link field={{ href: '/', title: 'Logo Mobile' }}>
-                <NextImage
-                  field={props.fields.LogoMobile}
-                  className="object-cover max-w-[200px]"
-                  fetchPriority="high"
-                  priority
-                />
-              </Link>
-            )}
-            {!mobile && (
-              <Link field={{ href: '/', title: 'Logo Desktop' }}>
-                <NextImage field={props.fields.LogoDesktop} fetchPriority="high" priority />
-              </Link>
-            )}
+            <Link field={{ href: '/', title: 'Logo Mobile' }} className="block lg:hidden">
+              <NextImage
+                field={props.fields.LogoMobile}
+                className="object-cover max-w-[200px]"
+                fetchPriority="high"
+                priority
+              />
+            </Link>
+            <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
+              <NextImage field={props.fields.LogoDesktop} fetchPriority="high" priority />
+            </Link>
           </section>
 
           <section id="main-menu" className={openMenu ? 'open' : ''}>
