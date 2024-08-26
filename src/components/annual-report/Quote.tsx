@@ -17,7 +17,7 @@ export const Default = withDatasourceCheck()<QuoteProps>(
             <span className="font-newsreader text-dark-blue">
               “<Text field={Quote} />”
             </span>
-            <p>
+            <p className="text-dark-blue">
               -- <Text field={Author} />
             </p>
           </div>
