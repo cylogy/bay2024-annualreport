@@ -29,7 +29,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
   const isPageEditing = layoutData.sitecore.context.pageEditing;
   const mainClassPageEditing = isPageEditing ? 'editing-mode' : 'prod-mode';
   const toTop = layoutData?.sitecore?.route?.fields?.ToTop as Field<boolean>;
-  const isMobile = useIsMobile(1024);
+  const isMobile = useIsMobile(1023);
 
   return (
     <>
