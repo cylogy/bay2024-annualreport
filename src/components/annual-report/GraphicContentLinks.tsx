@@ -1,16 +1,16 @@
 import {
-  Text,
-  Field,
-  Placeholder,
-  LayoutServiceData,
   ComponentRendering,
-  RichTextField,
+  Field,
   ImageField,
+  LayoutServiceData,
+  Placeholder,
   RichText,
-  Image,
+  RichTextField,
+  Text,
   withDatasourceCheck,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
+import NextImage from './atoms/NextImage';
 
 type GraphicContentLinksProps = ComponentProps & {
   layoutData: LayoutServiceData;
@@ -42,10 +42,8 @@ export const Default = withDatasourceCheck()<GraphicContentLinksProps>(
                 </section>
               </div>
               <div className="column relative" role="region">
-                <Image
+                <NextImage
                   field={props.fields?.Image}
-                  width={840} // Original width of the image
-                  height={663}
                   style={{
                     width: '100%', // Makes the image responsive
                     height: '100%', // Maintains the aspect ratio
@@ -54,6 +52,8 @@ export const Default = withDatasourceCheck()<GraphicContentLinksProps>(
                     position: 'relative',
                   }}
                   className="rounded-[40px]"
+                  fetchPriority="low"
+                  loading="lazy"
                 />
               </div>
             </section>
