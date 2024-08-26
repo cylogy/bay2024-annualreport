@@ -12,9 +12,9 @@ export const Default = withDatasourceCheck()<QuoteProps>(
   ({ fields: { Author, Quote } }: QuoteProps): JSX.Element => {
     return (
       <div className="container-anchors">
-        <div className="text-callout max-w-[56.25rem]">
+        <div className="text-callout max-w-[56.25rem] bg-soft-white">
           <div className="flex flex-col gap-2.5">
-            <span className="font-newsreader">
+            <span className="font-newsreader text-dark-blue">
               “<Text field={Quote} />”
             </span>
             <p>

@@ -20,7 +20,7 @@ export const Default = (props: RichTextExtProps): JSX.Element => {
   return (
     <section className="bg-white lg:bg-soft-white py-[36px] lg:py-[96px] ">
       <div
-        className={`component rich-text container-anchors  lg:mr-[350px] ${props.params.styles.trimEnd()}`}
+        className={`component rich-text container-anchors  ${props.params.styles.trimEnd()}`}
         id={props.fields.AnchorID.value}
       >
         <div className="component-content rich-text-container lg:max-w-[879px] text-dark-blue">

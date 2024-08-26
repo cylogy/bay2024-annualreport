@@ -168,7 +168,7 @@ p,
   }
 }
 
-.rich-text-container {
+.rich-text-container:not(.richtext) {
 
   ul,
   ol {
