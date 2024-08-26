@@ -29,7 +29,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
   const isPageEditing = layoutData.sitecore.context.pageEditing;
   const mainClassPageEditing = isPageEditing ? 'editing-mode' : 'prod-mode';
   const toTop = layoutData?.sitecore?.route?.fields?.ToTop as Field<boolean>;
-  const isMobile = useIsMobile(1024);
+  const isMobile = useIsMobile(1023);
 
   return (
     <>
@@ -43,12 +43,6 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
         <meta
           name="description"
           content="The 2024-2029 Strategic Plan is centered on four primary goals: achieve impact, advance environmental justice, foster cohesion and inclusion, and maintain an effective, accountable, and customer-oriented organization."
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
         />
       </Head>
 

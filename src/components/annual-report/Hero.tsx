@@ -1,4 +1,4 @@
-import { Field, Link, Text, Image as JssImage } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import { HeroProps } from 'src/types/Hero';
 import Breadcrumbs from './atoms/Breadcrumbs';
+import NextImage from './atoms/NextImage';
 
 interface YTEvent {
   target: YTPlayer;
@@ -20,12 +21,11 @@ export const Main = ({
   const playerRef = useRef<YTPlayer | null>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      const playButton = document.querySelector<HTMLButtonElement>('.lty-playbtn');
-      playButton?.click();
-    }, 100);
+    const playButton = document.querySelector<HTMLButtonElement>('.lty-playbtn');
+    !isMobile && playButton?.click();
 
     const onPageLoad = () => {
+      if (isMobile) return;
       const loadYouTubeIframeAPI = () => {
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
@@ -56,7 +56,7 @@ export const Main = ({
       window.addEventListener('load', onPageLoad);
       return () => window.removeEventListener('load', onPageLoad);
     }
-  }, []);
+  }, [isMobile]);
 
   const unFocusIframe = () => {
     const iframe = document.querySelector<HTMLIFrameElement>('.hero__video-player iframe');
@@ -65,20 +65,14 @@ export const Main = ({
 
   const toggleVideo = () => {
     if (!playerRef.current) return;
-    Playing ? playerRef.current.pauseVideo() : playerRef.current.playVideo();
+    Playing ? playerRef.current?.pauseVideo() : playerRef.current?.playVideo();
     setPlaying((v) => !v);
   };
 
   return (
     <>
       <div className="hero" id={AnchorID.value}>
-        <JssImage
-          className="hero__bg-image"
-          field={Image}
-          placeholder="empty"
-          fetchpriority="high"
-          priority="true"
-        />
+        <NextImage className="hero__bg-image" field={Image} fetchPriority="high" priority />
         {!isMobile && (
           <div className="hero__video-player">
             <LiteYouTubeEmbed
@@ -126,13 +120,7 @@ export const Secondary = ({
   return (
     <div className="bg-soft-white">
       <div className="hero hero--secondary" id={AnchorID.value}>
-        <JssImage
-          className="hero__bg-image"
-          field={Image}
-          placeholder="empty"
-          fetchpriority="high"
-          priority="true"
-        />
+        <NextImage className="hero__bg-image" field={Image} fetchPriority="high" priority />
         <div className="hero__background" />
         <div className="hero__content space-y-6 flex flex-col items-center container">
           <Text tag="h1" field={Headline} />
@@ -151,11 +139,10 @@ export const Download = ({
   return (
     <div className="px-[30px] xl:px-[7.5rem]" id={AnchorID.value}>
       <div className="hero hero--download">
-        <JssImage
+        <NextImage
           field={Image}
           className="hero--download__image"
-          placeholder="blur"
-          fetchpriority="low"
+          fetchPriority="low"
           loading="lazy"
         />
         <div className="hero__content space-y-3 lg:space-y-6 flex flex-col items-center h-fit">

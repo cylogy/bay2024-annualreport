@@ -1,26 +1,18 @@
 footer {
   @apply bg-powder-blue;
   color: #fff;
-  text-align: center;
-
-  @include respond-to('lg') {
-    text-align: left;
-  }
+  text-align: left;
 
   .logo-footer {
     padding-bottom: 30px;
-    margin: 0 auto;
-
-    @include respond-to('lg') {
-      margin: 0;
-    }
+    margin: 0;
   }
 
   nav {
     display: grid;
     gap: 50px;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 72px;
+    padding-bottom: 40px;
 
     @include respond-to('lg') {
       grid-template-columns: repeat(4, 1fr);
@@ -42,6 +34,7 @@ footer {
       line-height: 1.6;
       font-weight: 700;
       padding-bottom: 20px;
+      text-align: left;
     }
 
     ul {
@@ -61,12 +54,9 @@ footer {
     }
 
     .link-icon {
-      font-size: 1.125rem;
-      line-height: 1.6rem;
-      font-weight: 700;
       display: flex;
       align-items: center;
-      justify-content: center;
+      font-weight: 700;
 
       @include respond-to('lg') {
         justify-content: left;
@@ -80,8 +70,7 @@ footer {
 
   .copy {
     display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     padding-bottom: 50px;
     gap: 30px;
@@ -102,33 +91,42 @@ footer {
 
     ul {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      @include respond-to('lg') {
-        flex-direction: row;
-      }
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
 
       li {
-        padding: 15px 0;
-        @extend .p3;
-
-        @include respond-to('lg') {
-          border-right: 1px solid white;
-          padding: 0 20px;
-
-          &:last-child {
+        &:last-child {
+          a {
             border: none;
           }
+
         }
 
+        a {
+          @extend %transition;
+          @extend .p3;
+          border-right: 1px solid white;
+          text-align: left;
+          padding: 0 5px;
+          cursor: pointer;
 
+          @include respond-to('lg') {
+            padding: 0 20px;
+          }
+        }
       }
     }
   }
 
   a {
     @extend %transition;
+    @extend .p3;
+    text-align: left;
+
+    @include respond-to('lg') {
+      padding: 0 20px;
+    }
 
     &:hover {
       @extend %transition;
