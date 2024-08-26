@@ -68,7 +68,6 @@ export const Default = withDatasourceCheck()<GraphicContentTileItemProps>(
             field={Image}
             className="w-full h-[250px] lg:h-full object-cover rounded-ss-[2.5rem] rounded-se-[2.5rem] lg:rounded-se-none lg:rounded-es-[2.5rem]"
             fetchPriority="low"
-            loading="lazy"
           />
         </div>
         <div className="p-5 xl:p-10 col-span-7 flex flex-col justify-between">
