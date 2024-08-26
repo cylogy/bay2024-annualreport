@@ -105,12 +105,12 @@ const nextConfig = {
         port: '',
       },
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'sc-dev-strategicplan.baaqmd.gov',
         port: '',
       },
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'sc-qa.baaqmd.gov',
         port: '',
       },
