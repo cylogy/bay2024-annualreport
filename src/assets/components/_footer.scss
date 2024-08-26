@@ -110,10 +110,6 @@ footer {
           text-align: left;
           padding: 0 5px;
           cursor: pointer;
-
-          @include respond-to('lg') {
-            padding: 0 20px;
-          }
         }
       }
     }
@@ -123,10 +119,6 @@ footer {
     @extend %transition;
     @extend .p3;
     text-align: left;
-
-    @include respond-to('lg') {
-      padding: 0 20px;
-    }
 
     &:hover {
       @extend %transition;
