@@ -105,8 +105,8 @@ const nextConfig = {
         port: '',
       },
       {
-        protocol: 'https',
-        hostname: 'bay-sc.oshyn.com',
+        protocol: 'http',
+        hostname: 'sc-dev-strategicplan.baaqmd.gov',
         port: '',
       },
     ],

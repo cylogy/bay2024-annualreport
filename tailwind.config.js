@@ -10,8 +10,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        montserrat: ['var(--font-montserrat)', 'sans-serif'],
-        newsreader: ['var(--font-newsreader)', 'serif'],
+        montserrat: ['var(--font-montserrat)'],
+        newsreader: ['var(--font-newsreader)'],
       },
       colors: {
         'dark-blue': 'var(--dark-blue)',

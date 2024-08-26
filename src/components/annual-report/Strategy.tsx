@@ -1,13 +1,13 @@
 import {
   Field,
   ImageField,
-  Image as JssImage,
   RichText as JssRichText,
   Placeholder,
   Text,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import Accordion from './atoms/Accordion';
+import NextImage from './atoms/NextImage';
 
 interface Fields {
   Name: Field<string>;
@@ -38,11 +38,10 @@ export const Default = ({
   return (
     <Accordion.Item Name={Name.value} Status={Status.value} UpdateDate={UpdateDate.value}>
       <div className="space-y-11 text-dark-blue">
-        <JssImage
+        <NextImage
           field={modifyImageProps}
           className="max-h-[11.25rem] md:max-h-[17.5rem] w-full object-cover rounded-[10px]"
-          placeholder="empty"
-          fetchpriority="low"
+          fetchPriority="low"
           loading="lazy"
         />
         <div className="space-y-16">

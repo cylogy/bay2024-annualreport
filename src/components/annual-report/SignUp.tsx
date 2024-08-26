@@ -2,7 +2,10 @@ import { Text, Field, withDatasourceCheck } from '@sitecore-jss/sitecore-jss-nex
 import Curve from 'assets/svg/Curve';
 import { ComponentProps } from 'lib/component-props';
 import { isEmailValid } from 'lib/util/email';
+import Image from 'next/image';
 import { FormEvent } from 'react';
+import HeroImage from 'public/images/hero.jpg';
+import FooterTops from 'public/images/footer-top.png';
 
 type SignUpProps = ComponentProps & {
   fields: {
@@ -44,15 +47,23 @@ export const Default = withDatasourceCheck()<SignUpProps>(
                   </div>
                 </form>
               </div>
-              <img src="/images/hero.jpg" alt="" className="form__image" />
+              <Image
+                fetchPriority="low"
+                loading="lazy"
+                src={HeroImage}
+                className="form__image"
+                placeholder="blur"
+                alt=""
+              />
             </div>
           </div>
         </div>
-        <img
-          src="/images/footer-top.png"
-          className="object-cover w-full bg-lighter-green"
+        <Image
           fetchPriority="low"
           loading="lazy"
+          src={FooterTops}
+          className="object-cover w-full bg-lighter-green"
+          placeholder="blur"
           aria-hidden="true"
           alt=""
         />
