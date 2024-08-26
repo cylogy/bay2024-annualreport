@@ -27,7 +27,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           field={{ src: '/images/textContentTiles-bg.png', alt: '' }}
         />
         <Text tag="p" className="mb-[10px] h4" field={props.fields.Headline} />
-        <RichText className="p2 rich-text-container" field={props.fields.Description} />
+        <RichText className="p2" field={props.fields.Description} />
       </article>
     ) : props.params.variant === 'Stacked' ? (
       <article className="text-dark-blue tct" id={props.fields.AnchorID.value.trim()}>
@@ -42,7 +42,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           className="mb-[10px] pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
           field={props.fields.Headline}
         />
-        <RichText className="p1 rich-text-container" field={props.fields.Description} />
+        <RichText className="p1" field={props.fields.Description} />
       </article>
     ) : (
       <article className="text-dark-blue bg-white pt-[40px] pb-[40px] lg:p-[40px] lg:rounded-[40px] relative tct">
