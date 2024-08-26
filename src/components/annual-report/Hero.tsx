@@ -22,9 +22,10 @@ export const Main = ({
 
   useEffect(() => {
     const playButton = document.querySelector<HTMLButtonElement>('.lty-playbtn');
-    playButton?.click();
+    !isMobile && playButton?.click();
 
     const onPageLoad = () => {
+      if (isMobile) return;
       const loadYouTubeIframeAPI = () => {
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
@@ -55,7 +56,7 @@ export const Main = ({
       window.addEventListener('load', onPageLoad);
       return () => window.removeEventListener('load', onPageLoad);
     }
-  }, []);
+  }, [isMobile]);
 
   const unFocusIframe = () => {
     const iframe = document.querySelector<HTMLIFrameElement>('.hero__video-player iframe');
