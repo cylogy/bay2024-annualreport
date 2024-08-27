@@ -6,6 +6,8 @@ const plugins = require('./src/temp/next-config-plugins') || {};
 // const publicUrl = jssConfig.publicUrl;
 const publicUrl = getPublicUrl;
 
+console.log("PublicUrl", publicUrl)
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -108,12 +110,12 @@ const nextConfig = {
         port: '',
       },
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'sc-dev-strategicplan.baaqmd.gov',
         port: '',
       },
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'sc-qa.baaqmd.gov',
         port: '',
       },
