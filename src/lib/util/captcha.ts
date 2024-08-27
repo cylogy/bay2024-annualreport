@@ -48,7 +48,7 @@ export async function submitSignUpForm(token: string | null, formData: FormData)
 
   return {
     success: true,
-    message: 'Form sent successfully!',
+    message: 'Thank you! Your information has been received.',
     formData,
   };
 }
