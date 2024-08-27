@@ -13,15 +13,18 @@ type NextImageProps = {
 } & Omit<ImageProps, 'src' | 'alt'>;
 
 export default function NextImage({ field: { value }, ...props }: NextImageProps) {
-  const hasDimentions = value?.height !== '' && value?.width !== '';
+  if (value && Object.keys(value).length === 0) return <></>;
+  const hasDimensions = value?.height !== '' && value?.width !== '';
+  const src = value?.src?.includes('http:') ? value?.src.replace('http:', 'https:') : value?.src;
+
   return (
     <Image
       {...props}
-      src={value?.src ?? ''}
+      src={src ?? ''}
       alt={value?.alt ?? ''}
-      fill={!hasDimentions}
-      height={hasDimentions ? Number(value?.height) : undefined}
-      width={hasDimentions ? Number(value?.width) : undefined}
+      fill={!hasDimensions}
+      height={hasDimensions ? Number(value?.height) : undefined}
+      width={hasDimensions ? Number(value?.width) : undefined}
     />
   );
 }

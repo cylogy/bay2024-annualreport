@@ -24,7 +24,7 @@ export const Default = withDatasourceCheck()<AnchorLinkProps>(
       document.getElementById(id ?? '')?.scrollIntoView({ behavior: 'smooth' });
     };
     return (
-      <ScrollSpy activeClass="active" offsetTop={0} threshold={0.9} onClickEach={onClickEach}>
+      <ScrollSpy activeClass="active" offsetTop={0} threshold={0.6} onClickEach={onClickEach}>
         <a
           href={`#${AnchorID.value.trim()}`}
           className={`p2 ${Level.value === '2' ? 'indent' : ''}`}
