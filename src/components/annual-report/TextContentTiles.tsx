@@ -78,7 +78,7 @@ export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
       <section className="lg:bg-soft-white">
-        <div className="container" id={props.fields.AnchorID.value}>
+        <div className="container" id={props.fields.AnchorID.value.trim()}>
           <div className="max-w-[879px]">
             <section className="py-[60px] lg:py-[120px]">
               <Text tag="h2" className="text-dark-blue mb-[48px]" field={props.fields.Headline} />
