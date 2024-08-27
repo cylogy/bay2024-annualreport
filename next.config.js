@@ -4,7 +4,7 @@ const jssConfig = require('./src/temp/config');
 const plugins = require('./src/temp/next-config-plugins') || {};
 
 // const publicUrl = jssConfig.publicUrl;
-const publicUrl = getPublicUrl();
+const publicUrl = getPublicUrl;
 
 /**
  * @type {import('next').NextConfig}
