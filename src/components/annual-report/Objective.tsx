@@ -67,7 +67,7 @@ export const Default = ({
         <JssImage field={modifyImageProps} placeholder="empty" fetchpriority="low" loading="lazy" />
       </div>
       <div className="objectives__accordions container-anchors">
-        <div className="max-w-[56rem] xxl:max-w-[61.25rem]">
+        <div className="max-w-[56rem] xl:max-w-[61.25rem]">
           <Accordion>
             <Placeholder name={'objective-strategy-container'} rendering={rendering} />
           </Accordion>
