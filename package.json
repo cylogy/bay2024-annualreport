@@ -53,6 +53,7 @@
     "@graphql-typed-document-node/core": "^3.2.0",
     "@sitecore-jss/sitecore-jss-cli": "~22.0.0",
     "@sitecore-jss/sitecore-jss-dev-tools": "~22.0.0",
+    "@types/grecaptcha": "^3.0.9",
     "@types/node": "^18.11.18",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.0.5",

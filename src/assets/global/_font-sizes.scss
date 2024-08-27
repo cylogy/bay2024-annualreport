@@ -124,6 +124,10 @@ p,
       background-color: #124271;
     }
   }
+
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 .text-callout {

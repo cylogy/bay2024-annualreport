@@ -1,11 +1,12 @@
-import { Text, Field, withDatasourceCheck } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, Text, withDatasourceCheck } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import { ComponentProps } from 'lib/component-props';
+import { getCaptchaToken, submitSignUpForm } from 'lib/util/captcha';
 import { isEmailValid } from 'lib/util/email';
 import Image from 'next/image';
-import { FormEvent } from 'react';
-import HeroImage from 'public/images/hero.jpg';
 import FooterTops from 'public/images/footer-top.png';
+import HeroImage from 'public/images/hero.jpg';
+import { FormEvent, useState } from 'react';
 
 type SignUpProps = ComponentProps & {
   fields: {
@@ -18,12 +19,34 @@ type SignUpProps = ComponentProps & {
 
 export const Default = withDatasourceCheck()<SignUpProps>(
   ({ fields: { Description, EmailCTA, EmailLabel, Headline } }: SignUpProps): JSX.Element => {
-    const submitHandler = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      const formData = new FormData(event.currentTarget);
+    const [FormMessage, setFormMessage] = useState('');
+
+    const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const form = document.querySelector<HTMLFormElement>('form');
+      const btn = form?.querySelector<HTMLButtonElement>('button');
+      const formData = new FormData(e.currentTarget);
       const email = formData.get('email') as string;
       const isValid = isEmailValid(email);
-      console.log({ isValid });
+
+      if (!btn) return;
+      btn.disabled = true;
+
+      if (!isValid) {
+        setFormMessage('Invalid form');
+        btn.disabled = false;
+        return;
+      }
+
+      const token = await getCaptchaToken();
+      const res = await submitSignUpForm(token, formData);
+
+      if (res.success) {
+        // Send form data
+        form?.reset();
+      }
+      setFormMessage(res.message);
+      btn.disabled = false;
     };
 
     return (
@@ -40,11 +63,12 @@ export const Default = withDatasourceCheck()<SignUpProps>(
                 <form className="space-y-3" onSubmit={submitHandler}>
                   <Text field={EmailLabel} tag="label" htmlFor="email" />
                   <div className="form__sign-up-group">
-                    <input type="email" id="email" name="email" />
+                    <input type="email" id="email" name="email" required />
                     <button type="submit" className="btn">
                       <Text field={EmailCTA} />
                     </button>
                   </div>
+                  <div className="min-h-4">{FormMessage}</div>
                 </form>
               </div>
               <Image
