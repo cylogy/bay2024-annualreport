@@ -42,7 +42,6 @@ export const Default = ({
           field={modifyImageProps}
           className="max-h-[11.25rem] md:max-h-[17.5rem] w-full object-cover rounded-[10px]"
           fetchPriority="low"
-          loading="lazy"
         />
         <div className="space-y-16 max-w-[55rem]">
           <div>
