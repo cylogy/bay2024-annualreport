@@ -1,7 +1,10 @@
+const { getPublicUrl } = require('@sitecore-jss/sitecore-jss-nextjs');
 const jssConfig = require('./src/temp/config');
+
 const plugins = require('./src/temp/next-config-plugins') || {};
 
-const publicUrl = jssConfig.publicUrl;
+// const publicUrl = jssConfig.publicUrl;
+const publicUrl = getPublicUrl();
 
 /**
  * @type {import('next').NextConfig}
@@ -112,6 +115,11 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'sc-qa.baaqmd.gov',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'baaqmd-sc.dev.local',
         port: '',
       },
     ],
