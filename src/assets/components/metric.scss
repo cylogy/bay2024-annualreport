@@ -6,6 +6,7 @@
   background: rgba(182, 209, 88, 0.20);
   text-align: center;
   max-width: 13.75rem;
+  height: 100%;
 
   @include respond-to(lg) {
     padding: 1.25rem;

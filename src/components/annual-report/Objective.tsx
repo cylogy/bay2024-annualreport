@@ -1,12 +1,9 @@
-import {
-  ImageField,
-  Field,
-  Placeholder,
-  Text,
-  Image as JssImage,
-} from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, ImageField, Placeholder, Text } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import Accordion from './atoms/Accordion';
+import NextImage from './atoms/NextImage';
+import Intersect from 'public/images/Intersect.png';
+import NativeImage from 'next/image';
 
 interface Fields {
   Name: Field<string>;
@@ -32,11 +29,11 @@ export const Default = ({
       .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
   };
   return params?.variant === 'ObjectiveTiles' ? (
-    <span className="bullet-number relative lg:w-[267px] h-[290px] rounded-[40px] bg-powder-blue overflow-hidden flex flex-col shrink-0 items-center text-white justify-start px-[36px] py-[36px] pb-[48px] text-center">
+    <span className="bullet-number relative lg:w-[267px] h-[290px] rounded-[40px] bg-powder-blue overflow-hidden flex flex-col shrink-0 items-center text-white px-[36px] py-[36px] pb-[48px] text-center justify-center gap-2">
       <Text tag="span" className="block h1" field={Name}></Text>
       <Text tag="span" className="h6" field={Description}></Text>
       <div className="absolute bottom-0">
-        <img src="/images/Intersect.png" alt="" />
+        <NativeImage fetchPriority="low" src={Intersect} alt="" />
       </div>
     </span>
   ) : (
@@ -64,7 +61,7 @@ export const Default = ({
           <Text field={Name} tag="h2" />
           <Text field={Description} tag="p" />
         </div>
-        <JssImage field={modifyImageProps} placeholder="empty" fetchpriority="low" loading="lazy" />
+        <NextImage field={modifyImageProps} fetchPriority="low" />
       </div>
       <div className="objectives__accordions container-anchors">
         <div className="max-w-[56rem] xl:max-w-[61.25rem]">

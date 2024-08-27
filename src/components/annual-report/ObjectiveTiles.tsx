@@ -9,7 +9,7 @@ type ObjectiveTilesProps = ComponentProps & {
 
 export const Default = (props: ObjectiveTilesProps): JSX.Element => {
   return (
-    <section className="bg-white lg:bg-soft-white">
+    <section className="bg-white lg:bg-soft-white pb-[3.75rem]">
       <div className="container-anchors">
         <section className="grid lg:grid-cols-3 gap-[40px] max-w-[879px]">
           <Placeholder
