@@ -1,4 +1,5 @@
 .objectives {
+  background-color: var(--white);
 
   &__group-image {
     display: flex;
@@ -31,7 +32,6 @@
 
   &__accordions {
     padding-block: 3.75rem;
-    background-color: var(--white);
 
     @include respond-to(lg) {
       padding-block: 7.5rem;
