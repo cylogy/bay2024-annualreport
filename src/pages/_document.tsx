@@ -20,8 +20,10 @@ export default function Document() {
         <Main />
         <NextScript />
         <Script
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
           src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`}
+          async
+          defer
         />
       </body>
     </Html>

@@ -13,11 +13,11 @@ export const Default = withDatasourceCheck()<QuoteProps>(
     return (
       <div className="container-anchors bg-soft-white pb-[96px] lg:pb-[120px]">
         <div className="text-callout max-w-[56.25rem]">
-          <div className="flex flex-col gap-2.5">
-            <span className="font-newsreader text-dark-blue">
+          <div className="flex flex-col gap-2.5 text-dark-blue">
+            <span>
               “<Text field={Quote} />”
             </span>
-            <p className="text-dark-blue">
+            <p className="font-montserrat">
               -- <Text field={Author} />
             </p>
           </div>
