@@ -86,12 +86,15 @@
     }
   }
 
-  svg {
-    position: absolute;
-    top: -4px;
+  & form[data-sending="true"] .spinner {
+    display: block;
+  }
 
-    @include respond-to(lg) {
-      top: 0;
-    }
+  & form[data-sending="false"] .spinner {
+    display: none;
+  }
+
+  svg {
+    margin-right: .625rem;
   }
 }

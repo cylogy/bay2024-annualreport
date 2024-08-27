@@ -22,6 +22,7 @@ export const Default = withDatasourceCheck()<SignUpProps>(
     const [FormMessage, setFormMessage] = useState('');
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+      setFormMessage('');
       e.preventDefault();
       const form = document.querySelector<HTMLFormElement>('form');
       const btn = form?.querySelector<HTMLButtonElement>('button');
@@ -29,12 +30,14 @@ export const Default = withDatasourceCheck()<SignUpProps>(
       const email = formData.get('email') as string;
       const isValid = isEmailValid(email);
 
-      if (!btn) return;
+      if (!btn || !form) return;
+      form.dataset.sending = 'true';
       btn.disabled = true;
 
       if (!isValid) {
-        setFormMessage('Invalid form');
+        setFormMessage('Email address is mandatory.');
         btn.disabled = false;
+        form.dataset.sending = 'false';
         return;
       }
 
@@ -43,9 +46,10 @@ export const Default = withDatasourceCheck()<SignUpProps>(
 
       if (res.success) {
         // Send form data
-        form?.reset();
+        form.reset();
       }
       setFormMessage(res.message);
+      form.dataset.sending = 'false';
       btn.disabled = false;
     };
 
@@ -60,11 +64,31 @@ export const Default = withDatasourceCheck()<SignUpProps>(
                   <Text field={Headline} tag="h2" />
                   <Text field={Description} tag="span" className="h6 block max-w-[35.5rem]" />
                 </div>
-                <form className="space-y-3" onSubmit={submitHandler}>
+                <form className="space-y-3" onSubmit={submitHandler} data-sending="false">
                   <Text field={EmailLabel} tag="label" htmlFor="email" />
                   <div className="form__sign-up-group">
                     <input type="email" id="email" name="email" required />
                     <button type="submit" className="btn">
+                      <svg
+                        className="animate-spin size-5 spinner"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
+                      </svg>
                       <Text field={EmailCTA} />
                     </button>
                   </div>
