@@ -13,7 +13,7 @@ type NextImageProps = {
 } & Omit<ImageProps, 'src' | 'alt'>;
 
 export default function NextImage({ field: { value }, ...props }: NextImageProps) {
-  if (value && Object.keys(value).length === 0) return;
+  if (value && Object.keys(value).length === 0) return <></>;
   const hasDimensions = value?.height !== '' && value?.width !== '';
   const src = value?.src?.includes('http:') ? value?.src.replace('http:', 'https:') : value?.src;
 
