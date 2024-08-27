@@ -15,22 +15,22 @@ class BasicAuthMiddlewarePlugin implements MiddlewarePlugin {
     const url = req.nextUrl;
     debug.common('basicauth middlewareurl:' + url.pathname);
     debug.common('basicauth:' + process.env.ENABLE_BASIC_AUTH);
-    // const hasBypasscookie = req.cookies.get('__prerender_bypass')?.value != null;
-    // debug.common('bypasscookievalue:' + hasBypasscookie);
-    // const hasNextpreviewData = req.cookies.get('__next_preview_data')?.value != null;
-    // debug.common('nextpreviewData:' + hasNextpreviewData);
-    // const hasAxiosuagentheader = req.headers.get('User-Agent')?.includes('axios');
-    // debug.common('useragent:' + hasAxiosuagentheader);
-    // const hastimestampparam = url.searchParams.get('timestamp') != null;
-    // debug.common('tsparam:' + hastimestampparam);
+    const hasBypasscookie = req.cookies.get('__prerender_bypass')?.value != null;
+    debug.common('bypasscookievalue:' + hasBypasscookie);
+    const hasNextpreviewData = req.cookies.get('__next_preview_data')?.value != null;
+    debug.common('nextpreviewData:' + hasNextpreviewData);
+    const hasAxiosuagentheader = req.headers.get('User-Agent')?.includes('axios');
+    debug.common('useragent:' + hasAxiosuagentheader);
+    const hastimestampparam = url.searchParams.get('timestamp') != null;
+    debug.common('tsparam:' + hastimestampparam);
     //const bypass = bypasscookie && nextpreviewData && uagentheader && tsparam;
-    //const bypass =
-    //  hasBypasscookie && hasNextpreviewData && hasAxiosuagentheader && hastimestampparam;
-    //debug.common('bypass:' + bypass);
+    const bypass =
+      hasBypasscookie && hasNextpreviewData && hasAxiosuagentheader && hastimestampparam;
+    debug.common('bypass:' + bypass);
 
     if (
       !url.pathname.includes('/api/editing/render') &&
-      //!bypass &&
+      !bypass &&
       process.env.ENABLE_BASIC_AUTH === 'true'
     ) {
       debug.common('basic auth enabled for:' + url.pathname);
