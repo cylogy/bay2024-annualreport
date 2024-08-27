@@ -1,12 +1,9 @@
 const { getPublicUrl } = require('@sitecore-jss/sitecore-jss-nextjs');
 const jssConfig = require('./src/temp/config');
-
 const plugins = require('./src/temp/next-config-plugins') || {};
 
 // const publicUrl = jssConfig.publicUrl;
 const publicUrl = getPublicUrl;
-
-console.log("PublicUrl", publicUrl)
 
 /**
  * @type {import('next').NextConfig}
@@ -24,8 +21,8 @@ const nextConfig = {
       : publicUrl,
 
   cacheHandler:
-     process.env.BUILD_STANDALONE === 'true' ? require.resolve('./cache-handler.js') : undefined,
-  
+    process.env.BUILD_STANDALONE === 'true' ? require.resolve('./cache-handler.js') : undefined,
+
   // Allow specifying a distinct distDir when concurrently running app in a container
   distDir: process.env.NEXTJS_DIST_DIR || '.next',
 
@@ -110,12 +107,12 @@ const nextConfig = {
         port: '',
       },
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: 'sc-dev-strategicplan.baaqmd.gov',
         port: '',
       },
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: 'sc-qa.baaqmd.gov',
         port: '',
       },
