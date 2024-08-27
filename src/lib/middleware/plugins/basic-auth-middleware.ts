@@ -40,7 +40,7 @@ class BasicAuthMiddlewarePlugin implements MiddlewarePlugin {
         const authValue = basicAuth.split(' ')[1];
         const [user, pwd] = atob(authValue).split(':');
 
-        if (user === 'admin' && pwd === 'testpwd123') {
+        if (user === process.env.BASIC_AUTH_ADMIN && pwd === process.env.BASIC_AUTH_PASSWORD) {
           debug.common('passed authentication test');
           return NextResponse.next();
         }
