@@ -107,12 +107,10 @@ const nextConfig = {
         port: '',
       },
       {
-        protocol: 'http',
         hostname: 'sc-dev-strategicplan.baaqmd.gov',
         port: '',
       },
       {
-        protocol: 'http',
         hostname: 'sc-qa.baaqmd.gov',
         port: '',
       },
@@ -150,6 +148,7 @@ const nextConfig = {
     ];
   },
 };
+
 
 module.exports = () => {
   // Run the base config through any configured plugins
