@@ -42,7 +42,7 @@
         font-weight: 700;
         @extend %transition;
 
-        @include respond-to(lg) {
+        @include respond-to(lx) {
           background-color: var(--light-green-10);
         }
 
@@ -59,8 +59,6 @@
             background-color: var(--light-green);
           }
         }
-
-
       }
     }
 

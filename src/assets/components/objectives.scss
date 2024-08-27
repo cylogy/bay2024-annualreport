@@ -31,6 +31,7 @@
 
   &__accordions {
     padding-block: 3.75rem;
+    background-color: var(--white);
 
     @include respond-to(lg) {
       padding-block: 7.5rem;

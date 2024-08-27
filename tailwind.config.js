@@ -33,8 +33,8 @@ module.exports = {
         md: '768px',
         lg: '1024px',
         lx: '1280px',
+        lxx: '1440px',
         xl: '1680px',
-        xxl: '2536px',
       },
       boxShadow: {
         '3xl': '0px 4px 34px 0px #00000026',
