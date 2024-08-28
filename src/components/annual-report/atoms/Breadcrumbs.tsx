@@ -1,9 +1,12 @@
+import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 
 export default function Breadcrumbs() {
-  const [Breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
   const { asPath } = useRouter();
+  const { sitecoreContext } = useSitecoreContext();
+  const [Breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
+  const isPageEditing = sitecoreContext.pageEditing;
 
   useEffect(() => {
     const nestedPath = asPath
@@ -18,7 +21,7 @@ export default function Breadcrumbs() {
     setBreadcrumbs([...crumbs.filter((crumb) => crumb !== '')]);
   }, [asPath]);
 
-  if (asPath === '/') return null;
+  if (asPath === '/' || isPageEditing) return null;
 
   return (
     <nav
