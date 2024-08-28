@@ -49,25 +49,27 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     return (
       /* Timeline */
-      <div className="container-anchors">
-        <div className="max-w-[879px]">
-          <section className="py-[60px] lg:py-[120px]">
-            <Text
-              tag="h2"
-              className="text-dark-blue mb-[48px]"
-              field={props.fields.Headline}
-              id={props.fields.AnchorID.value.trim()}
-            />
-            <section className="grid gap-[40px]">
-              <div className="grid gap-[80px] w-full timeline relative">
-                <Placeholder
-                  name={`text-content-tiles`}
-                  rendering={props.rendering}
-                  render={(components) => injectDynamicParams(components, { variant: 'Stacked' })}
-                />
-              </div>
+      <div className="bg-white">
+        <div className="container-anchors">
+          <div className="max-w-[879px]">
+            <section className="py-[60px] lg:py-[120px]">
+              <Text
+                tag="h2"
+                className="text-dark-blue mb-[48px]"
+                field={props.fields.Headline}
+                id={props.fields.AnchorID.value.trim()}
+              />
+              <section className="grid gap-[40px]">
+                <div className="grid gap-[80px] w-full timeline relative">
+                  <Placeholder
+                    name={`text-content-tiles`}
+                    rendering={props.rendering}
+                    render={(components) => injectDynamicParams(components, { variant: 'Stacked' })}
+                  />
+                </div>
+              </section>
             </section>
-          </section>
+          </div>
         </div>
       </div>
     );

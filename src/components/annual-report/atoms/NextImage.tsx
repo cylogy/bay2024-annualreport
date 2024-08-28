@@ -1,4 +1,8 @@
-import { ImageField } from '@sitecore-jss/sitecore-jss-nextjs';
+import {
+  ImageField,
+  useSitecoreContext,
+  Image as JssImage,
+} from '@sitecore-jss/sitecore-jss-nextjs';
 import Image from 'next/image';
 import { ImageProps } from 'next/image';
 
@@ -13,7 +17,14 @@ type NextImageProps = {
 } & Omit<ImageProps, 'src' | 'alt'>;
 
 export default function NextImage({ field: { value }, ...props }: NextImageProps) {
+  const { sitecoreContext } = useSitecoreContext();
+  const isPageEditing = sitecoreContext.pageEditing;
+
   if (value && Object.keys(value).length === 0) return <></>;
+
+  if (isPageEditing)
+    return <JssImage {...props} field={{ value }} fetchPriority="low" loading="lazy" />;
+
   const hasDimensions = value?.height !== '' && value?.width !== '';
   const src = value?.src?.includes('http:') ? value?.src.replace('http:', 'https:') : value?.src;
 

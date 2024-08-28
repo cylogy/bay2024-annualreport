@@ -14,10 +14,8 @@
     top: -40px;
 
     @include respond-to(lg) {
-      padding-bottom: 5rem;
       align-items: end;
       flex-direction: row;
-      top: 0;
     }
 
     @include respond-to(xl) {
