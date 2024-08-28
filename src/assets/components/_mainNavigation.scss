@@ -172,12 +172,12 @@
               svg {
                 margin-left: 5px;
                 margin-top: 4px;
+                transform: rotate(0deg);
+                transition: 0.5s transform ease;
 
                 path {
                   stroke: #fff;
                 }
-
-
               }
             }
 
@@ -197,6 +197,10 @@
           &.active {
             @extend %item-hover;
             padding-bottom: 0;
+
+            svg {
+              transform: rotate(180deg);
+            }
           }
         }
 

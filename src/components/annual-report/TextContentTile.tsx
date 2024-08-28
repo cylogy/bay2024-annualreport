@@ -39,7 +39,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
       <article className="text-dark-blue bg-white p-[40px] rounded-[20px] relative">
         <Text
           tag="h4"
-          className="mb-[10px] pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+          className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
           field={props.fields.Headline}
         />
         <RichText className="p1" field={props.fields.Description} />

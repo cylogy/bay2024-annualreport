@@ -26,7 +26,7 @@ export const Default = withDatasourceCheck()<GraphicContentLinksProps>(
   (props: GraphicContentLinksProps): JSX.Element => {
     return (
       <section>
-        <section className="py-[60px] lg:py-[120px] bg-soft-white">
+        <section className="py-[60px] lg:py-[120px]">
           <div className="container">
             <section className="grid lg:grid-cols-2 gap-[60px] lg:gap-[140px] text-dark-blue">
               <div className="column order-last lg:!order-first" role="region">

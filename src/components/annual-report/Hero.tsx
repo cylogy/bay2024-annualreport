@@ -7,6 +7,7 @@ import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import { HeroProps } from 'src/types/Hero';
 import Breadcrumbs from './atoms/Breadcrumbs';
 import NextImage from './atoms/NextImage';
+import Play from 'assets/svg/Play';
 
 interface YTEvent {
   target: YTPlayer;
@@ -97,7 +98,18 @@ export const Main = ({
         </div>
         {!isMobile && (
           <button onClick={toggleVideo} className="p3 flex items-center gap-2.5">
-            <Pause /> {Playing ? 'Pause' : 'Play'} video
+            {Playing ? (
+              <>
+                <Pause />
+                Pause
+              </>
+            ) : (
+              <>
+                <Play />
+                Play
+              </>
+            )}{' '}
+            video
           </button>
         )}
         <Curve />
