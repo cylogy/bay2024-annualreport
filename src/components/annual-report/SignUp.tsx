@@ -64,7 +64,7 @@ export const Default = withDatasourceCheck()<SignUpProps>(
 
     return (
       <>
-        <div className={`form pt-28 lg:pt-24 ${IsSoftWhite ? 'bg-soft-white' : ''}`}>
+        <div className={`form pt-28 lg:pt-24 ${IsSoftWhite ? 'bg-soft-white' : 'bg-white'}`}>
           <div className="bg-lighter-green">
             <Curve isForm isWhite={!IsSoftWhite} />
             <div className="container text-dark-blue">
