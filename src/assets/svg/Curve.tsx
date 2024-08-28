@@ -1,14 +1,15 @@
 type CurveProps = {
   isForm?: boolean;
+  isWhite?: boolean;
 };
 
-export default function Curve({ isForm }: CurveProps) {
+export default function Curve({ isForm, isWhite }: CurveProps) {
   if (isForm)
     return (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 72" fill="none" className="w-full">
         <path
           d="M0 -72C0 -72 584.862 -38 960 -38C1335.14 -38 1920 -72 1920 -72V26C1920 26 1334.98 72 960 72C585.015 72 0 26 0 26V-72Z"
-          fill="white"
+          fill={isWhite ? 'white' : '#f5f5f5'}
         ></path>
       </svg>
     );
