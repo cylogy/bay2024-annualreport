@@ -36,7 +36,12 @@ export const Default = ({
       .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
   };
   return (
-    <Accordion.Item Name={Name.value} Status={Status.value} UpdateDate={UpdateDate.value} Id={AnchorID.value}>
+    <Accordion.Item
+      Name={Name.value}
+      Status={Status.value}
+      UpdateDate={UpdateDate.value}
+      Id={AnchorID.value}
+    >
       <div className="space-y-11 text-dark-blue">
         <NextImage
           field={modifyImageProps}
