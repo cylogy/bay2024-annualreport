@@ -4,10 +4,10 @@ export const isEmailValid = (email: string) => {
 };
 
 export const submitSignUp = async (email: string) => {
-  if (email === "" || !isEmailValid(email)) return
+  if (email === '' || !isEmailValid(email)) return;
   const id = process.env.NEXT_PUBLIC_SUBSCRIPTIONS_LIST_ID;
-  const endpoint = `/api/admin/SubscriptionCenter/ToggleGroupsAndList?listId=${id}&email=${email}`
-  const res = await fetch(endpoint)
-  const subscription = await res.json()
-  return subscription
+  const endpoint = `/api/admin/SubscriptionCenter/ToggleGroupsAndList?listId=${id}&email=${email}`;
+  const res = await fetch(endpoint);
+  const subscription = await res.json();
+  return subscription;
 };
