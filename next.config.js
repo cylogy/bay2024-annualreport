@@ -1,16 +1,16 @@
-const { getPublicUrl } = require('@sitecore-jss/sitecore-jss-nextjs');
+const { getPublicUrl } = require('@sitecore-jss/sitecore-jss-nextjs/utils');
 const jssConfig = require('./src/temp/config');
 const plugins = require('./src/temp/next-config-plugins') || {};
 
-// const publicUrl = jssConfig.publicUrl;
-const publicUrl = getPublicUrl;
+//const publicUrl = jssConfig.publicUrl;
+const publicUrl = getPublicUrl();
 
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
   // Set assetPrefix to our public URL
-  assetPrefix: publicUrl,
+  //assetPrefix: publicUrl,
   assetPrefix:
     process.env.BUILD_STANDALONE === 'true'
       ? publicUrl +
@@ -155,5 +155,6 @@ const nextConfig = {
 
 module.exports = () => {
   // Run the base config through any configured plugins
+  console.log(nextConfig.assetPrefix);
   return Object.values(plugins).reduce((acc, plugin) => plugin(acc), nextConfig);
 };
