@@ -70,7 +70,7 @@ Accordion.Item = ({ children, Name, Status, UpdateDate, Id }: ChildrenReceiver &
                 {Status && <AccordionInfoBox text={Status} />}
               </div>
             </div>
-            <AccordionArrow className="arrow min-w-6 pt-2" />
+            <AccordionArrow className="arrow min-w-6 mt-2" />
           </div>
         ) : (
           <>
