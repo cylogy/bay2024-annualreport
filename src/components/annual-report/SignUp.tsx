@@ -1,7 +1,7 @@
 import { Field, Text, withDatasourceCheck } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import { ComponentProps } from 'lib/component-props';
-import { getCaptchaToken, submitSignUpForm } from 'lib/util/captcha';
+import { getCaptchaToken, submitSignUpFormCaptcha } from 'lib/util/captcha';
 import { isEmailValid, submitSignUp } from 'lib/util/sign-up';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -51,15 +51,15 @@ export const Default = withDatasourceCheck()<SignUpProps>(
       }
 
       const token = await getCaptchaToken();
-      const res = await submitSignUpForm(token, formData);
+      const captcha = await submitSignUpFormCaptcha(token, formData);
 
-      if (res.success) {
-        // Send form data
-        const subscription = await submitSignUp(email);
-        console.log({ subscription });
+      if (captcha.success) {
+        const sub = await submitSignUp(email);
+        setFormMessage(sub.success ? captcha.message : sub.error);
         form.reset();
+      } else {
+        setFormMessage(captcha.message);
       }
-      setFormMessage(res.message);
       form.dataset.sending = 'false';
       btn.disabled = false;
     };
