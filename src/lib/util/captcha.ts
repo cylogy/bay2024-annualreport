@@ -16,7 +16,7 @@ export async function getCaptchaToken() {
   });
 }
 
-export async function submitSignUpForm(token: string | null, formData: FormData) {
+export async function submitSignUpFormCaptcha(token: string | null, formData: FormData) {
   if (!token) {
     return {
       success: false,

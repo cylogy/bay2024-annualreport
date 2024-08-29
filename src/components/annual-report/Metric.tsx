@@ -50,7 +50,7 @@ export const Default = ({
   }, []);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || Value.value === '') return;
     let startValue = initialValue;
     const numericValue = Number(Value.value);
     const targetValue = isNaN(numericValue) ? 0 : numericValue;
@@ -67,11 +67,13 @@ export const Default = ({
 
   return (
     <div className="metric col-span-1" ref={elementRef}>
-      <h2 className="flex justify-center">
-        {count}
-        {Prefix.value ?? ''}
-        {Suffix.value ?? ''}
-      </h2>
+      {Value.value !== '' && (
+        <h3 className="flex justify-center">
+          {count}
+          {Prefix.value ?? ''}
+          {Suffix.value ?? ''}
+        </h3>
+      )}
       <Text
         field={Description}
         className={`p2 max-w-[8.125rem] mx-auto ${
