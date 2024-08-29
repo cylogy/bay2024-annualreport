@@ -29,7 +29,7 @@ export const Default = ({
       .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
   };
   return params?.variant === 'ObjectiveTiles' ? (
-    <span className="bullet-number relative lg:w-[267px] h-[290px] rounded-[40px] bg-powder-blue overflow-hidden flex flex-col shrink-0 items-center text-white px-[36px] py-[36px] pb-[48px] text-center justify-center gap-2">
+    <span className="bullet-number relative lg:w-[267px] h-[290px] rounded-[40px] bg-powder-blue overflow-hidden flex flex-col shrink-0 items-center text-white px-[36px] py-[36px] pb-[48px] text-center justify-center lg:justify-start gap-2">
       <Text tag="span" className="block h1" field={Name}></Text>
       <Text tag="span" className="h6" field={Description}></Text>
       <div className="absolute bottom-0">
