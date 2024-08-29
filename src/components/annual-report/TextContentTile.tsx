@@ -22,7 +22,7 @@ type ContentTileItemProps = ComponentProps & {
 };
 export const Default = withDatasourceCheck()<ContentTileItemProps>(
   (props: ContentTileItemProps): JSX.Element => {
-    console.log('PROPS', props.fields.CTA.value.href);
+    console.log('PROPS', props?.fields?.CTA?.value?.href);
     return props.params.variant === 'ThreeColumns' ? (
       <article className="text-white bg-dark-powder-blue p-[40px] rounded-[20px] relative tct">
         <Image
