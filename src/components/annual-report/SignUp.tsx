@@ -55,8 +55,8 @@ export const Default = withDatasourceCheck()<SignUpProps>(
 
       if (res.success) {
         // Send form data
-        const subscription = await submitSignUp(email)
-        console.log({ subscription })
+        const subscription = await submitSignUp(email);
+        console.log({ subscription });
         form.reset();
       }
       setFormMessage(res.message);

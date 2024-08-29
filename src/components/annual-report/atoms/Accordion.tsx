@@ -20,7 +20,9 @@ type AccordionItem = {
 // eslint-disable-next-line react/display-name
 Accordion.Item = ({ children, Name, Status, UpdateDate, Id }: ChildrenReceiver & AccordionItem) => {
   const isMobile = useIsMobile(780);
-  const { sitecoreContext: { pageEditing } } = useSitecoreContext();
+  const {
+    sitecoreContext: { pageEditing },
+  } = useSitecoreContext();
   const textUpdateDate = new Date(UpdateDate ?? '').toLocaleDateString('en-US');
   const validDate = UpdateDate !== '0001-01-01T00:00:00Z';
 
@@ -35,10 +37,10 @@ Accordion.Item = ({ children, Name, Status, UpdateDate, Id }: ChildrenReceiver &
     const item = e.currentTarget.closest<HTMLDivElement>('.accordion-item');
     if (!item) return;
 
-    const btn = item.querySelector<HTMLButtonElement>("button")
-    const isItemOpened = item.dataset.open === "true"
-    item.dataset.open = String(!isItemOpened)
-    btn?.setAttribute("aria-expanded", String(!isItemOpened))
+    const btn = item.querySelector<HTMLButtonElement>('button');
+    const isItemOpened = item.dataset.open === 'true';
+    item.dataset.open = String(!isItemOpened);
+    btn?.setAttribute('aria-expanded', String(!isItemOpened));
 
     if (isItemOpened) return;
     setTimeout(() => {

@@ -22,7 +22,9 @@ export const Default = withDatasourceCheck()<AnchorLinkProps>(
 
     useEffect(() => {
       const determineActiveSection = () => {
-        const sections = document.querySelectorAll<HTMLDivElement>('.anchor-links__content [id]:not(button[id])');
+        const sections = document.querySelectorAll<HTMLDivElement>(
+          '.anchor-links__content [id]:not(button[id])'
+        );
         const sectionIds = [...sections].map((section) => section.getAttribute('id') ?? '');
 
         for (let i = sectionIds.length - 1; i >= 0; i--) {
