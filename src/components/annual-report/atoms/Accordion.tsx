@@ -1,55 +1,48 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 import AccordionArrow from 'assets/svg/AccordionArrow';
 import useIsMobile from 'lib/customHooks/isMobile';
-import { MouseEvent, ReactNode, useEffect, useState } from 'react';
-import { AccordionContext, useAccordionContext } from 'src/context/accordion';
-import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
+import { MouseEvent, ReactNode, useEffect } from 'react';
 
 type ChildrenReceiver = { children?: ReactNode };
 
 export default function Accordion({ children }: ChildrenReceiver) {
-  const [SelectedItem, setSelectedItem] = useState('');
-
-  return (
-    <AccordionContext.Provider value={{ SelectedItem, setSelectedItem }}>
-      <div className="accordion">{children}</div>
-    </AccordionContext.Provider>
-  );
+  return <div className="accordion">{children}</div>;
 }
 
 type AccordionItem = {
   Name: string;
   UpdateDate?: string;
   Status?: string;
+  Id?: string;
 };
 
 // eslint-disable-next-line react/display-name
-Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & AccordionItem) => {
-  const { SelectedItem, setSelectedItem } = useAccordionContext();
+Accordion.Item = ({ children, Name, Status, UpdateDate, Id }: ChildrenReceiver & AccordionItem) => {
   const isMobile = useIsMobile(780);
-  const isOpened = SelectedItem === Name;
+  const { sitecoreContext: { pageEditing } } = useSitecoreContext();
   const textUpdateDate = new Date(UpdateDate ?? '').toLocaleDateString('en-US');
-  const context = useSitecoreContext();
   const validDate = UpdateDate !== '0001-01-01T00:00:00Z';
 
   useEffect(() => {
-    if (context.sitecoreContext.pageEditing) {
+    if (pageEditing) {
       const accordionItems = document.querySelectorAll('.accordion-item');
-      accordionItems.forEach((item) => {
-        if (item.getAttribute('data-open') === 'false') {
-          item.setAttribute('data-open', 'true');
-        }
-      });
+      accordionItems.forEach((item) => item.setAttribute('data-open', 'true'));
     }
-  }, [context.sitecoreContext.pageEditing]);
+  }, [pageEditing]);
 
-  const onClickItem = (Name: string, e: MouseEvent<HTMLButtonElement>) => {
-    const container = e.currentTarget.closest('.accordion');
-    setSelectedItem(isOpened ? '' : Name);
+  const onClickItem = (e: MouseEvent<HTMLButtonElement>) => {
+    const item = e.currentTarget.closest<HTMLDivElement>('.accordion-item');
+    if (!item) return;
 
+    const btn = item.querySelector<HTMLButtonElement>("button")
+    const isItemOpened = item.dataset.open === "true"
+    item.dataset.open = String(!isItemOpened)
+    btn?.setAttribute("aria-expanded", String(!isItemOpened))
+
+    if (isItemOpened) return;
     setTimeout(() => {
-      const item = container?.querySelector<HTMLDivElement>(".accordion-item[data-open='true']");
-      item?.scrollIntoView({
+      item.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
@@ -57,13 +50,14 @@ Accordion.Item = ({ children, Name, Status, UpdateDate }: ChildrenReceiver & Acc
   };
 
   return (
-    <div className="accordion-item" data-open={isOpened ? 'true' : 'false'}>
+    <div className="accordion-item">
       <button
-        onClick={(e) => onClickItem(Name, e)}
+        onClick={onClickItem}
         type="button"
-        aria-expanded={isOpened ? 'true' : 'false'}
-        className="accordion-item__header"
+        id={Id ? Id : undefined}
+        aria-expanded={false}
         aria-label={Name}
+        className="accordion-item__header"
       >
         {isMobile ? (
           <div className="flex justify-between w-full">
