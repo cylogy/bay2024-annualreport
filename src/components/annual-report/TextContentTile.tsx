@@ -49,7 +49,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
         <RichText className="p1" field={props.fields.Description} />
       </article>
     ) : (
-      <article className="text-dark-blue bg-white pt-[40px] pb-[40px] lg:p-[40px] lg:rounded-[40px] relative tct">
+      <article className="text-dark-blue bg-white p-5 lg:p-[40px] rounded-[40px] relative tct">
         <div className="mb-[24px] flex flex-col md:flex-row items-start md:items-center gap-[24px]">
           <BlueSquareBullet text={props.fields.Number.value} />
           <Text tag="h3" field={props.fields.Headline} />

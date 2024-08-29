@@ -2,7 +2,7 @@ import { Field, Text, withDatasourceCheck } from '@sitecore-jss/sitecore-jss-nex
 import Curve from 'assets/svg/Curve';
 import { ComponentProps } from 'lib/component-props';
 import { getCaptchaToken, submitSignUpForm } from 'lib/util/captcha';
-import { isEmailValid } from 'lib/util/email';
+import { isEmailValid, submitSignUp } from 'lib/util/sign-up';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import FooterTops from 'public/images/footer-top.png';
@@ -55,6 +55,8 @@ export const Default = withDatasourceCheck()<SignUpProps>(
 
       if (res.success) {
         // Send form data
+        const subscription = await submitSignUp(email);
+        console.log({ subscription });
         form.reset();
       }
       setFormMessage(res.message);
