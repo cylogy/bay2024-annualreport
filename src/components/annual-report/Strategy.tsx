@@ -26,7 +26,7 @@ type StrategyProps = ComponentProps & {
 };
 
 export const Default = ({
-  fields: { Description, Headline, Image, Intro, Name, Status, UpdateDate },
+  fields: { Description, Headline, Image, Intro, Name, Status, UpdateDate, AnchorID },
   rendering,
 }: StrategyProps): JSX.Element => {
   const modifyImageProps = {
@@ -36,7 +36,7 @@ export const Default = ({
       .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
   };
   return (
-    <Accordion.Item Name={Name.value} Status={Status.value} UpdateDate={UpdateDate.value}>
+    <Accordion.Item Name={Name.value} Status={Status.value} UpdateDate={UpdateDate.value} Id={AnchorID.value}>
       <div className="space-y-11 text-dark-blue">
         <NextImage
           field={modifyImageProps}

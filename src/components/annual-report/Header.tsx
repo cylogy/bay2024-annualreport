@@ -125,7 +125,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   setOpenMenu(!openMenu);
                 }}
                 id="close"
-                className="relative flex justify-end pt-[10px] pr-[32px] text-[30px] w-full lg:hidden"
+                className="relative flex justify-end pt-[10px] pr-[32px] text-[0.8rem] w-full lg:hidden"
               >
                 Close
                 <svg
@@ -277,7 +277,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
               <label htmlFor="hamburgerInput" hidden></label>
               <input className="checkbox" type="checkbox" name="" id="hamburgerInput" />
               <div className="menu-mobile-wrapper">
-                <span className="block text-[0.8rem]">Menu</span>
+                <span className="block">Menu</span>
                 <div className="hamburger-lines">
                   <span className="line line1"></span>
                   <span className="line line2"></span>
