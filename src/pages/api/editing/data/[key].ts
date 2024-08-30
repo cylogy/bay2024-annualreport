@@ -21,10 +21,11 @@ export const config = {
 
 // Wire up the EditingDataMiddleware handler
 //const handler = new EditingDataMiddleware().getHandler();
-const handler = process.env.VERCEL
-  ? new EditingDataMiddleware().getHandler()
-  : new EditingDataMiddleware({
-      editingDataCache: myEditingDataCache,
-    }).getHandler();
+const handler =
+  process.env.VERCEL === 'true'
+    ? new EditingDataMiddleware().getHandler()
+    : new EditingDataMiddleware({
+        editingDataCache: myEditingDataCache,
+      }).getHandler();
 
 export default handler;
