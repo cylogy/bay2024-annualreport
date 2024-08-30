@@ -9,6 +9,7 @@ import {
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { injectDynamicParams } from 'lib/dynamic-params';
+import { Router, useRouter } from 'next/router';
 
 type TextContentTilesProps = ComponentProps & {
   layoutData: LayoutServiceData;
@@ -101,8 +102,14 @@ export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
 
 export const Cards = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
+    const { asPath } = useRouter();
     return (
-      <section className="py-[60px] lg:py-[120px] bg-soft-white" id={props.fields.AnchorID.value}>
+      <section
+        className={`${
+          asPath.includes('contact-us') ? 'pt-0 lg:pt-12' : 'pt-[60px] lg:pt-[120px]'
+        } pb-[60px] lg:pb-[120px] bg-soft-white`}
+        id={props.fields.AnchorID.value}
+      >
         <div className="container lg:px-[100px]">
           <Text
             tag="h2"
