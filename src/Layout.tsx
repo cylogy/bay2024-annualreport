@@ -3,7 +3,13 @@
  */
 import React from 'react';
 import Head from 'next/head';
-import { Placeholder, LayoutServiceData, Field, HTMLLink } from '@sitecore-jss/sitecore-jss-nextjs';
+import {
+  Placeholder,
+  LayoutServiceData,
+  Field,
+  HTMLLink,
+  ImageField,
+} from '@sitecore-jss/sitecore-jss-nextjs';
 import config from 'temp/config';
 import Scripts from 'src/Scripts';
 import ScrollToTop from 'components/annual-report/atoms/ScrollToTop';
@@ -30,6 +36,10 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
   const mainClassPageEditing = isPageEditing ? 'editing-mode' : 'prod-mode';
   const toTop = layoutData?.sitecore?.route?.fields?.ToTop as Field<boolean>;
   const isMobile = useIsMobile(1023);
+  console.log();
+  const metaImg =
+    layoutData.sitecore.route?.fields &&
+    (layoutData.sitecore.route.fields['Meta Image'] as ImageField);
 
   return (
     <>
@@ -44,6 +54,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
           name="description"
           content="The 2024-2029 Strategic Plan is centered on four primary goals: achieve impact, advance environmental justice, foster cohesion and inclusion, and maintain an effective, accountable, and customer-oriented organization."
         />
+        <meta name="image" property="og:image" content={metaImg?.value?.src ?? ''} />
       </Head>
 
       {/* root placeholder for the app, which we add components to using route data */}
