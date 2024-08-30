@@ -71,7 +71,7 @@ export const Default = withDatasourceCheck()<SignUpProps>(
             <Curve isForm isWhite={!IsSoftWhite} />
             <div className="container text-dark-blue">
               <div className="form__content">
-                <div className="space-y-8 relative top-0 lg:top-5">
+                <div className="space-y-8 relative top-0 lg:top-6">
                   <div className="space-y-3">
                     <Text field={Headline} tag="h2" />
                     <Text field={Description} tag="span" className="h6 block max-w-[35.5rem]" />
