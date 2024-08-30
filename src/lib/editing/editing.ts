@@ -9,9 +9,8 @@ export const myEditingDataCache = redisEditingDataCache;
 //export const myEditingDataCache = redisEditingDataCache;
 
 // Override default editingDataService to use myEditingDataDiskCache for BasicEditingDataService
-export const myEditingDataService =
-  process.env.VERCEL
-    ? new ServerlessEditingDataService()
-    : new BasicEditingDataService({
-        editingDataCache: myEditingDataCache,
-      });
+export const myEditingDataService = process.env.VERCEL
+  ? new ServerlessEditingDataService()
+  : new BasicEditingDataService({
+      editingDataCache: myEditingDataCache,
+    });
