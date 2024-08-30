@@ -43,9 +43,9 @@ const handler = new EditingRenderMiddleware({
       process.env.OSHYN_AMPLIFY === 'true'
         ? process.env.PUBLIC_URL
         : process.env.VERCEL || process.env.PROD
-        ? 'https'
-        : 'http'
-    }://${req.headers.host}`;
+        ? 'https://' + req.headers.host
+        : 'http://' + req.headers.host
+    }`;
   },
 }).getHandler();
 
