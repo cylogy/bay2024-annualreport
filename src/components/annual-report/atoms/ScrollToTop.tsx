@@ -14,17 +14,10 @@ const ScrollToTop = () => {
 
   // Function to scroll to the top
   const handleScrollToTop = () => {
-    const scrollDuration = 600; // Duration of the scroll animation in milliseconds
-    const scrollStep = -window.scrollY / (scrollDuration / 15); // Calculate the scroll step
-
-    const scrollAnimation = () => {
-      if (window.scrollY !== 0) {
-        window.scrollBy(0, scrollStep); // Scroll the page by the calculated step
-        requestAnimationFrame(scrollAnimation); // Recursively call the function until the top is reached
-      }
-    };
-
-    requestAnimationFrame(scrollAnimation); // Start the scroll animation
+    window.scrollTo({
+      behavior: 'smooth',
+      top: 0,
+    });
   };
 
   useEffect(() => {
@@ -35,7 +28,7 @@ const ScrollToTop = () => {
   }, []);
 
   return (
-    <div
+    <button
       role="region"
       aria-label="To Top"
       onClick={handleScrollToTop}
@@ -57,7 +50,7 @@ const ScrollToTop = () => {
         />
       </svg>
       <span className="text-[0.75rem] font-bold font-montserrat">To top</span>
-    </div>
+    </button>
   );
 };
 

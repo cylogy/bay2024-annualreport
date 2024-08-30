@@ -264,7 +264,7 @@
 
             a {
               border: none;
-              @apply text-blue-800 flex gap-[15px] items-start;
+              @apply text-blue-800 flex gap-[15px] items-start justify-start;
 
               img {
                 width: 65px;

@@ -15,7 +15,7 @@ type MetricProps = ComponentProps & {
 };
 
 const initialValue = 0;
-const duration = 1000;
+const duration = 500;
 
 export const Default = ({
   fields: { Description, Prefix, Suffix, Value },
@@ -51,26 +51,33 @@ export const Default = ({
 
   useEffect(() => {
     if (!isVisible || Value.value === '') return;
-    let startValue = initialValue;
     const numericValue = Number(Value.value);
     const targetValue = isNaN(numericValue) ? 0 : numericValue;
-    const interval = Math.floor(duration / (targetValue - initialValue));
 
-    const counter = setInterval(() => {
-      startValue += 1;
-      setCount(startValue);
-      if (startValue >= targetValue) clearInterval(counter);
-    }, interval);
+    const increment = targetValue / (duration / 10);
+    let currentCount = initialValue;
+    const step = () => {
+      currentCount += increment;
+      if (currentCount >= targetValue) {
+        currentCount = targetValue;
+        setCount(currentCount);
+        return;
+      }
+      setCount(Math.floor(currentCount));
+      requestAnimationFrame(step);
+    };
 
-    return () => clearInterval(counter);
+    requestAnimationFrame(step);
+
+    return () => setCount(initialValue);
   }, [isVisible, Value.value]);
 
   return (
     <div className="metric col-span-1" ref={elementRef}>
       {Value.value !== '' && (
         <h3 className="flex justify-center">
-          {count}
           {Prefix.value ?? ''}
+          {count}
           {Suffix.value ?? ''}
         </h3>
       )}
