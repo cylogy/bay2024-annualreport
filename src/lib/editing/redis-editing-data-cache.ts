@@ -23,7 +23,10 @@ export class RedisEditingDataCache implements EditingDataCache {
     return new Promise<void>((resolve, reject) => {
       this.store
         .set(key, JSON.stringify(editingData))
-        .then(() => resolve())
+        .then(() => {
+          debug.editing(`finished setting redis data for ${key}`);
+          resolve();
+        })
         .catch((err) => reject(err));
     });
   }
