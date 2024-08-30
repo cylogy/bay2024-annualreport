@@ -1,11 +1,13 @@
 import {
   Field,
-  Text,
-  LayoutServiceData,
-  RichTextField,
-  RichText,
-  withDatasourceCheck,
   Image,
+  LayoutServiceData,
+  LinkField,
+  Link,
+  RichText,
+  RichTextField,
+  Text,
+  withDatasourceCheck,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import BlueSquareBullet from './atoms/BlueSquareBullet';
@@ -15,6 +17,7 @@ type ContentTileItemProps = ComponentProps & {
     Headline: Field<string>;
     Description: RichTextField;
     Number: Field<string>;
+    CTA: LinkField;
     AnchorID: Field<string>;
   };
 };
@@ -36,14 +39,28 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
         <RichText className="p1 rich-text-container" field={props.fields.Description} />
       </article>
     ) : props.params.variant === 'Cards' ? (
-      <article className="text-dark-blue bg-white p-[40px] rounded-[20px] relative">
-        <Text
-          tag="h4"
-          className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
-          field={props.fields.Headline}
-        />
-        <RichText className="p1" field={props.fields.Description} />
-      </article>
+      props.fields.CTA.value.href === '' ? (
+        <article className="text-dark-blue bg-white p-[40px] rounded-[20px] relative">
+          <Text
+            tag="h4"
+            className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+            field={props.fields.Headline}
+          />
+          <RichText className="p1" field={props.fields.Description} />
+        </article>
+      ) : (
+        <Link
+          field={props.fields.CTA}
+          className="text-dark-blue bg-white p-[40px] rounded-[20px] relative boxShadowEffect"
+        >
+          <Text
+            tag="h4"
+            className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+            field={props.fields.Headline}
+          />
+          <RichText className="p1" field={props.fields.Description} />
+        </Link>
+      )
     ) : (
       <article className="text-dark-blue bg-white p-5 lg:p-[40px] rounded-[40px] relative tct">
         <div className="mb-[24px] flex flex-col md:flex-row items-start md:items-center gap-[24px]">
