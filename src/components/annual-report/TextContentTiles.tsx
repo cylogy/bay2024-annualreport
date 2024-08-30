@@ -1,15 +1,15 @@
 import {
-  Text,
-  Field,
-  Placeholder,
-  LayoutServiceData,
   ComponentRendering,
+  Field,
+  LayoutServiceData,
+  Placeholder,
   RichText,
+  Text,
   withDatasourceCheck,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { injectDynamicParams } from 'lib/dynamic-params';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 type TextContentTilesProps = ComponentProps & {
   layoutData: LayoutServiceData;
