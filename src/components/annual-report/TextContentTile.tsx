@@ -6,6 +6,7 @@ import {
   RichText,
   withDatasourceCheck,
   Image,
+  LinkField,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import BlueSquareBullet from './atoms/BlueSquareBullet';
@@ -15,11 +16,13 @@ type ContentTileItemProps = ComponentProps & {
     Headline: Field<string>;
     Description: RichTextField;
     Number: Field<string>;
+    CTA: LinkField;
     AnchorID: Field<string>;
   };
 };
 export const Default = withDatasourceCheck()<ContentTileItemProps>(
   (props: ContentTileItemProps): JSX.Element => {
+    console.log('PROPS', props?.fields?.CTA?.value?.href);
     return props.params.variant === 'ThreeColumns' ? (
       <article className="text-white bg-dark-powder-blue p-[40px] rounded-[20px] relative tct">
         <Image
@@ -36,6 +39,7 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
         <RichText className="p1 rich-text-container" field={props.fields.Description} />
       </article>
     ) : props.params.variant === 'Cards' ? (
+      //Variant for link shadow
       <article className="text-dark-blue bg-white p-[40px] rounded-[20px] relative">
         <Text
           tag="h4"
