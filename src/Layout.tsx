@@ -36,7 +36,6 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
   const mainClassPageEditing = isPageEditing ? 'editing-mode' : 'prod-mode';
   const toTop = layoutData?.sitecore?.route?.fields?.ToTop as Field<boolean>;
   const isMobile = useIsMobile(1023);
-  console.log();
   const metaImg =
     layoutData.sitecore.route?.fields &&
     (layoutData.sitecore.route.fields['Meta Image'] as ImageField);

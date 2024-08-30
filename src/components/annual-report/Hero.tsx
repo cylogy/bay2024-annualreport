@@ -1,4 +1,4 @@
-import { Field, Link, Text } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, Link, Text, useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import Pause from 'assets/svg/Pause';
 import useIsMobile from 'lib/customHooks/isMobile';
@@ -20,10 +20,13 @@ export const Main = ({
   const [Playing, setPlaying] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const playerRef = useRef<YTPlayer | null>(null);
+  const {
+    sitecoreContext: { pageEditing },
+  } = useSitecoreContext();
 
   useEffect(() => {
     const playButton = document.querySelector<HTMLButtonElement>('.lty-playbtn');
-    !isMobile && playButton?.click();
+    !isMobile && !pageEditing && playButton?.click();
 
     const onPageLoad = () => {
       if (isMobile) return;
@@ -57,7 +60,7 @@ export const Main = ({
       window.addEventListener('load', onPageLoad);
       return () => window.removeEventListener('load', onPageLoad);
     }
-  }, [isMobile]);
+  }, [isMobile, pageEditing]);
 
   const unFocusIframe = () => {
     const iframe = document.querySelector<HTMLIFrameElement>('.hero__video-player iframe');
@@ -74,7 +77,7 @@ export const Main = ({
     <>
       <div className="hero" id={AnchorID.value}>
         <NextImage className="hero__bg-image" field={Image} fetchPriority="high" priority />
-        {!isMobile && (
+        {!isMobile && !pageEditing && (
           <div className="hero__video-player">
             <LiteYouTubeEmbed
               id={Video.value}
@@ -96,7 +99,7 @@ export const Main = ({
           <Text tag="h1" field={Headline} />
           <Text field={Description} className="hidden lg:block" tag="p" />
         </div>
-        {!isMobile && (
+        {!isMobile && !pageEditing && (
           <button onClick={toggleVideo} className="p3 flex items-center gap-2.5">
             {Playing ? (
               <>
