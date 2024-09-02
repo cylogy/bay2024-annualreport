@@ -155,6 +155,5 @@ const nextConfig = {
 
 module.exports = () => {
   // Run the base config through any configured plugins
-  console.log(nextConfig.assetPrefix);
   return Object.values(plugins).reduce((acc, plugin) => plugin(acc), nextConfig);
 };
