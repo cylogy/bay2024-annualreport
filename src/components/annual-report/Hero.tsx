@@ -62,9 +62,11 @@ export const Main = ({
     }
   }, [isMobile, pageEditing]);
 
-  const unFocusIframe = () => {
+  const onIframeAdded = () => {
     const iframe = document.querySelector<HTMLIFrameElement>('.hero__video-player iframe');
     iframe?.setAttribute('tabindex', '-1');
+    const wrapper = document.querySelector<HTMLDivElement>('.hero__video-wrapper');
+    setTimeout(() => wrapper?.classList.remove('hidden'), 1000);
   };
 
   const toggleVideo = () => {
@@ -83,8 +85,8 @@ export const Main = ({
               id={Video.value}
               ref={iframeRef}
               title="Video"
-              onIframeAdded={unFocusIframe}
-              wrapperClass="size-full absolute top-0 left-0 block"
+              onIframeAdded={onIframeAdded}
+              wrapperClass="hero__video-wrapper size-full absolute top-0 left-0 block hidden"
               params={`controls=0&rel=0&showinfo=0&playlist=${Video.value}&loop=1&enablejsapi=1`}
               poster="default"
               thumbnail=" "

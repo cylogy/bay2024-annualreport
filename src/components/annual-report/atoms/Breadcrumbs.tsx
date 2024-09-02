@@ -21,7 +21,7 @@ export default function Breadcrumbs() {
     setBreadcrumbs([...crumbs.filter((crumb) => crumb !== '')]);
   }, [asPath]);
 
-  if (asPath === '/' || isPageEditing) return null;
+  if (asPath === '/' || isPageEditing || Breadcrumbs.length === 0) return null;
 
   return (
     <nav

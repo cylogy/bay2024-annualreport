@@ -45,7 +45,7 @@ export const Default = ({
       <div className="space-y-11 text-dark-blue">
         <NextImage
           field={modifyImageProps}
-          className="max-h-[11.25rem] md:max-h-[17.5rem] w-full object-cover rounded-[10px]"
+          className="h-[11.25rem] md:h-[17.5rem] w-full object-cover rounded-[10px]"
           fetchPriority="low"
         />
         <div className="space-y-16 max-w-[55rem]">

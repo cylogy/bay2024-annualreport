@@ -116,7 +116,7 @@ export const Cards = withDatasourceCheck()<TextContentTilesProps>(
             className="text-dark-blue mb-[10px] border-b-[3px] border-solid pb-[20px] "
             field={props.fields.Headline}
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[50px]">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-[40px] pt-[50px]">
             <Placeholder
               name={`text-content-tiles`}
               rendering={props.rendering}

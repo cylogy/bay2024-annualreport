@@ -147,6 +147,10 @@ table {
   h6 {
     font-weight: 700;
   }
+
+  p+p {
+    padding-top: 1.25rem;
+  }
 }
 
 .container {
