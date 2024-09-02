@@ -19,8 +19,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) 
       console.log({ subRes });
 
       if (!subRes.ok) res.status(500).json({ error: 'Failed to subscribe' });
-      // const json = await subRes.json()
-      // console.log({ json })
       res.status(200).json({ success: true });
     } else {
       res.status(500).json({ error: 'Invalid request method' });

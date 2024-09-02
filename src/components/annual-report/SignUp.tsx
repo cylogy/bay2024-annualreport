@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import FooterTops from 'public/images/footer-top.png';
 import HeroImage from 'public/images/hero.jpg';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 
 type SignUpProps = ComponentProps & {
   fields: {
@@ -20,9 +20,10 @@ type SignUpProps = ComponentProps & {
 
 export const Default = withDatasourceCheck()<SignUpProps>(
   ({ fields: { Description, EmailCTA, EmailLabel, Headline } }: SignUpProps): JSX.Element => {
-    const { asPath } = useRouter();
+    const onCaptchaLoadRef = useRef(false);
     const [FormMessage, setFormMessage] = useState('');
     const [IsSoftWhite, setIsSoftWhite] = useState(false);
+    const { asPath } = useRouter();
 
     useEffect(() => {
       const urls = ['about/environmental', 'contact-us'];
@@ -64,6 +65,17 @@ export const Default = withDatasourceCheck()<SignUpProps>(
       btn.disabled = false;
     };
 
+    const reCaptchaOnFocus = async () => {
+      if (onCaptchaLoadRef.current) return;
+      const head = document.getElementsByTagName('head')[0];
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`;
+      script.defer = true;
+      script.async = true;
+      head.appendChild(script);
+      onCaptchaLoadRef.current = true;
+    };
+
     return (
       <>
         <div className={`form pt-28 lg:pt-24 ${IsSoftWhite ? 'bg-soft-white' : 'bg-white'}`}>
@@ -79,7 +91,7 @@ export const Default = withDatasourceCheck()<SignUpProps>(
                   <form className="space-y-3" onSubmit={submitHandler} data-sending="false">
                     <Text field={EmailLabel} tag="label" htmlFor="email" />
                     <div className="form__sign-up-group">
-                      <input type="email" id="email" name="email" required />
+                      <input type="text" id="email" name="email" onFocus={reCaptchaOnFocus} />
                       <button type="submit" className="btn">
                         <svg
                           className="animate-spin size-5 spinner"
