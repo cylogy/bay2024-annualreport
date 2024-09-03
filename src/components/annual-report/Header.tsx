@@ -180,28 +180,29 @@ export const Default = (props: HeaderProps): JSX.Element => {
                 {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => {
                   if (!item) return;
                   return (
-                    <li
-                      key={index}
-                      className={`${activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
-                        }`}
-                      onClick={() => handleMenuItemClick(item?.title?.jsonValue?.value ?? '')}
-                    >
+                    <li key={index}>
                       <a
                         href={item?.cta?.jsonValue?.value?.href || '#'}
                         target={item?.cta?.jsonValue?.value?.target}
+                        onClick={(e) => handleMenuItemClick(item?.title?.jsonValue?.value ?? '', e)}
+                        className={`${
+                          activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
+                        }`}
                       >
                         <span>{item?.title?.jsonValue?.value}</span>
                         {item.hasChildren && (
                           <ChevronDown
-                            className={`${activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
-                              }`}
+                            className={`${
+                              activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
+                            }`}
                           />
                         )}
                       </a>
                       {item.hasChildren && (
                         <ul
-                          className={`submenu ${activeMenuItem === item?.title?.jsonValue?.value ? 'show' : ''
-                            }`}
+                          className={`submenu ${
+                            activeMenuItem === item?.title?.jsonValue?.value ? 'show' : ''
+                          }`}
                         >
                           {item.children.results.map((child, childIndex) => {
                             if (!child) return;
@@ -269,12 +270,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
             </section>
 
             {mobile && (
-              <div
-                id="hamburguerContainer"
-                onClick={() => {
-                  setOpenMenu(!openMenu);
-                }}
-              >
+              <div id="hamburguerContainer" onClick={() => setOpenMenu(!openMenu)}>
                 <label htmlFor="hamburgerInput" hidden></label>
                 <input className="checkbox" type="checkbox" name="" id="hamburgerInput" />
                 <div className="menu-mobile-wrapper">
