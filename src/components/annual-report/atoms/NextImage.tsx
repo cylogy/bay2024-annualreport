@@ -23,7 +23,7 @@ export default function NextImage({ field: { value }, ...props }: NextImageProps
   if (value && Object.keys(value).length === 0) return <></>;
 
   if (isPageEditing)
-    return <JssImage {...props} field={{ value }} fetchPriority="low" loading="lazy" />;
+    return <JssImage {...props} field={{ value }} editable fetchPriority="low" loading="lazy" />;
 
   const hasDimensions = value?.height !== '' && value?.width !== '';
   const src = value?.src?.includes('http:') ? value?.src.replace('http:', 'https:') : value?.src;
