@@ -29,8 +29,8 @@
       padding: 10px 1rem;
       position: relative;
       font-weight: 500;
+      transition: all 200ms ease-in-out;
       @extend .p2;
-      @extend %transition;
 
       &.indent {
         margin-left: 15px;
@@ -40,7 +40,7 @@
       &.active {
         background-color: transparent;
         font-weight: 700;
-        @extend %transition;
+        transition: all 200ms ease-in-out;
 
         @include respond-to(lx) {
           background-color: var(--light-green-10);

@@ -40,7 +40,7 @@ body {
 
     .arrow svg {
       @extend %transition;
-      transform: translatex(5px);
+      transform: translateX(5px);
     }
   }
 }

@@ -2,19 +2,12 @@
   @extend %transition;
 
   @include respond-to('lg') {
+    color: var(--powder-blue);
     background: #fff;
     border: 1px solid var(--powder-blue);
-  }
 
-  a {
-    @extend %transition;
-
-    @include respond-to('lg') {
-      @apply text-powder-blue;
-
-      svg path {
-        stroke: var(--powder-blue);
-      }
+    svg path {
+      stroke: var(--powder-blue);
     }
   }
 }
@@ -98,7 +91,6 @@
       }
 
       &.open {
-        //transition: all 0.5s cubic-bezier(0.07, 0.38, 0.99, 1.02);
         right: 0;
         z-index: 9999;
         padding-left: 20%;
@@ -129,14 +121,8 @@
 
         li {
           position: relative;
-          /*padding: 15px;
-          margin: 0 15px;
-          border-bottom: 1px solid #666;*/
 
           @include respond-to('lg') {
-            border: 1px solid #fff;
-            border-radius: 15px;
-            padding: 10px 24px;
             margin: 0;
             position: relative;
           }
@@ -153,15 +139,30 @@
             border-bottom: 1px solid #CECECE;
             justify-content: space-between;
 
+            &:hover {
+              @extend %item-hover;
+
+              @include respond-to('lg') {}
+            }
+
+            &.active {
+              @extend %item-hover;
+
+              svg {
+                transform: rotate(180deg);
+              }
+            }
+
             svg path {
               stroke: var(--dark-blue);
             }
 
             @include respond-to('lg') {
               color: #fff;
-              padding: 0;
+              padding: 10px 24px;
+              border-radius: 15px;
               margin: 0;
-              border: none;
+              border: 1px solid #fff;
               font-size: 1.125rem;
               line-height: 1.8rem;
 
@@ -183,25 +184,9 @@
               }
             }
           }
-
-          &:hover {
-            @extend %item-hover;
-
-            @include respond-to('lg') {}
-          }
-
-          &.active {
-            @extend %item-hover;
-            padding-bottom: 0;
-
-            svg {
-              transform: rotate(180deg);
-            }
-          }
         }
 
         .submenu {
-          // @extend %transition;
           overflow: hidden;
           max-height: 0;
           border-radius: 40px;
@@ -209,6 +194,7 @@
           display: flex;
           flex-direction: column;
           gap: 10px;
+          visibility: hidden;
 
           @include respond-to('lg') {
             position: absolute;
@@ -222,7 +208,7 @@
           }
 
           &.show {
-            // @extend %transition;
+            visibility: visible;
             opacity: 1;
             max-height: 125rem;
             margin: 15px 15px 0;
@@ -264,6 +250,7 @@
 
             a {
               border: none;
+              padding: 15px 0;
               @apply text-blue-800 flex gap-[15px] items-start justify-start;
 
               img {
@@ -277,6 +264,10 @@
                     text-decoration: underline;
                   }
                 }
+              }
+
+              @include respond-to('lg') {
+                padding: 0;
               }
 
               .menu-title {

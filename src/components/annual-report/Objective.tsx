@@ -4,6 +4,7 @@ import Accordion from './atoms/Accordion';
 import NextImage from './atoms/NextImage';
 import Intersect from 'public/images/Intersect.png';
 import NativeImage from 'next/image';
+import { useRef } from 'react';
 
 interface Fields {
   Name: Field<string>;
@@ -18,6 +19,7 @@ type ObjectiveProps = ComponentProps & {
 };
 
 export const Default = (props: ObjectiveProps): JSX.Element => {
+  const bulletRef = useRef<HTMLSpanElement>(null);
   if (props.fields) {
     const {
       fields: { Description, Image, Name, AnchorID },
@@ -32,9 +34,9 @@ export const Default = (props: ObjectiveProps): JSX.Element => {
         .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
     };
     return params?.variant === 'ObjectiveTiles' ? (
-      <span className="bullet-number relative lg:w-[267px] h-[290px] rounded-[40px] bg-powder-blue overflow-hidden flex flex-col shrink-0 items-center text-white px-[36px] py-[36px] pb-[48px] text-center justify-center lg:justify-start gap-2">
-        <Text tag="span" className="block h1" field={Name}></Text>
-        <Text tag="span" className="h6" field={Description}></Text>
+      <span className="bullet-number" ref={bulletRef}>
+        <span className="block h1">{bulletRef?.current?.dataset.count}</span>
+        <Text tag="span" className="h6" field={Name} />
         <div className="absolute bottom-0 w-full">
           <NativeImage fetchPriority="low" src={Intersect} alt="" className="w-full" />
         </div>
