@@ -17,48 +17,54 @@ type AnchorLinkProps = ComponentProps & {
 };
 
 export const Default = withDatasourceCheck()<AnchorLinkProps>(
-  ({ fields: { AnchorID, Level, Name } }: AnchorLinkProps): JSX.Element => {
-    const [activeLink, setActiveLink] = useState('');
+  (props: AnchorLinkProps): JSX.Element => {
+    if (props.fields) {
+      const [activeLink, setActiveLink] = useState('');
+      const {
+        fields: { AnchorID, Level, Name },
+      } = props;
 
-    useEffect(() => {
-      const determineActiveSection = () => {
-        const sections = document.querySelectorAll<HTMLDivElement>(
-          '.anchor-links__content [id]:not(button[id])'
-        );
-        const sectionIds = [...sections].map((section) => section.getAttribute('id') ?? '');
+      useEffect(() => {
+        const determineActiveSection = () => {
+          const sections = document.querySelectorAll<HTMLDivElement>(
+            '.anchor-links__content [id]:not(button[id])'
+          );
+          const sectionIds = [...sections].map((section) => section.getAttribute('id') ?? '');
 
-        for (let i = sectionIds.length - 1; i >= 0; i--) {
-          const section = document.getElementById(sectionIds[i]);
-          if (section) {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= 120 && rect.bottom >= 120) {
-              setActiveLink(sectionIds[i]);
-              break;
+          for (let i = sectionIds.length - 1; i >= 0; i--) {
+            const section = document.getElementById(sectionIds[i]);
+            if (section) {
+              const rect = section.getBoundingClientRect();
+              if (rect.top <= 120 && rect.bottom >= 120) {
+                setActiveLink(sectionIds[i]);
+                break;
+              }
             }
           }
-        }
+        };
+
+        window.addEventListener('scroll', determineActiveSection);
+        return () => window.removeEventListener('scroll', determineActiveSection);
+      }, []);
+
+      const onClickEach = (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const id = e.currentTarget.getAttribute('href')?.replace('#', '');
+        document.getElementById(id ?? '')?.scrollIntoView({ behavior: 'smooth' });
       };
 
-      window.addEventListener('scroll', determineActiveSection);
-      return () => window.removeEventListener('scroll', determineActiveSection);
-    }, []);
-
-    const onClickEach = (e: MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      const id = e.currentTarget.getAttribute('href')?.replace('#', '');
-      document.getElementById(id ?? '')?.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    return (
-      <a
-        onClick={onClickEach}
-        href={`#${AnchorID.value.trim()}`}
-        className={`p2 ${Level.value === '2' ? 'indent' : ''} ${
-          activeLink === AnchorID.value.trim() ? 'active' : ''
-        }`}
-      >
-        <Text field={Name} />
-      </a>
-    );
+      return (
+        <a
+          onClick={onClickEach}
+          href={`#${AnchorID.value.trim()}`}
+          className={`p2 ${Level.value === '2' ? 'indent' : ''} ${
+            activeLink === AnchorID.value.trim() ? 'active' : ''
+          }`}
+        >
+          <Text field={Name} />
+        </a>
+      );
+    }
+    return <></>;
   }
 );
