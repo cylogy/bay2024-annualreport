@@ -8,6 +8,7 @@ import {
   RichTextField,
   Text,
   withDatasourceCheck,
+  useSitecoreContext,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import BlueSquareBullet from './atoms/BlueSquareBullet';
@@ -23,6 +24,9 @@ type ContentTileItemProps = ComponentProps & {
 };
 export const Default = withDatasourceCheck()<ContentTileItemProps>(
   (props: ContentTileItemProps): JSX.Element => {
+    const {
+      sitecoreContext: { pageEditing },
+    } = useSitecoreContext();
     if (props.fields) {
       return props.params.variant === 'ThreeColumns' ? (
         <article className="text-white bg-dark-powder-blue p-[40px] rounded-[20px] relative tct">
@@ -49,6 +53,16 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
             />
             <RichText className="p1" field={props.fields.Description} />
           </article>
+        ) : pageEditing ? (
+          <div className="text-dark-blue bg-white p-[40px] rounded-[20px] relative boxShadowEffect">
+            <Link field={props.fields.CTA} />
+            <Text
+              tag="h4"
+              className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+              field={props.fields.Headline}
+            />
+            <RichText className="p1" field={props.fields.Description} />
+          </div>
         ) : (
           <Link
             field={props.fields.CTA}
