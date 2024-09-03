@@ -8,8 +8,11 @@ type QuoteProps = ComponentProps & {
   };
 };
 
-export const Default = withDatasourceCheck()<QuoteProps>(
-  ({ fields: { Author, Quote } }: QuoteProps): JSX.Element => {
+export const Default = withDatasourceCheck()<QuoteProps>((props: QuoteProps): JSX.Element => {
+  if (props.fields) {
+    const {
+      fields: { Author, Quote },
+    } = props;
     return (
       <div className="bg-soft-white pb-9 lg:pb-[120px]">
         <div className="container-anchors">
@@ -27,4 +30,5 @@ export const Default = withDatasourceCheck()<QuoteProps>(
       </div>
     );
   }
-);
+  return <></>;
+});

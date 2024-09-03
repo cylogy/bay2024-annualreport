@@ -18,64 +18,67 @@ type SignUpProps = ComponentProps & {
   };
 };
 
-export const Default = withDatasourceCheck()<SignUpProps>(
-  ({ fields: { Description, EmailCTA, EmailLabel, Headline } }: SignUpProps): JSX.Element => {
-    const onCaptchaLoadRef = useRef(false);
-    const [FormMessage, setFormMessage] = useState('');
-    const [IsSoftWhite, setIsSoftWhite] = useState(false);
-    const { asPath } = useRouter();
+export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): JSX.Element => {
+  const onCaptchaLoadRef = useRef(false);
+  const [FormMessage, setFormMessage] = useState('');
+  const [IsSoftWhite, setIsSoftWhite] = useState(false);
+  const { asPath } = useRouter();
 
-    useEffect(() => {
-      const urls = ['about/environmental', 'contact-us'];
-      const isGray = urls.some((item) => asPath.includes(item));
-      isGray && setIsSoftWhite(true);
-    }, [asPath]);
+  useEffect(() => {
+    const urls = ['about/environmental', 'contact-us'];
+    const isGray = urls.some((item) => asPath.includes(item));
+    isGray && setIsSoftWhite(true);
+  }, [asPath]);
 
-    const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
-      setFormMessage('');
-      e.preventDefault();
-      const form = document.querySelector<HTMLFormElement>('form');
-      const btn = form?.querySelector<HTMLButtonElement>('button');
-      const formData = new FormData(e.currentTarget);
-      const email = formData.get('email') as string;
-      const isValid = isEmailValid(email);
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+    setFormMessage('');
+    e.preventDefault();
+    const form = document.querySelector<HTMLFormElement>('form');
+    const btn = form?.querySelector<HTMLButtonElement>('button');
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+    const isValid = isEmailValid(email);
 
-      if (!btn || !form) return;
-      form.dataset.sending = 'true';
-      btn.disabled = true;
+    if (!btn || !form) return;
+    form.dataset.sending = 'true';
+    btn.disabled = true;
 
-      if (!isValid) {
-        setFormMessage('Email address is mandatory.');
-        btn.disabled = false;
-        form.dataset.sending = 'false';
-        return;
-      }
-
-      const token = await getCaptchaToken();
-      const captcha = await submitSignUpFormCaptcha(token, formData);
-
-      if (captcha.success) {
-        const sub = await submitSignUp(email);
-        setFormMessage(sub.success ? captcha.message : sub.error);
-        form.reset();
-      } else {
-        setFormMessage(captcha.message);
-      }
-      form.dataset.sending = 'false';
+    if (!isValid) {
+      setFormMessage('Email address is mandatory.');
       btn.disabled = false;
-    };
+      form.dataset.sending = 'false';
+      return;
+    }
 
-    const reCaptchaOnFocus = async () => {
-      if (onCaptchaLoadRef.current) return;
-      const head = document.getElementsByTagName('head')[0];
-      const script = document.createElement('script');
-      script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`;
-      script.defer = true;
-      script.async = true;
-      head.appendChild(script);
-      onCaptchaLoadRef.current = true;
-    };
+    const token = await getCaptchaToken();
+    const captcha = await submitSignUpFormCaptcha(token, formData);
 
+    if (captcha.success) {
+      const sub = await submitSignUp(email);
+      setFormMessage(sub.success ? captcha.message : sub.error);
+      form.reset();
+    } else {
+      setFormMessage(captcha.message);
+    }
+    form.dataset.sending = 'false';
+    btn.disabled = false;
+  };
+
+  const reCaptchaOnFocus = async () => {
+    if (onCaptchaLoadRef.current) return;
+    const head = document.getElementsByTagName('head')[0];
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`;
+    script.defer = true;
+    script.async = true;
+    head.appendChild(script);
+    onCaptchaLoadRef.current = true;
+  };
+
+  if (props.fields) {
+    const {
+      fields: { Description, EmailCTA, EmailLabel, Headline },
+    } = props;
     return (
       <>
         <div className={`form pt-28 lg:pt-24 ${IsSoftWhite ? 'bg-soft-white' : 'bg-white'}`}>
@@ -143,4 +146,5 @@ export const Default = withDatasourceCheck()<SignUpProps>(
       </>
     );
   }
-);
+  return <></>;
+});
