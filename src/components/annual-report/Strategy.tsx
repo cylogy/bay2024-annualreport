@@ -50,7 +50,6 @@ export const Default = ({
         />
         <div className="space-y-16 max-w-[55rem]">
           <div>
-            <span className="h4 block pb-3">Description</span>
             <JssRichText field={Description} className="richtext rich-text-container" />
           </div>
           <div>

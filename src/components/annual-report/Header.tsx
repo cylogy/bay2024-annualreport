@@ -32,15 +32,18 @@ export const Default = (props: HeaderProps): JSX.Element => {
   const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
   const [openMenu, setOpenMenu] = useState(false);
   const mobile = useIsMobile(1023);
-  const navRef = useRef<HTMLUListElement>(null); // Ref for the menu container
-  const handleMenuItemClick = (menuItem: string) => {
+  const navRef = useRef<HTMLUListElement>(null);
+
+  const handleMenuItemClick = (menuItem: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!e.currentTarget.href.includes('#')) return;
+    e.preventDefault();
     setActiveMenuItem(activeMenuItem === menuItem ? null : menuItem);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
     if (navRef.current && !navRef.current.contains(event.target as Node)) {
-      setOpenMenu(false); // Close the menu if clicked outside
-      setActiveMenuItem(null); // Close active menu item
+      setOpenMenu(false);
+      setActiveMenuItem(null);
     }
   };
 
@@ -176,16 +179,14 @@ export const Default = (props: HeaderProps): JSX.Element => {
               {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => {
                 if (!item) return;
                 return (
-                  <li
-                    key={index}
-                    className={`${
-                      activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
-                    }`}
-                    onClick={() => handleMenuItemClick(item?.title?.jsonValue?.value ?? '')}
-                  >
+                  <li key={index}>
                     <a
                       href={item?.cta?.jsonValue?.value?.href || '#'}
                       target={item?.cta?.jsonValue?.value?.target}
+                      onClick={(e) => handleMenuItemClick(item?.title?.jsonValue?.value ?? '', e)}
+                      className={`${
+                        activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
+                      }`}
                     >
                       <span>{item?.title?.jsonValue?.value}</span>
                       {item.hasChildren && (
@@ -268,12 +269,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
           </section>
 
           {mobile && (
-            <div
-              id="hamburguerContainer"
-              onClick={() => {
-                setOpenMenu(!openMenu);
-              }}
-            >
+            <div id="hamburguerContainer" onClick={() => setOpenMenu(!openMenu)}>
               <label htmlFor="hamburgerInput" hidden></label>
               <input className="checkbox" type="checkbox" name="" id="hamburgerInput" />
               <div className="menu-mobile-wrapper">
