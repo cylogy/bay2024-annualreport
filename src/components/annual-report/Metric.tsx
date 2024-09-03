@@ -11,15 +11,13 @@ interface Fields {
 
 type MetricProps = ComponentProps & {
   params: { [key: string]: string };
-  fields: Fields;
+  fields: Fields | undefined;
 };
 
 const initialValue = 0;
 const duration = 500;
 
-export const Default = ({
-  fields: { Description, Prefix, Suffix, Value },
-}: MetricProps): JSX.Element => {
+export const Default = (props: MetricProps): JSX.Element => {
   const [count, setCount] = useState(initialValue);
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -50,8 +48,8 @@ export const Default = ({
   }, []);
 
   useEffect(() => {
-    if (!isVisible || Value.value === '') return;
-    const numericValue = Number(Value.value);
+    if (!isVisible || !props.fields || props.fields.Value.value === '') return;
+    const numericValue = Number(props.fields.Value.value);
     const targetValue = isNaN(numericValue) ? 0 : numericValue;
 
     const increment = targetValue / (duration / 10);
@@ -70,7 +68,10 @@ export const Default = ({
     requestAnimationFrame(step);
 
     return () => setCount(initialValue);
-  }, [isVisible, Value.value]);
+  }, [isVisible, props]);
+
+  if (!props.fields) return <></>;
+  const { Description, Prefix, Suffix, Value } = props.fields;
 
   return (
     <div className="metric col-span-1" ref={elementRef}>
