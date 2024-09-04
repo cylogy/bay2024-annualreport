@@ -1,7 +1,16 @@
 @font-face {
   font-family: 'Arial Fallback';
   src: local(Arial);
-  size-adjust: 120%;
+  size-adjust: 118%;
+  ascent-override: 90%;
+  descent-override: 8%;
+  line-gap-override: 2%;
+}
+
+@font-face {
+  font-family: 'Arial Fallback P';
+  src: local(Arial);
+  size-adjust: 115%;
   ascent-override: 90%;
   descent-override: 8%;
   line-gap-override: 2%;

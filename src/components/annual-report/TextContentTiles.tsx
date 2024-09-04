@@ -23,36 +23,35 @@ type TextContentTilesProps = ComponentProps & {
 
 export const ThreeColumns = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
-    if (props.fields) {
-      return (
-        /* Blue 3 cols */
-        <section className="py-[60px] lg:py-[120px] bg-dark-blue" id={props.fields.AnchorID.value}>
-          <div className="container lg:px-[100px]">
-            <Text
-              tag="h2"
-              className="text-center text-white mb-[10px]"
-              field={props.fields.Headline}
+    if (!props.fields) return <></>;
+
+    return (
+      /* Blue 3 cols */
+      <section className="py-[60px] lg:py-[120px] bg-dark-blue" id={props.fields.AnchorID.value}>
+        <div className="container lg:px-[100px]">
+          <Text
+            tag="h2"
+            className="text-center text-white mb-[10px]"
+            field={props.fields.Headline}
+          />
+          <RichText className="text-center text-white p1" field={props.fields.Description} />
+          <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[80px]">
+            <Placeholder
+              name={`text-content-tiles`}
+              rendering={props.rendering}
+              render={(components) => injectDynamicParams(components, { variant: 'ThreeColumns' })}
             />
-            <RichText className="text-center text-white p1" field={props.fields.Description} />
-            <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-[40px] mt-[80px]">
-              <Placeholder
-                name={`text-content-tiles`}
-                rendering={props.rendering}
-                render={(components) =>
-                  injectDynamicParams(components, { variant: 'ThreeColumns' })
-                }
-              />
-            </section>
-          </div>
-        </section>
-      );
-    }
-    return <></>;
+          </section>
+        </div>
+      </section>
+    );
   }
 );
 
 export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
+    if (!props.fields) return <></>;
+
     return (
       /* Timeline */
       <div className="bg-white">
@@ -84,6 +83,8 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
 
 export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
+    if (!props.fields) return <></>;
+
     return (
       <section className="lg:bg-soft-white">
         <div className="container-anchors" id={props.fields.AnchorID.value.trim()}>
@@ -108,6 +109,8 @@ export const Numbered = withDatasourceCheck()<TextContentTilesProps>(
 export const Cards = withDatasourceCheck()<TextContentTilesProps>(
   (props: TextContentTilesProps): JSX.Element => {
     const { asPath } = useRouter();
+    if (!props.fields) return <></>;
+
     return (
       <section
         className={`${
