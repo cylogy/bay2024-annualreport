@@ -103,8 +103,8 @@ export const Main = (props: HeroProps): JSX.Element => {
             <Text tag="h1" field={Headline} />
             <Text field={Description} className="hidden lg:block" tag="p" />
           </div>
-          {!isMobile && !pageEditing && (
-            <button onClick={toggleVideo} className="p3 flex items-center gap-2.5">
+          {!pageEditing && (
+            <button onClick={toggleVideo} className="p3">
               {Playing ? (
                 <>
                   <Pause />

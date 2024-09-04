@@ -47,7 +47,7 @@ export const Default = (props: StrategyProps): JSX.Element => {
         <div className="space-y-11 text-dark-blue">
           <NextImage
             field={modifyImageProps}
-            className="h-[11.25rem] md:h-[17.5rem] w-full object-cover rounded-[10px]"
+            className="w-full object-cover rounded-[10px] aspect-[16/6] max-h-[17.5rem]"
             fetchPriority="low"
           />
           <div className="space-y-16 max-w-[55rem]">
