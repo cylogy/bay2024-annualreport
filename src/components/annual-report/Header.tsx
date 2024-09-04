@@ -3,6 +3,8 @@ import {
   ImageField,
   LayoutServiceData,
   Link,
+  LinkField,
+  useSitecoreContext,
   useComponentProps,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import ChevronDown from 'assets/svg/ChevronDown';
@@ -20,6 +22,7 @@ type HeaderProps = ComponentProps & {
   fields: {
     LogoDesktop: ImageField;
     LogoMobile: ImageField;
+    MainLink: LinkField;
   };
 };
 
@@ -63,7 +66,13 @@ export const Default = (props: HeaderProps): JSX.Element => {
     }
   }, [openMenu]);
 
+  const {
+    sitecoreContext: { pageEditing },
+  } = useSitecoreContext();
+
   if (props.fields) {
+    const { MainLink } = props.fields;
+
     return (
       <section id="mainNavigation" className="absolute w-full">
         <a href="#content" className="skip-main">
@@ -85,21 +94,29 @@ export const Default = (props: HeaderProps): JSX.Element => {
             <option value="English">English</option>
             <option value="Spanish">Spanish</option>
           </select>
-
           <span className="w-[2px] h-[23px] bg-white mx-[30px] block"></span> */}
-            <Link
-              field={{
-                href: 'https://www.baaqmd.gov/',
-                title: 'Air District Main Site',
-                target: '_blank',
-              }}
-              className="flex items-center text-white gap-[10px]"
-            >
-              <span>Air District Main Site</span>
-              <LinkIcon theme="light" />
-            </Link>
+            {!pageEditing && (
+              <Link
+                field={{
+                  href: MainLink?.value?.href,
+                  title: MainLink?.value?.title,
+                  target: MainLink?.value?.target,
+                }}
+                className="flex items-center text-white gap-[10px]"
+              >
+                <span>Air District Main Site</span>
+                <LinkIcon theme="light" />
+              </Link>
+            )}
+            {pageEditing && (
+              <>
+                <Link field={MainLink} className="flex items-center text-white gap-[10px]"></Link>
+                <LinkIcon theme="light" />
+              </>
+            )}
           </div>
         </section>
+
         <section className="container z-10 relative bg-white lg:!bg-transparent">
           <nav
             aria-labelledby="mainmenulabel"
@@ -122,123 +139,126 @@ export const Default = (props: HeaderProps): JSX.Element => {
               </Link>
             </section>
 
-            <section id="main-menu" className={openMenu ? 'open' : ''}>
-              {mobile && (
-                <button
-                  onClick={() => {
-                    setOpenMenu(!openMenu);
-                  }}
-                  id="close"
-                  className="relative flex justify-end pt-[10px] pr-[32px] text-[0.8rem] w-full lg:hidden"
-                >
-                  Close
-                  <svg
-                    width="12"
-                    height="13"
-                    viewBox="0 0 12 13"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+            {!pageEditing && (
+              <section id="main-menu" className={openMenu ? 'open' : ''}>
+                {mobile && (
+                  <button
+                    onClick={() => {
+                      setOpenMenu(!openMenu);
+                    }}
+                    id="close"
+                    className="relative flex justify-end pt-[10px] pr-[32px] text-[0.8rem] w-full lg:hidden"
                   >
-                    <rect
-                      y="10.8712"
-                      width="15.2734"
-                      height="1.69705"
-                      rx="0.848523"
-                      transform="rotate(-45 0 10.8712)"
-                      fill="white"
-                    />
-                    <rect
-                      y="10.8712"
-                      width="15.2734"
-                      height="1.69705"
-                      rx="0.848523"
-                      transform="rotate(-45 0 10.8712)"
-                      fill="#253E7B"
-                    />
-                    <rect
-                      x="1.19922"
-                      y="0.0715504"
-                      width="15.2734"
-                      height="1.69705"
-                      rx="0.848523"
-                      transform="rotate(45 1.19922 0.0715504)"
-                      fill="white"
-                    />
-                    <rect
-                      x="1.19922"
-                      y="0.0715504"
-                      width="15.2734"
-                      height="1.69705"
-                      rx="0.848523"
-                      transform="rotate(45 1.19922 0.0715504)"
-                      fill="#253E7B"
-                    />
-                  </svg>
-                </button>
-              )}
-              <ul className="mt-[80px] lg:mt-0" ref={navRef}>
-                {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => {
-                  if (!item) return;
-                  return (
-                    <li key={index}>
-                      <a
-                        href={item?.cta?.jsonValue?.value?.href || '#'}
-                        target={item?.cta?.jsonValue?.value?.target}
-                        onClick={(e) => handleMenuItemClick(item?.title?.jsonValue?.value ?? '', e)}
-                        className={`${
-                          activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
-                        }`}
-                      >
-                        <span>{item?.title?.jsonValue?.value}</span>
-                        {item.hasChildren && (
-                          <ChevronDown
-                            className={`${
-                              activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
-                            }`}
-                          />
-                        )}
-                      </a>
-                      {item.hasChildren && (
-                        <ul
-                          className={`submenu ${
-                            activeMenuItem === item?.title?.jsonValue?.value ? 'show' : ''
+                    Close
+                    <svg
+                      width="12"
+                      height="13"
+                      viewBox="0 0 12 13"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        y="10.8712"
+                        width="15.2734"
+                        height="1.69705"
+                        rx="0.848523"
+                        transform="rotate(-45 0 10.8712)"
+                        fill="white"
+                      />
+                      <rect
+                        y="10.8712"
+                        width="15.2734"
+                        height="1.69705"
+                        rx="0.848523"
+                        transform="rotate(-45 0 10.8712)"
+                        fill="#253E7B"
+                      />
+                      <rect
+                        x="1.19922"
+                        y="0.0715504"
+                        width="15.2734"
+                        height="1.69705"
+                        rx="0.848523"
+                        transform="rotate(45 1.19922 0.0715504)"
+                        fill="white"
+                      />
+                      <rect
+                        x="1.19922"
+                        y="0.0715504"
+                        width="15.2734"
+                        height="1.69705"
+                        rx="0.848523"
+                        transform="rotate(45 1.19922 0.0715504)"
+                        fill="#253E7B"
+                      />
+                    </svg>
+                  </button>
+                )}
+                <ul className="mt-[80px] lg:mt-0" ref={navRef}>
+                  {componentProps?.menuItems?.headerMenu?.children?.results.map((item, index) => {
+                    if (!item) return;
+                    return (
+                      <li key={index}>
+                        <a
+                          href={item?.cta?.jsonValue?.value?.href || '#'}
+                          target={item?.cta?.jsonValue?.value?.target}
+                          onClick={(e) =>
+                            handleMenuItemClick(item?.title?.jsonValue?.value ?? '', e)
+                          }
+                          className={`${
+                            activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
                           }`}
                         >
-                          {item.children.results.map((child, childIndex) => {
-                            if (!child) return;
-                            return (
-                              <li key={childIndex}>
-                                <a href={child?.cta?.jsonValue?.value?.href}>
-                                  <NextImage
-                                    className="rounded-full"
-                                    field={child?.image?.jsonValue}
-                                    fetchPriority="low"
-                                    loading="lazy"
-                                  />
-                                  <div>
-                                    <p className="menu-title">{child?.name}</p>
-                                    <p className="menu-description">
-                                      {child?.description?.jsonValue?.value}
-                                    </p>
-                                  </div>
-                                </a>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
+                          <span>{item?.title?.jsonValue?.value}</span>
+                          {item.hasChildren && (
+                            <ChevronDown
+                              className={`${
+                                activeMenuItem === item?.title?.jsonValue?.value ? 'active' : ''
+                              }`}
+                            />
+                          )}
+                        </a>
+                        {item.hasChildren && (
+                          <ul
+                            className={`submenu ${
+                              activeMenuItem === item?.title?.jsonValue?.value ? 'show' : ''
+                            }`}
+                          >
+                            {item.children.results.map((child, childIndex) => {
+                              if (!child) return;
+                              return (
+                                <li key={childIndex}>
+                                  <a href={child?.cta?.jsonValue?.value?.href}>
+                                    <NextImage
+                                      className="rounded-full"
+                                      field={child?.image?.jsonValue}
+                                      fetchPriority="low"
+                                      loading="lazy"
+                                    />
+                                    <div>
+                                      <p className="menu-title">{child?.name}</p>
+                                      <p className="menu-description">
+                                        {child?.description?.jsonValue?.value}
+                                      </p>
+                                    </div>
+                                  </a>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
 
-              {mobile && (
-                <section
-                  className="languagebar relative px-[20px] mt-[30px] lg:hidden"
-                  aria-labelledby="languagebar"
-                >
-                  <div className="">
-                    {/* <label
+                {mobile && (
+                  <section
+                    className="languagebar relative px-[20px] mt-[30px] lg:hidden"
+                    aria-labelledby="languagebar"
+                  >
+                    <div className="">
+                      {/* <label
                     htmlFor="language-select"
                     className="text-dark-blue lg:text-white mr-[5px] text-[14px] lg:text-[16px]"
                   >
@@ -253,23 +273,24 @@ export const Default = (props: HeaderProps): JSX.Element => {
                     <option value="English">English</option>
                     <option value="Spanish">Spanish</option>
                   </select> */}
-                    <Link
-                      field={{
-                        href: 'https://www.baaqmd.gov/',
-                        title: 'Air District Main Site',
-                        target: '_blank',
-                      }}
-                      className="flex items-center text-dark-blue gap-[10px] p3"
-                    >
-                      <span>Air District Main Site</span>
-                      <LinkIcon theme="dark" />
-                    </Link>
-                  </div>
-                </section>
-              )}
-            </section>
+                      <Link
+                        field={{
+                          href: 'https://www.baaqmd.gov/',
+                          title: 'Air District Main Site',
+                          target: '_blank',
+                        }}
+                        className="flex items-center text-dark-blue gap-[10px] p3"
+                      >
+                        <span>Air District Main Site</span>
+                        <LinkIcon theme="dark" />
+                      </Link>
+                    </div>
+                  </section>
+                )}
+              </section>
+            )}
 
-            {mobile && (
+            {mobile && !pageEditing && (
               <div id="hamburguerContainer" onClick={() => setOpenMenu(!openMenu)}>
                 <label htmlFor="hamburgerInput" hidden></label>
                 <input className="checkbox" type="checkbox" name="" id="hamburgerInput" />
