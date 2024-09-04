@@ -113,12 +113,16 @@ export const Default = (props: HeaderProps): JSX.Element => {
                 <NextImage
                   field={props.fields.LogoMobile}
                   className="object-cover max-w-[200px]"
-                  fetchPriority="high"
-                  priority
+                  fetchPriority={mobile ? 'high' : 'low'}
+                  priority={mobile}
                 />
               </Link>
               <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
-                <NextImage field={props.fields.LogoDesktop} fetchPriority="high" priority />
+                <NextImage
+                  field={props.fields.LogoDesktop}
+                  fetchPriority={mobile ? 'low' : 'high'}
+                  priority={!mobile}
+                />
               </Link>
             </section>
 
