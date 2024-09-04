@@ -32,18 +32,26 @@ export const Default = (props: CommitmentProps): JSX.Element => {
           tag="div"
           className="richtext space-y-5 rich-text-container"
         />
-        <div>
-          <Text field={PerformanceHeadline} className="!font-bold pb-[30px] h6 block" tag="span" />
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 items-start">
-            <Placeholder name={'commitment-metric-container'} rendering={rendering} />
+        {PerformanceHeadline.value !== '' && (
+          <div>
+            <Text
+              field={PerformanceHeadline}
+              className="!font-bold pb-[30px] h6 block"
+              tag="span"
+            />
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 items-start">
+              <Placeholder name={'commitment-metric-container'} rendering={rendering} />
+            </div>
           </div>
-        </div>
-        <div>
-          <Text field={ResourcesHeadline} className="!font-bold pb-[30px] h6 block" tag="span" />
-          <div className="space-y-5 inline-block">
-            <Placeholder name={'commitment-resources-container'} rendering={rendering} resource />
+        )}
+        {ResourcesHeadline.value !== '' && (
+          <div>
+            <Text field={ResourcesHeadline} className="!font-bold pb-[30px] h6 block" tag="span" />
+            <div className="space-y-5 inline-block">
+              <Placeholder name={'commitment-resources-container'} rendering={rendering} resource />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
