@@ -75,10 +75,10 @@ Accordion.Item = ({ children, Name, Status, UpdateDate, Id }: ChildrenReceiver &
         ) : (
           <>
             <div className="flex gap-5">
-              <span className="h5 text-dark-blue">{Name}</span>
+              <span className="h5 text-dark-blue text-start">{Name}</span>
               {UpdateDate && validDate && <AccordionInfoBox isUpdateDate text={textUpdateDate} />}
             </div>
-            <div className="flex gap-10 items-center">
+            <div className="flex gap-4 lg:gap-10 items-center">
               {Status && <AccordionInfoBox text={Status} />}
               <AccordionArrow className="arrow min-w-6" />
             </div>
