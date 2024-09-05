@@ -1,9 +1,17 @@
+import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
+
 type CurveProps = {
   isForm?: boolean;
   isWhite?: boolean;
 };
 
 export default function Curve({ isForm, isWhite }: CurveProps) {
+  const {
+    sitecoreContext: { pageEditing },
+  } = useSitecoreContext();
+
+  if (pageEditing) return <></>;
+
   if (isForm)
     return (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 72" fill="none" className="w-full">

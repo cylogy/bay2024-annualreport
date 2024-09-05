@@ -98,7 +98,7 @@ export const Main = (props: HeroProps): JSX.Element => {
               />
             </div>
           )}
-          <div className="hero__background" />
+          {!pageEditing && <div className="hero__background" />}
           <div className="hero__content space-y-6 flex flex-col items-center">
             <Text tag="h1" field={Headline} />
             <Text field={Description} className="hidden lg:block" tag="p" />

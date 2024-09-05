@@ -1,4 +1,10 @@
-import { Field, Text, withDatasourceCheck } from '@sitecore-jss/sitecore-jss-nextjs';
+import {
+  Field,
+  ImageField,
+  Text,
+  useSitecoreContext,
+  withDatasourceCheck,
+} from '@sitecore-jss/sitecore-jss-nextjs';
 import Curve from 'assets/svg/Curve';
 import { ComponentProps } from 'lib/component-props';
 import { getCaptchaToken, submitSignUpFormCaptcha } from 'lib/util/captcha';
@@ -6,13 +12,14 @@ import { isEmailValid, submitSignUp } from 'lib/util/sign-up';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import FooterTops from 'public/images/footer-top.png';
-import HeroImage from 'public/images/hero.jpg';
 import { FormEvent, useEffect, useRef, useState } from 'react';
+import NextImage from './atoms/NextImage';
 
 type SignUpProps = ComponentProps & {
   fields: {
     Headline: Field<string>;
     Description: Field<string>;
+    Image: ImageField;
     EmailLabel: Field<string>;
     EmailCTA: Field<string>;
   };
@@ -79,6 +86,10 @@ export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): 
     const {
       fields: { Description, EmailCTA, EmailLabel, Headline },
     } = props;
+    const {
+      sitecoreContext: { pageEditing },
+    } = useSitecoreContext();
+
     return (
       <>
         <div className={`form pt-28 lg:pt-24 ${IsSoftWhite ? 'bg-soft-white' : 'bg-white'}`}>
@@ -122,27 +133,27 @@ export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): 
                     <div className="min-h-4">{FormMessage}</div>
                   </form>
                 </div>
-                <Image
+                <NextImage
+                  field={props.fields.Image}
                   fetchPriority="low"
                   loading="lazy"
-                  src={HeroImage}
                   className="form__image"
-                  placeholder="blur"
-                  alt=""
                 />
               </div>
             </div>
           </div>
         </div>
-        <Image
-          fetchPriority="low"
-          loading="lazy"
-          src={FooterTops}
-          className="object-cover w-full bg-lighter-green"
-          placeholder="blur"
-          aria-hidden="true"
-          alt=""
-        />
+        {!pageEditing && (
+          <Image
+            fetchPriority="low"
+            loading="lazy"
+            src={FooterTops}
+            className="object-cover w-full bg-lighter-green"
+            placeholder="blur"
+            aria-hidden="true"
+            alt=""
+          />
+        )}
       </>
     );
   }

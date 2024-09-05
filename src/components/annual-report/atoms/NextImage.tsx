@@ -16,14 +16,15 @@ type NextImageProps = {
   } & ImageField;
 } & Omit<ImageProps, 'src' | 'alt'>;
 
-export default function NextImage({ field: { value }, ...props }: NextImageProps) {
+export default function NextImage({ field, ...props }: NextImageProps) {
   const { sitecoreContext } = useSitecoreContext();
   const isPageEditing = sitecoreContext.pageEditing;
+  const { value } = field;
 
   if (value && Object.keys(value).length === 0) return <></>;
 
   if (isPageEditing)
-    return <JssImage {...props} field={{ value }} editable fetchPriority="low" loading="lazy" />;
+    return <JssImage {...props} field={field} editable fetchPriority="low" loading="lazy" />;
 
   const hasDimensions = value?.height !== '' && value?.width !== '';
   const src = value?.src?.includes('http:') ? value?.src.replace('http:', 'https:') : value?.src;
