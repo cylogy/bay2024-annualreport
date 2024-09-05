@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
     border-radius: 5px;
-    @apply bg-light-green
+    background-color: var(--light-green);
   }
 
   .year {
@@ -25,21 +25,17 @@
       top: 9px;
       left: -48px;
       border-radius: 50%;
-      @apply bg-powder-blue;
+      background-color: var(--powder-blue);
     }
   }
 }
 
 .tct {
   img:not(.decoration) {
-    width: 100% !important;
-    height: 281px !important;
-    max-width: 100%;
-    display: block;
-    margin: 24px 0;
+    aspect-ratio: 16/9;
+    max-height: 17.5rem;
     border-radius: 10px;
     object-fit: cover;
-    object-position: center;
   }
 
   &-rich-text {
