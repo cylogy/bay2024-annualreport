@@ -30,6 +30,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@neshca/cache-handler": "^1.5.1",
+    "@next/third-parties": "^14.2.8",
     "@sitecore-jss/sitecore-jss-nextjs": "~22.0.0",
     "graphql": "~15.8.0",
     "graphql-tag": "^2.12.6",
