@@ -4,6 +4,7 @@ import { SitecorePageProps } from 'lib/page-props';
 import Bootstrap from 'src/Bootstrap';
 import 'assets/main.scss';
 import { Newsreader } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const newsreader = Newsreader({
   subsets: ['latin'],
@@ -15,6 +16,7 @@ const newsreader = Newsreader({
 
 function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element {
   const { dictionary, ...rest } = pageProps;
+  const GA_id = process.env.NEXT_PUBLIC_GA_ID || '1VHTN8K5S9';
 
   return (
     <>
@@ -29,6 +31,7 @@ function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element
           <Component {...rest} />
         </div>
       </I18nProvider>
+      <GoogleAnalytics gaId={`G-${GA_id}`} />
     </>
   );
 }
