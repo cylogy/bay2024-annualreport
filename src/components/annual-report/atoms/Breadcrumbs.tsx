@@ -38,7 +38,7 @@ export default function Breadcrumbs() {
           return (
             <li
               key={breadcrumb}
-              className={`flex items-center gap-1.5 text-nowrap ${
+              className={`flex items-center gap-1.5 whitespace-nowrap ${
                 isCurrentPage ? 'overflow-hidden ' : ''
               }`}
             >
