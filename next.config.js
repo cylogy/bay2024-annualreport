@@ -154,13 +154,13 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/Goals-and-Strategies',
-        destination: '/Goals-and-Strategies/Achieve-Impact',
+        source: '/goals-and-strategies',
+        destination: '/goals-and-strategies/achieve-impact',
         permanent: true,
       },
       {
-        source: '/About',
-        destination: '/About/Environmental',
+        source: '/about',
+        destination: '/about/environmental',
         permanent: true,
       },
     ];
