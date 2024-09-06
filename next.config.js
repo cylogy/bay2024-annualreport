@@ -150,8 +150,22 @@ const nextConfig = {
       },
     ];
   },
-};
 
+  async redirects() {
+    return [
+      {
+        source: '/goals-and-strategies',
+        destination: '/goals-and-strategies/achieve-impact',
+        permanent: true,
+      },
+      {
+        source: '/about',
+        destination: '/about/environmental',
+        permanent: true,
+      },
+    ];
+  },
+};
 
 module.exports = () => {
   // Run the base config through any configured plugins
