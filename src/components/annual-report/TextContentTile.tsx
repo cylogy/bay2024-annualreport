@@ -39,8 +39,8 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
         </article>
       ) : props.params.variant === 'Stacked' ? (
         <article className="text-dark-blue tct" id={props.fields.AnchorID.value.trim()}>
-          <Text tag="p" className="mb-[12px] year h4" field={props.fields.Number} />
-          <Text tag="p" className="mb-[12px] h3" field={props.fields.Headline} />
+          <Text tag="span" className="mb-[12px] year h4" field={props.fields.Number} />
+          <Text tag="h3" className="mb-[12px]" field={props.fields.Headline} />
           <RichText className="p1 rich-text-container" field={props.fields.Description} />
         </article>
       ) : props.params.variant === 'Cards' ? (

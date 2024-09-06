@@ -43,7 +43,7 @@ export default function Breadcrumbs() {
               }`}
             >
               <span
-                className={isCurrentPage && Breadcrumbs.length > 1 ? '!font-bold' : 'text-gray-500'}
+                className={isCurrentPage && Breadcrumbs.length > 1 ? '!font-bold' : 'text-gray-600'}
                 aria-current={isCurrentPage ? 'page' : undefined}
               >
                 {breadcrumb}

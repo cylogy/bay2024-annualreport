@@ -235,7 +235,9 @@ export const Default = (props: HeaderProps): JSX.Element => {
                                   <a href={child?.cta?.jsonValue?.value?.href}>
                                     <NextImage
                                       className="rounded-full"
-                                      field={child?.image?.jsonValue}
+                                      field={{
+                                        value: { ...child?.image?.jsonValue.value, alt: '' },
+                                      }}
                                       fetchPriority="low"
                                       loading="lazy"
                                     />
