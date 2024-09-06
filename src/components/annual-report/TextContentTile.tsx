@@ -34,21 +34,21 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
             className="object-cover w-full absolute top-0 left-0 decoration"
             field={{ src: '/images/textContentTiles-bg.png', alt: '' }}
           />
-          <Text tag="p" className="mb-[10px] h4" field={props.fields.Headline} />
+          <Text tag="span" className="mb-[10px] h4" field={props.fields.Headline} />
           <RichText className="p2" field={props.fields.Description} />
         </article>
       ) : props.params.variant === 'Stacked' ? (
         <article className="text-dark-blue tct" id={props.fields.AnchorID.value.trim()}>
-          <Text tag="p" className="mb-[12px] year h4" field={props.fields.Number} />
-          <Text tag="p" className="mb-[12px] h3" field={props.fields.Headline} />
+          <Text tag="span" className="mb-[12px] year h4" field={props.fields.Number} />
+          <Text tag="h3" className="mb-[12px]" field={props.fields.Headline} />
           <RichText className="p1 rich-text-container" field={props.fields.Description} />
         </article>
       ) : props.params.variant === 'Cards' ? (
         props.fields.CTA.value.href === '' ? (
           <article className="text-dark-blue bg-white p-[40px] rounded-[20px] relative">
             <Text
-              tag="h4"
-              className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+              tag="span"
+              className="h4 pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
               field={props.fields.Headline}
             />
             <RichText className="p1" field={props.fields.Description} />
@@ -57,8 +57,8 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
           <div className="text-dark-blue bg-white p-[40px] rounded-[20px] relative boxShadowEffect">
             <Link field={props.fields.CTA} />
             <Text
-              tag="h4"
-              className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+              tag="span"
+              className="h4 pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
               field={props.fields.Headline}
             />
             <RichText className="p1" field={props.fields.Description} />
@@ -69,8 +69,8 @@ export const Default = withDatasourceCheck()<ContentTileItemProps>(
             className="text-dark-blue bg-white p-[40px] rounded-[20px] relative boxShadowEffect"
           >
             <Text
-              tag="h4"
-              className="pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
+              tag="span"
+              className="h4 pb-[20px] border-b-[2px] border-solid border-light-green mb-[30px]"
               field={props.fields.Headline}
             />
             <RichText className="p1" field={props.fields.Description} />

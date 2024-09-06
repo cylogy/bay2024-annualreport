@@ -55,7 +55,7 @@ export const Default = withDatasourceCheck()<CTAProps>((props: CTAProps): JSX.El
         ) : (
           <>
             <div>
-              <Text tag="h5" className="pb-2.5" field={props.fields.Headline} />
+              <Text tag="span" className="h5 pb-2.5" field={props.fields.Headline} />
               <Text tag="p" field={props.fields.Subheadline} />
             </div>
             <RightArrow />
