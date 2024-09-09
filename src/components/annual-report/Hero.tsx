@@ -119,7 +119,9 @@ export const Main = (props: HeroProps): JSX.Element => {
               video
             </button>
           )}
-          <Curve />
+          <div className="block relative w-full h-[150px]">
+            <Curve />
+          </div>
         </div>
         <Text
           field={Description}
@@ -149,7 +151,9 @@ export const Secondary = (props: HeroProps): JSX.Element => {
             <Text tag="h1" field={Headline} />
             <Text field={Description} tag="p" />
           </div>
-          <Curve />
+          <div className="block relative w-full h-[150px]">
+            <Curve />
+          </div>
         </div>
         {breadcrumb?.value && <Breadcrumbs />}
       </div>

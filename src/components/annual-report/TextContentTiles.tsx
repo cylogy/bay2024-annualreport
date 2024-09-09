@@ -60,12 +60,12 @@ export const Stacked = withDatasourceCheck()<TextContentTilesProps>(
             <section className="py-[60px] lg:py-[120px]">
               <Text
                 tag="h2"
-                className="text-dark-blue mb-[48px]"
+                className="text-dark-blue mb-12"
                 field={props.fields.Headline}
                 id={props.fields.AnchorID.value.trim()}
               />
-              <section className="grid gap-[40px]">
-                <div className="grid gap-[80px] w-full timeline relative">
+              <section className="grid gap-10">
+                <div className="grid gap-20 w-full timeline relative">
                   <Placeholder
                     name={`text-content-tiles`}
                     rendering={props.rendering}

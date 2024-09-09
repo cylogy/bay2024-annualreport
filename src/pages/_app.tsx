@@ -16,7 +16,7 @@ const newsreader = Newsreader({
 
 function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element {
   const { dictionary, ...rest } = pageProps;
-  const GA_id = process.env.NEXT_PUBLIC_GA_ID || '1VHTN8K5S9';
+  const GA_id = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
     <>
