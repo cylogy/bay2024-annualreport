@@ -23,7 +23,7 @@ export default function Curve({ isForm, isWhite }: CurveProps) {
     );
 
   return (
-    <svg viewBox="0 0 500 150" className="block w-full h-auto absolute">
+    <svg viewBox="0 0 500 150">
       <defs>
         <clipPath
           id="clipPath"

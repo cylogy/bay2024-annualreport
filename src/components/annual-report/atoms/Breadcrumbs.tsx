@@ -1,14 +1,13 @@
 import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 
 export default function Breadcrumbs() {
   const { asPath } = useRouter();
   const { sitecoreContext } = useSitecoreContext();
-  const [Breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
   const isPageEditing = sitecoreContext.pageEditing;
 
-  useEffect(() => {
+  const breadcrumbs = useMemo(() => {
     const nestedPath = asPath
       .split('?')[0]
       .split('/')
@@ -18,10 +17,10 @@ export default function Breadcrumbs() {
       path.split('#')[0].replace('and', '&').split('-').join(' ')
     );
 
-    setBreadcrumbs([...crumbs.filter((crumb) => crumb !== '')]);
+    return [...crumbs.filter((crumb) => crumb !== '')];
   }, [asPath]);
 
-  if (asPath === '/' || isPageEditing || Breadcrumbs.length === 0) return null;
+  if (asPath === '/' || isPageEditing || breadcrumbs.length === 0) return null;
 
   return (
     <nav
@@ -33,8 +32,8 @@ export default function Breadcrumbs() {
           <a href="/">Home</a>
           <span>/</span>
         </li>
-        {Breadcrumbs.map((breadcrumb, i) => {
-          const isCurrentPage = i === Breadcrumbs.length - 1;
+        {breadcrumbs.map((breadcrumb, i) => {
+          const isCurrentPage = i === breadcrumbs.length - 1;
           return (
             <li
               key={breadcrumb}
@@ -43,7 +42,7 @@ export default function Breadcrumbs() {
               }`}
             >
               <span
-                className={isCurrentPage && Breadcrumbs.length > 1 ? '!font-bold' : 'text-gray-600'}
+                className={isCurrentPage && breadcrumbs.length > 1 ? '!font-bold' : 'text-gray-600'}
                 aria-current={isCurrentPage ? 'page' : undefined}
               >
                 {breadcrumb}
