@@ -45,8 +45,8 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
             >
               <source
                 type="video/mp4"
-                src="https://sc-qa.baaqmd.gov/~/media/Project/Headless%20Microsites/Strategic%20Plan%20Files/StrategicPlanHero%20mp4"
-              ></source>
+                src="https://sc-dev-strategicplan.baaqmd.gov/~/media/project/Headless%20Microsites/AnnualReport2024/Header/StrategicPlanHero-mp4.mp4"
+              />
             </video>
           </div>
         )}
