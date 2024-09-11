@@ -31,14 +31,14 @@ export default function NextImage({ field, ...props }: NextImageProps) {
 
   return (
     <Image
-      {...props}
       src={src ?? ''}
       alt={value?.alt ?? ''}
       fill={!hasDimensions}
-      sizes="(min-width: 768px) 100vw, 70vw"
       height={hasDimensions ? Number(value?.height) : undefined}
       width={hasDimensions ? Number(value?.width) : undefined}
+      sizes="(min-width: 768px) 100vw, 40vw"
       quality={90}
+      {...props}
     />
   );
 }
