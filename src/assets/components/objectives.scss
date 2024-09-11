@@ -14,12 +14,18 @@
 
     .bg {
       background: linear-gradient(90deg,
-          #1a65af 36.88%,
+          #1a65af 50%,
           rgba(26, 101, 175, 0) 100%);
       width: 100%;
       height: 100%;
       position: absolute;
       z-index: 1;
+
+      @include respond-to(lg) {
+        background: linear-gradient(90deg,
+            #1a65af 36.88%,
+            rgba(26, 101, 175, 0) 100%);
+      }
     }
 
     img {
