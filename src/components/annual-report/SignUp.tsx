@@ -22,7 +22,7 @@ type SignUpProps = ComponentProps & {
     Image: ImageField;
     EmailLabel: Field<string>;
     EmailCTA: Field<string>;
-    MessageSuccesfull: Field<string>;
+    MessageSuccessful: Field<string>;
     MessageFail: Field<string>;
     MessageEmailMandatory: Field<string>;
     MessageInvalidEmail: Field<string>;
