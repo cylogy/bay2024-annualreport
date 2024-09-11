@@ -3,7 +3,7 @@ import { Field, ImageField, LayoutServiceData, LinkField } from '@sitecore-jss/s
 interface Fields {
   Headline: Field<string>;
   Description: Field<string>;
-  Video: Field<string>;
+  Video: LinkField;
   Image: ImageField;
   CTA: LinkField;
   AnchorID: Field<string>;

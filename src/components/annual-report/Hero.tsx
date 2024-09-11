@@ -29,8 +29,8 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
   };
 
   if (!fields) return <></>;
-  const { Description, Headline, Image, AnchorID } = fields;
-
+  const { Description, Headline, Image, AnchorID, Video } = fields;
+  console.log('TEST', Video.value?.href);
   return (
     <>
       <div className="hero" id={AnchorID.value}>
@@ -51,10 +51,7 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
               onEnded={handleEnded}
               ref={playerRef}
             >
-              <source
-                type="video/mp4"
-                src="https://sc-dev-strategicplan.baaqmd.gov/~/media/project/Headless%20Microsites/AnnualReport2024/Header/StrategicPlanHero-mp4.mp4"
-              />
+              <source type="video/mp4" src={Video.value?.href} />
             </video>
           </div>
         )}
