@@ -11,7 +11,7 @@ class BasicAuthMiddlewarePlugin implements MiddlewarePlugin {
    * @param req<NextRequest>
    * @returns Promise<NextResponse>
    */
-  async exec(req: NextRequest, res?: NextResponse): Promise<NextResponse> {
+  async exec(req: NextRequest): Promise<NextResponse> {
     const url = req.nextUrl;
     debug.common('basicauth middlewareurl:' + url.pathname);
     debug.common('basicauth:' + process.env.ENABLE_BASIC_AUTH);
