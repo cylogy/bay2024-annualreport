@@ -9,7 +9,7 @@ import NextImage from './atoms/NextImage';
 import useIsMobile from 'lib/customHooks/isMobile';
 
 export const Main = ({ fields }: HeroProps): JSX.Element => {
-  const isMobile = useIsMobile(1024, true);
+  const isMobile = useIsMobile(1023, true);
   const [Playing, setPlaying] = useState(true);
   const playerRef = useRef<HTMLVideoElement | null>(null);
   const {
