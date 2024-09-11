@@ -6,8 +6,10 @@ import { useRef, useState } from 'react';
 import { HeroProps } from 'src/types/Hero';
 import Breadcrumbs from './atoms/Breadcrumbs';
 import NextImage from './atoms/NextImage';
+import useIsMobile from 'lib/customHooks/isMobile';
 
 export const Main = ({ fields }: HeroProps): JSX.Element => {
+  const isMobile = useIsMobile(1023, true);
   const [Playing, setPlaying] = useState(true);
   const playerRef = useRef<HTMLVideoElement | null>(null);
   const {
@@ -27,14 +29,20 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
   };
 
   if (!fields) return <></>;
-  const { Description, Headline, Image, AnchorID } = fields;
-
+  const { Description, Headline, Image, AnchorID, Video } = fields;
+  console.log('TEST', Video.value?.href);
   return (
     <>
       <div className="hero" id={AnchorID.value}>
-        <NextImage className="hero__bg-image" field={Image} fetchPriority="high" priority />
-        {!pageEditing && (
-          <div className="hero__video-player w-full">
+        <NextImage
+          className="hero__bg-image"
+          field={Image}
+          fetchPriority="high"
+          sizes="(min-width: 768px) 100vw, 70vw"
+          priority
+        />
+        <div className="hero__video-player w-full">
+          {!pageEditing && !isMobile && (
             <video
               className="size-full absolute top-0 left-0 block"
               playsInline
@@ -43,13 +51,10 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
               onEnded={handleEnded}
               ref={playerRef}
             >
-              <source
-                type="video/mp4"
-                src="https://sc-dev-strategicplan.baaqmd.gov/~/media/project/Headless%20Microsites/AnnualReport2024/Header/StrategicPlanHero-mp4.mp4"
-              />
+              <source type="video/mp4" src={Video.value?.href} />
             </video>
-          </div>
-        )}
+          )}
+        </div>
         {!pageEditing && <div className="hero__background" />}
         <div className="hero__content space-y-6 flex flex-col items-center">
           <Text tag="h1" field={Headline} />
@@ -95,7 +100,13 @@ export const Secondary = (props: HeroProps): JSX.Element => {
     return (
       <div className="bg-soft-white">
         <div className="hero hero--secondary" id={AnchorID.value}>
-          <NextImage className="hero__bg-image" field={Image} fetchPriority="high" priority />
+          <NextImage
+            className="hero__bg-image"
+            field={Image}
+            fetchPriority="high"
+            sizes="(min-width: 768px) 100vw, 70vw"
+            priority
+          />
           <div className="hero__background" />
           <div className="hero__content space-y-6 flex flex-col items-center container">
             <Text tag="h1" field={Headline} />
