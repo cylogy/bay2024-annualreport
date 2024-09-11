@@ -42,6 +42,8 @@ class BasicAuthMiddlewarePlugin implements MiddlewarePlugin {
 
         if (user === process.env.BASIC_AUTH_USERNAME && pwd === process.env.BASIC_AUTH_PASSWORD) {
           debug.common('passed authentication test');
+          // debug.common('current response cache control:' + res?.headers.get('cache-control'));
+          // res?.headers.set('cache-control', 'no-store');
           return NextResponse.next();
         }
       }

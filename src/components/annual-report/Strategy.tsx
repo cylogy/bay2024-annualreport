@@ -55,7 +55,7 @@ export const Default = (props: StrategyProps): JSX.Element => {
               <JssRichText field={Description} className="richtext rich-text-container" />
             </div>
             <div>
-              <Text field={Headline} tag="span" className="h4 block pb-3" />
+              <Text field={Headline} tag="span" className="h4 pb-3" />
               <JssRichText field={Intro} className="richtext" />
             </div>
           </div>
