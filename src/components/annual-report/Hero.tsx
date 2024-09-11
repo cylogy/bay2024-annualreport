@@ -9,7 +9,7 @@ import NextImage from './atoms/NextImage';
 import useIsMobile from 'lib/customHooks/isMobile';
 
 export const Main = ({ fields }: HeroProps): JSX.Element => {
-  const isMobile = useIsMobile(1024, true);
+  const isMobile = useIsMobile(1023, true);
   const [Playing, setPlaying] = useState(true);
   const playerRef = useRef<HTMLVideoElement | null>(null);
   const {
@@ -29,8 +29,8 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
   };
 
   if (!fields) return <></>;
-  const { Description, Headline, Image, AnchorID } = fields;
-
+  const { Description, Headline, Image, AnchorID, Video } = fields;
+  console.log('TEST', Video.value?.href);
   return (
     <>
       <div className="hero" id={AnchorID.value}>
@@ -41,8 +41,8 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
           sizes="(min-width: 768px) 100vw, 70vw"
           priority
         />
-        {!pageEditing && !isMobile && (
-          <div className="hero__video-player w-full">
+        <div className="hero__video-player w-full">
+          {!pageEditing && !isMobile && (
             <video
               className="size-full absolute top-0 left-0 block"
               playsInline
@@ -51,13 +51,10 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
               onEnded={handleEnded}
               ref={playerRef}
             >
-              <source
-                type="video/mp4"
-                src="https://sc-dev-strategicplan.baaqmd.gov/~/media/project/Headless%20Microsites/AnnualReport2024/Header/StrategicPlanHero-mp4.mp4"
-              />
+              <source type="video/mp4" src={Video.value?.href} />
             </video>
-          </div>
-        )}
+          )}
+        </div>
         {!pageEditing && <div className="hero__background" />}
         <div className="hero__content space-y-6 flex flex-col items-center">
           <Text tag="h1" field={Headline} />
