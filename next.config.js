@@ -122,6 +122,10 @@ const nextConfig = {
         hostname: 'sc-dev-baaqmd.oshyn.com',
         port: '',
       },
+      {
+        hostname: 'qa-cd-baaqmd.cylogy.com',
+        port: '',
+      },
     ],
   },
 

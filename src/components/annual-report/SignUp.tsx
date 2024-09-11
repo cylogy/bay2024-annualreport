@@ -130,7 +130,7 @@ export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): 
                         <Text field={EmailCTA} />
                       </button>
                     </div>
-                    <div className="min-h-4">{FormMessage}</div>
+                    <div className="min-h-4 font-bold">{FormMessage}</div>
                   </form>
                 </div>
                 <NextImage
