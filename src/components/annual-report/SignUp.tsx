@@ -100,7 +100,7 @@ export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): 
                 <div className="space-y-8 relative top-0 lg:top-6">
                   <div className="space-y-3">
                     <Text field={Headline} tag="h2" />
-                    <Text field={Description} tag="span" className="h6 block max-w-[35.5rem]" />
+                    <Text field={Description} tag="span" className="h6 max-w-[35.5rem]" />
                   </div>
                   <form className="space-y-3" onSubmit={submitHandler} data-sending="false">
                     <Text field={EmailLabel} tag="label" htmlFor="email" />

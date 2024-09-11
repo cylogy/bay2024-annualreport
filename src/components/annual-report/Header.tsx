@@ -298,7 +298,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
 
             {!pageEditing && (
               <div id="hamburguerContainer" onClick={() => setOpenMenu(!openMenu)}>
-                <label htmlFor="hamburgerInput" hidden></label>
+                <label htmlFor="hamburgerInput" hidden aria-label="hamburgerInput"></label>
                 <input className="checkbox" type="checkbox" name="" id="hamburgerInput" />
                 <div className="menu-mobile-wrapper">
                   <span className="block">Menu</span>
