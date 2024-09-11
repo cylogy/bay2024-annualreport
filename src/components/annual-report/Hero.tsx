@@ -6,8 +6,10 @@ import { useRef, useState } from 'react';
 import { HeroProps } from 'src/types/Hero';
 import Breadcrumbs from './atoms/Breadcrumbs';
 import NextImage from './atoms/NextImage';
+import useIsMobile from 'lib/customHooks/isMobile';
 
 export const Main = ({ fields }: HeroProps): JSX.Element => {
+  const isMobile = useIsMobile(1024, true);
   const [Playing, setPlaying] = useState(true);
   const playerRef = useRef<HTMLVideoElement | null>(null);
   const {
@@ -32,8 +34,14 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
   return (
     <>
       <div className="hero" id={AnchorID.value}>
-        <NextImage className="hero__bg-image" field={Image} fetchPriority="high" priority />
-        {!pageEditing && (
+        <NextImage
+          className="hero__bg-image"
+          field={Image}
+          fetchPriority="high"
+          sizes="(min-width: 768px) 100vw, 70vw"
+          priority
+        />
+        {!pageEditing && !isMobile && (
           <div className="hero__video-player w-full">
             <video
               className="size-full absolute top-0 left-0 block"
@@ -95,7 +103,13 @@ export const Secondary = (props: HeroProps): JSX.Element => {
     return (
       <div className="bg-soft-white">
         <div className="hero hero--secondary" id={AnchorID.value}>
-          <NextImage className="hero__bg-image" field={Image} fetchPriority="high" priority />
+          <NextImage
+            className="hero__bg-image"
+            field={Image}
+            fetchPriority="high"
+            sizes="(min-width: 768px) 100vw, 70vw"
+            priority
+          />
           <div className="hero__background" />
           <div className="hero__content space-y-6 flex flex-col items-center container">
             <Text tag="h1" field={Headline} />
