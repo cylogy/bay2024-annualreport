@@ -1,5 +1,5 @@
 import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Fields {
   Footer: Field<string>;
@@ -11,14 +11,11 @@ export type FooterProps = {
 };
 
 export const Default = ({ fields }: FooterProps): JSX.Element => {
-  const customFooter = fields.Footer.value?.replace('/http', 'http');
-  const [Footer] = useState(customFooter);
-  console.log('Footer:', fields.Footer.value);
+  const [Footer, setFooter] = useState(fields.Footer.value);
 
-  /* useEffect(() => {
+  useEffect(() => {
     const customFooter = (html: string) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
-
       const spansToRemove = doc.querySelectorAll(
         '.icon-inline.icon-file-pdf-o, .document-meta-data'
       );
@@ -27,8 +24,8 @@ export const Default = ({ fields }: FooterProps): JSX.Element => {
       return doc.body.innerHTML.toString();
     };
 
-    setFooter(customFooter(fields.Footer.value)?.replace('href="/http', 'href="http'));
-  }, [fields]); */
+    setFooter(customFooter(fields.Footer.value)?.replace('/http', 'http'));
+  }, [fields]);
 
   return (
     <div className="container">
