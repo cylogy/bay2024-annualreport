@@ -16,7 +16,6 @@ export const Default = ({ fields }: FooterProps): JSX.Element => {
   useEffect(() => {
     const customFooter = (html: string) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
-
       const spansToRemove = doc.querySelectorAll(
         '.icon-inline.icon-file-pdf-o, .document-meta-data'
       );
@@ -25,7 +24,7 @@ export const Default = ({ fields }: FooterProps): JSX.Element => {
       return doc.body.innerHTML.toString();
     };
 
-    setFooter(customFooter(fields.Footer.value)?.replace('href="/https', 'href="https'));
+    setFooter(customFooter(fields.Footer.value)?.replace('/http', 'http'));
   }, [fields]);
 
   return (
