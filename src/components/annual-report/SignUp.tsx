@@ -34,7 +34,6 @@ export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): 
   const [FormMessage, setFormMessage] = useState('');
   const [IsSoftWhite, setIsSoftWhite] = useState(false);
   const { asPath } = useRouter();
-  console.log('sign up ', props);
   useEffect(() => {
     const urls = ['about/environmental', 'contact-us'];
     const isGray = urls.some((item) => asPath.includes(item));
