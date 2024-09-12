@@ -12,6 +12,7 @@ export type FooterProps = {
 
 export const Default = ({ fields }: FooterProps): JSX.Element => {
   const [Footer] = useState(fields.Footer.value);
+  console.log('Footer:', fields.Footer.value);
 
   /* useEffect(() => {
     const customFooter = (html: string) => {
