@@ -4,7 +4,9 @@ const MainGlossary = (glossary: string) =>
   gql`
     query {
       mainGlossary: item(path: "${glossary}", language: "EN") {
-        children {
+        children (
+            first: 27
+          ){
           results {
             hasChildren
             id
