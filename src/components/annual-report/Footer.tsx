@@ -1,5 +1,5 @@
 import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface Fields {
   Footer: Field<string>;
@@ -11,9 +11,9 @@ export type FooterProps = {
 };
 
 export const Default = ({ fields }: FooterProps): JSX.Element => {
-  const [Footer, setFooter] = useState(fields.Footer.value);
+  const [Footer] = useState(fields.Footer.value);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const customFooter = (html: string) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
 
@@ -25,8 +25,8 @@ export const Default = ({ fields }: FooterProps): JSX.Element => {
       return doc.body.innerHTML.toString();
     };
 
-    setFooter(customFooter(fields.Footer.value)?.replace('href="/https', 'href="https'));
-  }, [fields]);
+    setFooter(customFooter(fields.Footer.value)?.replace('href="/http', 'href="http'));
+  }, [fields]); */
 
   return (
     <div className="container">
