@@ -146,6 +146,10 @@ const nextConfig = {
         source: '/-/:path*',
         destination: `${jssConfig.sitecoreApiHost}/-/:path*`,
       },
+      {
+        source: '/~/media/:path*',
+        destination: `${jssConfig.sitecoreApiHost}/~/media/:path*`,
+      },
       // healthz check
       {
         source: '/healthz',
