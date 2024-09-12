@@ -16,7 +16,7 @@ export async function getCaptchaToken() {
   });
 }
 
-export async function submitSignUpFormCaptcha(token: string | null, formData: FormData) {
+export async function submitSignUpFormCaptcha(token: string | null) {
   if (!token) {
     return {
       success: false,
@@ -34,21 +34,16 @@ export async function submitSignUpFormCaptcha(token: string | null, formData: Fo
   if (!captchaData) {
     return {
       success: false,
-      message: 'Captcha Failed',
     };
   }
 
   if (!captchaData.success || captchaData.score < 0.5) {
     return {
       success: false,
-      message: 'Captcha Failed',
-      errors: !captchaData.success ? captchaData['error-codes'] : undefined,
     };
   }
 
   return {
     success: true,
-    message: 'Thank you! Your information has been received.',
-    formData,
   };
 }
