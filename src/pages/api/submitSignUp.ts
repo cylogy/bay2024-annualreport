@@ -16,8 +16,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) 
       const url = `${host}/api/admin/SubscriptionCenter/ToggleGroupsAndList?listId=${id}&email=${email}`;
 
       const subRes = await fetch(url);
-      console.log({ subRes });
-
       if (!subRes.ok) res.status(500).json({ error: 'Failed to subscribe' });
       res.status(200).json({ success: true });
     } else {

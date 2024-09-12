@@ -29,70 +29,75 @@ type SignUpProps = ComponentProps & {
   };
 };
 
-export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): JSX.Element => {
-  const onCaptchaLoadRef = useRef(false);
-  const [FormMessage, setFormMessage] = useState('');
-  const [IsSoftWhite, setIsSoftWhite] = useState(false);
-  const { asPath } = useRouter();
-  console.log('sign up ', props);
-  useEffect(() => {
-    const urls = ['about/environmental', 'contact-us'];
-    const isGray = urls.some((item) => asPath.includes(item));
-    isGray && setIsSoftWhite(true);
-  }, [asPath]);
-
-  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    setFormMessage('');
-    e.preventDefault();
-    const form = document.querySelector<HTMLFormElement>('form');
-    const btn = form?.querySelector<HTMLButtonElement>('button');
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get('email') as string;
-    const isValid = isEmailValid(email);
-
-    if (!btn || !form) return;
-    form.dataset.sending = 'true';
-    btn.disabled = true;
-
-    if (!isValid) {
-      setFormMessage('Email address is mandatory.');
-      btn.disabled = false;
-      form.dataset.sending = 'false';
-      return;
-    }
-
-    const token = await getCaptchaToken();
-    const captcha = await submitSignUpFormCaptcha(token, formData);
-
-    if (captcha.success) {
-      const sub = await submitSignUp(email);
-      setFormMessage(sub.success ? captcha.message : sub.error);
-      form.reset();
-    } else {
-      setFormMessage(captcha.message);
-    }
-    form.dataset.sending = 'false';
-    btn.disabled = false;
-  };
-
-  const reCaptchaOnFocus = async () => {
-    if (onCaptchaLoadRef.current) return;
-    const head = document.getElementsByTagName('head')[0];
-    const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`;
-    script.defer = true;
-    script.async = true;
-    head.appendChild(script);
-    onCaptchaLoadRef.current = true;
-  };
-
-  if (props.fields) {
-    const {
-      fields: { Description, EmailCTA, EmailLabel, Headline },
-    } = props;
+export const Default = withDatasourceCheck()<SignUpProps>(
+  ({ fields }: SignUpProps): JSX.Element => {
+    const onCaptchaLoadRef = useRef(false);
+    const [FormMessage, setFormMessage] = useState('');
+    const [IsSoftWhite, setIsSoftWhite] = useState(false);
+    const { asPath } = useRouter();
     const {
       sitecoreContext: { pageEditing },
     } = useSitecoreContext();
+
+    useEffect(() => {
+      const urls = ['about/environmental', 'contact-us'];
+      const isGray = urls.some((item) => asPath.includes(item));
+      isGray && setIsSoftWhite(true);
+    }, [asPath]);
+
+    const GetErrorMessage = (code: string) =>
+      fields[`Message${code}` as keyof Omit<typeof fields, 'Image'>]?.value ?? 'Error';
+
+    const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
+      setFormMessage('');
+      e.preventDefault();
+      const form = document.querySelector<HTMLFormElement>('form');
+      const btn = form?.querySelector<HTMLButtonElement>('button');
+      const email = new FormData(e.currentTarget).get('email') as string;
+
+      if (email === '') {
+        setFormMessage(GetErrorMessage('EmailMandatory'));
+        return;
+      }
+      const isValid = isEmailValid(email);
+      if (!btn || !form) return;
+      form.dataset.sending = 'true';
+      btn.disabled = true;
+
+      if (!isValid) {
+        setFormMessage(GetErrorMessage('InvalidEmail'));
+        btn.disabled = false;
+        form.dataset.sending = 'false';
+        return;
+      }
+
+      const token = await getCaptchaToken();
+      const captcha = await submitSignUpFormCaptcha(token);
+
+      if (captcha.success) {
+        const sub = await submitSignUp(email);
+        setFormMessage(GetErrorMessage(sub.success ? 'Successful' : 'Fail'));
+        form.reset();
+      } else {
+        setFormMessage(GetErrorMessage('Fail'));
+      }
+      form.dataset.sending = 'false';
+      btn.disabled = false;
+    };
+
+    const reCaptchaOnFocus = async () => {
+      if (onCaptchaLoadRef.current) return;
+      const head = document.getElementsByTagName('head')[0];
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA_SITE_KEY}`;
+      script.defer = true;
+      script.async = true;
+      head.appendChild(script);
+      onCaptchaLoadRef.current = true;
+    };
+
+    if (!fields) return <></>;
+    const { Description, EmailCTA, EmailLabel, Headline } = fields;
 
     return (
       <>
@@ -138,7 +143,7 @@ export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): 
                   </form>
                 </div>
                 <NextImage
-                  field={props.fields.Image}
+                  field={fields.Image}
                   fetchPriority="low"
                   loading="lazy"
                   className="form__image"
@@ -161,5 +166,4 @@ export const Default = withDatasourceCheck()<SignUpProps>((props: SignUpProps): 
       </>
     );
   }
-  return <></>;
-});
+);
