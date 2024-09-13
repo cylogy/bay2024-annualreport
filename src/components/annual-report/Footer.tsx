@@ -1,4 +1,4 @@
-import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
+import { Field, RichText, useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 import { useEffect, useState } from 'react';
 
 interface Fields {
@@ -12,12 +12,16 @@ export type FooterProps = {
 
 export const Default = ({ fields }: FooterProps): JSX.Element => {
   const [Footer, setFooter] = useState(fields.Footer.value);
+  const {
+    sitecoreContext: { pageEditing },
+  } = useSitecoreContext();
 
   useEffect(() => {
+    if (pageEditing) return;
     const customFooter = (html: string) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const spansToRemove = doc.querySelectorAll(
-        '.icon-inline.icon-file-pdf-o, .document-meta-data'
+        '.icon-inline, .icon-file-o, .icon-file-pdf-o, .document-meta-data'
       );
       spansToRemove.forEach((span) => span.remove());
 
@@ -25,12 +29,16 @@ export const Default = ({ fields }: FooterProps): JSX.Element => {
     };
 
     setFooter(customFooter(fields.Footer.value)?.replace('/http', 'http'));
-  }, [fields]);
+  }, [fields, pageEditing]);
 
   return (
     <div className="container">
       {fields ? (
-        <div dangerouslySetInnerHTML={{ __html: Footer }} />
+        pageEditing ? (
+          <RichText field={fields.Footer} />
+        ) : (
+          <div dangerouslySetInnerHTML={{ __html: Footer }} />
+        )
       ) : (
         <span className="is-empty-hint">Rich text</span>
       )}
