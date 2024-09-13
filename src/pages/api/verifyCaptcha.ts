@@ -19,7 +19,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) 
 
       if (!googleRes.ok) res.status(500).json({ error: 'Failed to verify captcha' });
       const captchaData: CaptchaData = await googleRes.json();
-
       res.status(200).json({ data: captchaData });
     } else {
       res.status(500).json({ error: 'Invalid request method' });
