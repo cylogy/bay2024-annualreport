@@ -1,76 +1,27 @@
 import Head from 'next/head';
-import {
-  GraphQLErrorPagesService,
-  SitecoreContext,
-  ErrorPages,
-} from '@sitecore-jss/sitecore-jss-nextjs';
-import { SitecorePageProps } from 'lib/page-props';
-import Layout from 'src/Layout';
-import { componentBuilder } from 'temp/componentBuilder';
-import { GetStaticProps } from 'next';
-import config from 'temp/config';
-import { siteResolver } from 'lib/site-resolver';
-import clientFactory from 'lib/graphql-client-factory';
+import Header from './500/Header';
+import Hero from './500/Hero';
+import Footer from './500/Footer';
 
-/**
- * Rendered in case if we have 500 error
- */
 const ServerError = (): JSX.Element => (
   <>
     <Head>
-      <title>500: Server Error</title>
+      <title>500: That's an error</title>
     </Head>
-    <div style={{ padding: 10 }}>
-      <h1>500 Internal Server Error</h1>
-      <p>There is a problem with the resource you are looking for, and it cannot be displayed.</p>
-      <a href="/">Go to the Home page</a>
+    <Header />
+    <Hero />
+    <div className="container my-28 text-dark-blue">
+      <div className="max-w-[50rem] space-y-4">
+        <h2>500. That's an error.</h2>
+        <p>
+          The server encountered an error and could not complete your request. If the problem
+          persists, please report your problem and mention this error message and the query that
+          caused it. That's all we know.
+        </p>
+      </div>
     </div>
+    <Footer />
   </>
 );
 
-const Custom500 = (props: SitecorePageProps): JSX.Element => {
-  if (!(props && props.layoutData)) {
-    return <ServerError />;
-  }
-
-  return (
-    <SitecoreContext
-      componentFactory={componentBuilder.getComponentFactory()}
-      layoutData={props.layoutData}
-    >
-      <Layout layoutData={props.layoutData} headLinks={props.headLinks} />
-    </SitecoreContext>
-  );
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const site = siteResolver.getByName(config.sitecoreSiteName);
-  const errorPagesService = new GraphQLErrorPagesService({
-    clientFactory,
-    siteName: site.name,
-    language: context.locale || context.defaultLocale || config.defaultLanguage,
-    retries:
-      (process.env.GRAPH_QL_SERVICE_RETRIES &&
-        parseInt(process.env.GRAPH_QL_SERVICE_RETRIES, 10)) ||
-      0,
-  });
-  let resultErrorPages: ErrorPages | null = null;
-
-  if (!process.env.DISABLE_SSG_FETCH) {
-    try {
-      resultErrorPages = await errorPagesService.fetchErrorPages();
-    } catch (error) {
-      console.log('Error occurred while fetching error pages');
-      console.log(error);
-    }
-  }
-
-  return {
-    props: {
-      headLinks: [],
-      layoutData: resultErrorPages?.serverErrorPage?.rendered || null,
-    },
-  };
-};
-
-export default Custom500;
+export default ServerError;
