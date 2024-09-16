@@ -24,9 +24,6 @@ export default function Footer() {
                 </p>
                 <p className="phone">415-749-5000</p>
               </div>
-              <div></div>
-              <div></div>
-              <div></div>
             </nav>
             <section className="copy">
               <p>© Copyright 2024 Bay Area Air Quality Management District</p>
