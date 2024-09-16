@@ -9,10 +9,10 @@
     svg {
       position: relative;
       z-index: 2;
-      max-width: 3.75rem;
+      flex: 1;
 
-      @include respond-to(md) {
-        max-width: fit-content;
+      @include respond-to(xl) {
+        flex: 0.6;
       }
     }
 
@@ -34,9 +34,13 @@
 
     img {
       max-height: 21.0625rem;
-      width: 100%;
+      flex: 3;
       z-index: 0;
       object-fit: cover;
+
+      @include respond-to(lg) {
+        flex: 4;
+      }
     }
   }
 
