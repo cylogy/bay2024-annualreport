@@ -131,6 +131,7 @@ const nextConfig = {
         port: '',
       },
     ],
+    deviceSizes: [828, 1200],
   },
 
   async rewrites() {
