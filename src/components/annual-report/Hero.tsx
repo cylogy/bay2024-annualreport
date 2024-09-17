@@ -7,6 +7,7 @@ import { HeroProps } from 'src/types/Hero';
 import Breadcrumbs from './atoms/Breadcrumbs';
 import NextImage from './atoms/NextImage';
 import useIsMobile from 'lib/customHooks/isMobile';
+import DownloadIcon from 'assets/svg/Download';
 
 export const Main = ({ fields }: HeroProps): JSX.Element => {
   const isMobile = useIsMobile(1023, true);
@@ -139,7 +140,10 @@ export const Download = (props: HeroProps): JSX.Element => {
           <div className="hero__content space-y-3 lg:space-y-6 flex flex-col items-center h-fit">
             <Text tag="h3" field={Headline} />
             <Text field={Description} tag="p" />
-            <Link field={CTA} className="btn" />
+            <Link field={CTA} className="btn">
+              <DownloadIcon className="fill-dark-blue mr-2 flex-shrink-0" />
+              {CTA.value.text}
+            </Link>
           </div>
         </div>
       </div>
