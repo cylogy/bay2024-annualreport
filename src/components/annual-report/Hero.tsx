@@ -51,7 +51,8 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
               onEnded={handleEnded}
               ref={playerRef}
             >
-              <source type="video/mp4" src={Video.value?.href} />
+              {/* <source type="video/mp4" src={Video.value?.href} /> */}
+              <source type="video/mp4" src="/images/StrategicPlanHero.mp4" />
             </video>
           )}
         </div>
