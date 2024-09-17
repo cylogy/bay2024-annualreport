@@ -31,6 +31,7 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
 
   if (!fields) return <></>;
   const { Description, Headline, Image, AnchorID, Video } = fields;
+  console.log(Image)
   return (
     <>
       <div className="hero" id={AnchorID.value}>
@@ -38,7 +39,7 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
           className="hero__bg-image"
           field={Image}
           fetchPriority="high"
-          sizes="(min-width: 768px) 100vw, 70vw"
+          sizes="50vw"
           priority
         />
         <div className="hero__video-player w-full">
@@ -104,7 +105,7 @@ export const Secondary = (props: HeroProps): JSX.Element => {
             className="hero__bg-image"
             field={Image}
             fetchPriority="high"
-            sizes="(min-width: 768px) 100vw, 70vw"
+            sizes="(min-width: 768px) 60vw, 70vw"
             priority
           />
           <div className="hero__background" />
