@@ -30,7 +30,7 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
   };
 
   if (!fields) return <></>;
-  const { Description, Headline, Image, AnchorID, Video } = fields;
+  const { Description, Headline, Image, AnchorID } = fields;
   return (
     <>
       <div className="hero" id={AnchorID.value}>
