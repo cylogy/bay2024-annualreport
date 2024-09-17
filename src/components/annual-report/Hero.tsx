@@ -23,12 +23,6 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
     setPlaying((v) => !v);
   };
 
-  const handleEnded = () => {
-    if (!playerRef.current) return;
-    playerRef.current.currentTime = 11;
-    playerRef.current.play();
-  };
-
   if (!fields) return <></>;
   const { Description, Headline, Image, AnchorID } = fields;
   return (
@@ -48,10 +42,9 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
               playsInline
               autoPlay
               muted
-              onEnded={handleEnded}
+              loop
               ref={playerRef}
             >
-              {/* <source type="video/mp4" src={Video.value?.href} /> */}
               <source type="video/mp4" src="/images/StrategicPlanHero.mp4" />
             </video>
           )}
