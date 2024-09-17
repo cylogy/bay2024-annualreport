@@ -36,7 +36,7 @@ export default function NextImage({ field, ...props }: NextImageProps) {
       fill={!hasDimensions}
       height={hasDimensions ? Number(value?.height) : undefined}
       width={hasDimensions ? Number(value?.width) : undefined}
-      sizes="(min-width: 1440px) 40vw, (min-width: 1024px) 50vw, (min-width: 768px) 33vw, 100vw"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       {...props}
     />
   );
