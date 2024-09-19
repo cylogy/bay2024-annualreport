@@ -240,7 +240,6 @@ export const Default = (props: HeaderProps): JSX.Element => {
                                       }}
                                       fetchPriority="low"
                                       loading="lazy"
-                                      unoptimized
                                     />
                                     <div>
                                       <p className="menu-title">{child?.name}</p>
