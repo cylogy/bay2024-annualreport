@@ -132,7 +132,6 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   className="object-cover max-w-[200px]"
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
-                  unoptimized
                 />
               </Link>
               <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
@@ -140,7 +139,6 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   field={props.fields.LogoDesktop}
                   fetchPriority={mobile ? 'low' : 'high'}
                   priority={!mobile}
-                  unoptimized
                 />
               </Link>
             </section>
