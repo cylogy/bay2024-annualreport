@@ -27,6 +27,9 @@ const GlossaryChild = (glossaryChild: string, hasNext: boolean, endCursor: strin
           }
           results {
             name
+            anchorId: field(name: "AnchorID") {
+              jsonValue
+            }
             term: field(name: "term") {
               jsonValue
             }
@@ -67,6 +70,11 @@ type GlossaryItemQueryResult = {
 };
 type ItemResult = {
   name: string;
+  anchorId: {
+    jsonValue: {
+      value?: string;
+    };
+  };
   term: {
     jsonValue: {
       value?: string;
