@@ -148,8 +148,13 @@ table {
     font-weight: 700;
   }
 
-  > p+p {
+  >p+p {
     padding-top: 1.25rem;
+  }
+
+  a {
+    text-decoration: underline;
+    font-weight: 700;
   }
 }
 
