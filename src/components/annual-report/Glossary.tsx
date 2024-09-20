@@ -33,7 +33,11 @@ export const Default = (props: GlossaryProps): JSX.Element => {
                   {item.children.results.map((term) => {
                     if (!term) return;
                     return (
-                      <Accordion.Item Name={term.name} key={term.name}>
+                      <Accordion.Item
+                        Name={term.name}
+                        key={term.name}
+                        Id={term.anchorId.jsonValue.value}
+                      >
                         <RichText
                           field={term.description.jsonValue}
                           className="richtext text-dark-blue p1 rich-text-container"
