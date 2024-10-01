@@ -52,7 +52,7 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
         {!pageEditing && <div className="hero__background" />}
         <div className="hero__content space-y-6 flex flex-col items-center">
           <Text tag="h1" field={Headline} />
-          <Text field={Description} className="hidden lg:block" tag="p" />
+          {/* <Text field={Description} className="hidden lg:block" tag="p" /> */}
         </div>
         {!pageEditing && (
           <button onClick={toggleVideo} className="p3">
@@ -74,11 +74,13 @@ export const Main = ({ fields }: HeroProps): JSX.Element => {
           <Curve />
         </div>
       </div>
-      <Text
-        field={Description}
-        className="block lg:hidden font-medium container text-center py-10 pb-0 text-dark-blue"
-        tag="p"
-      />
+      <div className="max-w-[58.2rem] mx-auto">
+        <Text
+          field={Description}
+          className="h6 text-center  py-10 pb-0 text-dark-blue container"
+          tag="span"
+        />
+      </div>
     </>
   );
 };
