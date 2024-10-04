@@ -1,10 +1,10 @@
 import { Field, ImageField, Placeholder, Text } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
+import NativeImage from 'next/image';
+import Intersect from 'public/images/Intersect.png';
+import { useRef } from 'react';
 import Accordion from './atoms/Accordion';
 import NextImage from './atoms/NextImage';
-import Intersect from 'public/images/Intersect.png';
-import NativeImage from 'next/image';
-import { useRef } from 'react';
 
 interface Fields {
   Name: Field<string>;
@@ -19,7 +19,7 @@ type ObjectiveProps = ComponentProps & {
 };
 
 export const Default = (props: ObjectiveProps): JSX.Element => {
-  const bulletRef = useRef<HTMLSpanElement>(null);
+  const bulletRef = useRef<HTMLAnchorElement>(null);
   if (props.fields) {
     const {
       fields: { Description, Image, Name, AnchorID },
@@ -34,13 +34,13 @@ export const Default = (props: ObjectiveProps): JSX.Element => {
         .replace(`height="${Image?.value?.height}"`, 'height="20%"'),
     };
     return params?.variant === 'ObjectiveTiles' ? (
-      <span className="bullet-number" ref={bulletRef}>
+      <a href={`#${AnchorID.value.trim()}`} className="bullet-number" ref={bulletRef}>
         <span className="block h1">{bulletRef?.current?.dataset.count}</span>
         <Text tag="span" className="h6" field={Name} />
         <div className="absolute bottom-0 w-full">
           <NativeImage fetchPriority="low" src={Intersect} alt="" className="w-full" />
         </div>
-      </span>
+      </a>
     ) : (
       <div className="objectives" id={AnchorID.value.trim()}>
         <div className="objectives__group-image">
