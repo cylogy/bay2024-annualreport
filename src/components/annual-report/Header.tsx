@@ -39,8 +39,6 @@ export const Default = (props: HeaderProps): JSX.Element => {
   const [openMenu, setOpenMenu] = useState(false);
   const mobile = useIsMobile(1023);
   const navRef = useRef<HTMLUListElement>(null);
-  console.log(props);
-  console.log(props.fields.LogoDescription);
   const handleMenuItemClick = (menuItem: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!e.currentTarget.href.includes('#')) return;
     e.preventDefault();
@@ -144,9 +142,9 @@ export const Default = (props: HeaderProps): JSX.Element => {
                 ></Text>
               </Link>
               <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
-                <div className="flex md:flex-row items-center">
+                <div className="flex flex-row items-center">
                   <NextImage
-                    className="shrink-0 pr-5 md:border-r-[1px] md:border-white md:border-solid"
+                    className="shrink-0 pr-5 md:border-r-[1px] border-white border-solid"
                     field={props.fields.LogoDesktop}
                     fetchPriority={mobile ? 'low' : 'high'}
                     priority={!mobile}
