@@ -124,14 +124,14 @@ export const Default = (props: HeaderProps): JSX.Element => {
             aria-labelledby="mainmenulabel"
             className="!flex justify-between items-center py-[15px]"
           >
-            <section className="">
+            <section className="flex-none">
               <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
                 Main Menu
               </h2>
               <Link field={{ href: '/', title: 'Logo Mobile' }} className="block lg:hidden">
                 <NextImage
                   field={props.fields.LogoMobile}
-                  className="object-cover max-w-[200px]"
+                  className="object-cover max-w-[200px] max-h-[50px]"
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
