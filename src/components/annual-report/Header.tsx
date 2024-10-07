@@ -259,7 +259,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                                       loading="lazy"
                                     />
                                     <div>
-                                      <p className="menu-title">{child?.name}</p>
+                                      <p className="menu-title">{child?.title?.jsonValue?.value}</p>
                                       <p className="menu-description">
                                         {child?.description?.jsonValue?.value}
                                       </p>
