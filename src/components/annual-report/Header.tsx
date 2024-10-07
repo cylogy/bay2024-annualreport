@@ -151,7 +151,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   />
                   <Text
                     tag="p"
-                    className="pl-5 h6 text-white font-bold inline-block flex-none"
+                    className="pl-5 h6 text-white !font-bold inline-block flex-none"
                     field={props.fields.LogoDescription}
                   ></Text>
                 </div>
