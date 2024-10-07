@@ -131,7 +131,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
               <Link field={{ href: '/', title: 'Logo Mobile' }} className="block lg:hidden">
                 <NextImage
                   field={props.fields.LogoMobile}
-                  className="object-cover max-w-[200px]"
+                  className="object-cover max-w-[120px]"
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
@@ -151,7 +151,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   />
                   <Text
                     tag="p"
-                    className="pl-5 h6 text-white font-bold inline-block flex-none"
+                    className="pl-5 h6 text-white !font-bold inline-block flex-none"
                     field={props.fields.LogoDescription}
                   ></Text>
                 </div>
@@ -257,7 +257,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                                       loading="lazy"
                                     />
                                     <div>
-                                      <p className="menu-title">{child?.title?.jsonValue?.value}</p>
+                                      <p className="menu-title">{child?.title?.jsonValue.value}</p>
                                       <p className="menu-description">
                                         {child?.description?.jsonValue?.value}
                                       </p>
