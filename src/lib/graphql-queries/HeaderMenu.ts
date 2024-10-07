@@ -30,6 +30,9 @@ const MenuChild = (menuChild: string, hasNext: boolean, endCursor: string) =>
           }
           results {
             name
+            title: field(name: "title") {
+              jsonValue
+            }
             cta: field(name: "cta") {
               jsonValue
             }
@@ -86,6 +89,11 @@ type ItemQueryResult = {
 };
 type ItemResult = {
   name: string;
+  title: {
+    jsonValue: {
+      value?: string;
+    };
+  };
   cta: {
     jsonValue: {
       value?: {

@@ -6,6 +6,7 @@ import {
   LinkField,
   useSitecoreContext,
   useComponentProps,
+  Field,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import ChevronDown from 'assets/svg/ChevronDown';
 import LinkIcon from 'assets/svg/LinkIcon';
@@ -23,6 +24,7 @@ type HeaderProps = ComponentProps & {
     LogoDesktop: ImageField;
     LogoMobile: ImageField;
     MainLink: LinkField;
+    LogoDescription: Field<string>;
   };
 };
 
@@ -36,7 +38,8 @@ export const Default = (props: HeaderProps): JSX.Element => {
   const [openMenu, setOpenMenu] = useState(false);
   const mobile = useIsMobile(1023);
   const navRef = useRef<HTMLUListElement>(null);
-
+  console.log(props);
+  console.log(props.fields.LogoDescription);
   const handleMenuItemClick = (menuItem: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!e.currentTarget.href.includes('#')) return;
     e.preventDefault();
