@@ -1,6 +1,7 @@
 import {
   GetStaticComponentProps,
   ImageField,
+  Text,
   LayoutServiceData,
   Link,
   LinkField,
@@ -38,8 +39,6 @@ export const Default = (props: HeaderProps): JSX.Element => {
   const [openMenu, setOpenMenu] = useState(false);
   const mobile = useIsMobile(1023);
   const navRef = useRef<HTMLUListElement>(null);
-  console.log(props);
-  console.log(props.fields.LogoDescription);
   const handleMenuItemClick = (menuItem: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!e.currentTarget.href.includes('#')) return;
     e.preventDefault();
@@ -136,13 +135,26 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
+                <Text
+                  tag="p"
+                  className="p3 text-dark-blue !font-bold pt-3"
+                  field={props.fields.LogoDescription}
+                ></Text>
               </Link>
               <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
-                <NextImage
-                  field={props.fields.LogoDesktop}
-                  fetchPriority={mobile ? 'low' : 'high'}
-                  priority={!mobile}
-                />
+                <div className="flex flex-row items-center">
+                  <NextImage
+                    className="shrink-0 pr-5 md:border-r-[1px] border-white border-solid"
+                    field={props.fields.LogoDesktop}
+                    fetchPriority={mobile ? 'low' : 'high'}
+                    priority={!mobile}
+                  />
+                  <Text
+                    tag="p"
+                    className="pl-5 h6 text-white font-bold inline-block flex-none"
+                    field={props.fields.LogoDescription}
+                  ></Text>
+                </div>
               </Link>
             </section>
 
@@ -245,7 +257,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                                       loading="lazy"
                                     />
                                     <div>
-                                      <p className="menu-title">{child?.name}</p>
+                                      <p className="menu-title">{child?.title?.jsonValue?.value}</p>
                                       <p className="menu-description">
                                         {child?.description?.jsonValue?.value}
                                       </p>
