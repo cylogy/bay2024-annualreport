@@ -1,6 +1,7 @@
 import {
   GetStaticComponentProps,
   ImageField,
+  Text,
   LayoutServiceData,
   Link,
   LinkField,
@@ -136,13 +137,26 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
+                <Text
+                  tag="p"
+                  className="p3 text-dark-blue !font-bold pt-3"
+                  field={props.fields.LogoDescription}
+                ></Text>
               </Link>
               <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
-                <NextImage
-                  field={props.fields.LogoDesktop}
-                  fetchPriority={mobile ? 'low' : 'high'}
-                  priority={!mobile}
-                />
+                <div className="flex md:flex-row items-center">
+                  <NextImage
+                    className="shrink-0 pr-5 md:border-r-[1px] md:border-white md:border-solid"
+                    field={props.fields.LogoDesktop}
+                    fetchPriority={mobile ? 'low' : 'high'}
+                    priority={!mobile}
+                  />
+                  <Text
+                    tag="p"
+                    className="pl-5 h6 text-white font-bold inline-block flex-none"
+                    field={props.fields.LogoDescription}
+                  ></Text>
+                </div>
               </Link>
             </section>
 
