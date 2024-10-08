@@ -23,6 +23,7 @@ type HeaderProps = ComponentProps & {
   layoutData: LayoutServiceData;
   fields: {
     LogoDesktop: ImageField;
+    MainLinkLogo: ImageField;
     LogoMobile: ImageField;
     MainLink: LinkField;
     LogoDescription: Field<string>;
@@ -44,7 +45,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
     e.preventDefault();
     setActiveMenuItem(activeMenuItem === menuItem ? null : menuItem);
   };
-
+  console.log(props);
   const handleClickOutside = (event: MouseEvent) => {
     if (navRef.current && !navRef.current.contains(event.target as Node)) {
       setOpenMenu(false);
@@ -104,15 +105,29 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   title: MainLink?.value?.title,
                   target: MainLink?.value?.target,
                 }}
-                className="flex items-center text-white gap-[10px]"
+                className="flex items-center text-white gap-[12px]"
               >
+                <NextImage
+                  field={props.fields.MainLinkLogo}
+                  className="object-contain object-center h-[24px] max-w-[100px] w-auto "
+                  fetchPriority={mobile ? 'high' : 'low'}
+                  priority={mobile}
+                />
+
                 <span>Air District Main Site</span>
                 <LinkIcon theme="light" />
               </Link>
             )}
             {pageEditing && (
               <>
-                <Link field={MainLink} className="flex items-center text-white gap-[10px]"></Link>
+                <Link field={MainLink} className="flex items-center text-white gap-[12px]">
+                  <NextImage
+                    field={props.fields.MainLinkLogo}
+                    className="object-contain object-center h-[24px] max-w-[100px] w-auto "
+                    fetchPriority={mobile ? 'high' : 'low'}
+                    priority={mobile}
+                  />
+                </Link>
                 <LinkIcon theme="light" />
               </>
             )}
