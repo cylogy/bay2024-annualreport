@@ -146,7 +146,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
               <Link field={{ href: '/', title: 'Logo Mobile' }} className="block lg:hidden">
                 <NextImage
                   field={props.fields.LogoMobile}
-                  className="object-contain object-center h-[50px] max-w-[250px] w-auto "
+                  className="object-contain object-center h-[26px] max-w-[250px] w-auto "
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
