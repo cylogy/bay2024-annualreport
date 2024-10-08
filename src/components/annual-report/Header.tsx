@@ -131,7 +131,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
               <Link field={{ href: '/', title: 'Logo Mobile' }} className="block lg:hidden">
                 <NextImage
                   field={props.fields.LogoMobile}
-                  className="object-cover max-w-[200px] max-h-[50px]"
+                  className="object-contain object-center h-[50px] max-w-[250px] w-auto "
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
@@ -144,11 +144,15 @@ export const Default = (props: HeaderProps): JSX.Element => {
               <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
                 <div className="flex flex-row items-center">
                   <NextImage
-                    className="shrink-0 pr-5 md:border-r-[1px] border-white border-solid"
+                    className={`shrink-0 pr-5 ${
+                      props.fields.LogoDescription.value &&
+                      'border-r-[1px] border-white border-solid'
+                    }`}
                     field={props.fields.LogoDesktop}
                     fetchPriority={mobile ? 'low' : 'high'}
                     priority={!mobile}
                   />
+
                   <Text
                     tag="p"
                     className="pl-5 h6 text-white !font-bold inline-block flex-none"
