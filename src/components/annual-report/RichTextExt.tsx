@@ -35,7 +35,7 @@ export const WhiteBkg = (props: RichTextExtProps): JSX.Element => {
     <span className="is-empty-hint">Rich Text Extended</span>
   );
   return (
-    <section className="py-[36px] lg:py-[96px]" id={props.fields?.AnchorID.value}>
+    <section className="bg-white py-[36px] lg:py-[96px]" id={props.fields?.AnchorID.value}>
       <div className={`component rich-text container-anchors  ${props.params.styles.trimEnd()}`}>
         <div className="component-content rich-text-container lg:max-w-[879px] text-dark-blue">
           {text}
