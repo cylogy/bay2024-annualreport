@@ -2,6 +2,7 @@ import {
   Field,
   Text,
   Placeholder,
+  useSitecoreContext,
   RichText as JssRichText,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
@@ -19,6 +20,10 @@ type CommitmentProps = ComponentProps & {
 };
 
 export const Default = (props: CommitmentProps): JSX.Element => {
+  const {
+    sitecoreContext: { pageEditing },
+  } = useSitecoreContext();
+
   if (props.fields) {
     const {
       fields: { ActionPlans, Name, PerformanceHeadline, ResourcesHeadline },
@@ -32,7 +37,7 @@ export const Default = (props: CommitmentProps): JSX.Element => {
           tag="div"
           className="richtext space-y-5 rich-text-container"
         />
-        {PerformanceHeadline.value !== '' && (
+        {(PerformanceHeadline.value !== '' || pageEditing) && (
           <div>
             <Text field={PerformanceHeadline} className="!font-bold pb-[30px] h6" tag="span" />
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 items-start">
@@ -40,7 +45,7 @@ export const Default = (props: CommitmentProps): JSX.Element => {
             </div>
           </div>
         )}
-        {ResourcesHeadline.value !== '' && (
+        {(ResourcesHeadline.value !== '' || pageEditing) && (
           <div>
             <Text field={ResourcesHeadline} className="!font-bold pb-[30px] h6" tag="span" />
             <div className="space-y-5 inline-block">
