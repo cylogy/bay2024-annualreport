@@ -16,6 +16,7 @@ type GraphicContentTilesProps = ComponentProps & {
   fields: {
     Headline: Field<string>;
     Description: Field<string>;
+    AnchorID: Field<string>;
   };
 };
 
@@ -27,7 +28,10 @@ export const GraphicContentTiles = withDatasourceCheck()<GraphicContentTilesProp
         rendering,
       } = props;
       return (
-        <section className="py-20 lg:py-[7.5rem] container flex flex-col items-center gap-14 md:gap-20">
+        <section
+          className="py-20 lg:py-[7.5rem] container flex flex-col items-center gap-14 md:gap-20"
+          id={props.fields?.AnchorID?.value}
+        >
           <div className="text-center max-w-[56.25rem] space-y-3 text-dark-blue font-">
             <Text tag="h2" field={Headline} />
             <RichText field={Description} className="richtext p1" />
