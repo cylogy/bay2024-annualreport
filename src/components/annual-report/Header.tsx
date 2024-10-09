@@ -143,7 +143,8 @@ export const Default = (props: HeaderProps): JSX.Element => {
               <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
                 Main Menu
               </h2>
-              <Link field={{ href: '/', title: 'Logo Mobile' }} className="block lg:hidden">
+              <Link field={{ href: '/' }} className="block lg:hidden">
+                <span className="sr-only">Strategic Plan Home</span>
                 <NextImage
                   field={props.fields.LogoMobile}
                   className="object-contain object-center h-[26px] max-w-[250px] w-auto "
@@ -156,7 +157,8 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   field={props.fields.LogoDescription}
                 ></Text>
               </Link>
-              <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
+              <Link field={{ href: '/ ' }} className="hidden lg:block">
+                <span className="sr-only">Strategic Plan Home</span>
                 <div className="flex flex-row items-center">
                   <NextImage
                     className={`shrink-0 pr-5 ${
