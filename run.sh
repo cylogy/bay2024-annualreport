@@ -1,4 +1,4 @@
 #!/bin/bash
-#cp -r standalone /tmp/
-#node /tmp/standalone/server.js
+mkdir /tmp/cache
+ln -s /tmp/cache standalone/.next/cache
 node standalone/server.js
