@@ -31,7 +31,7 @@ export const Default = withDatasourceCheck()<AnchorLinksProps>(
           <nav className="text-dark-blue shadow-none lx:shadow-3xl" ref={navRef}>
             <Text
               tag="span"
-              className="h4 mb-2.5 border-b border-solid pb-2.5"
+              className="h5 mb-2.5 border-b border-solid pb-2.5"
               field={props.fields.Headline}
             />
             <div className="mt-[30px]">
