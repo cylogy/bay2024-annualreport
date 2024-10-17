@@ -42,11 +42,12 @@ export default function Header() {
                 aria-labelledby="mainmenulabel"
                 className="!flex justify-between items-center py-[15px]"
               >
-                <section className="">
+                <section className="flex-none">
                   <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
                     Main Menu
                   </h2>
-                  <a title="Logo Mobile" className="block lg:hidden" href="/">
+                  <a className="block lg:hidden" href="/">
+                    <span className="sr-only">Strategic Plan Home</span>
                     <Image
                       alt="Logo Bay Area Air Quality"
                       loading="lazy"
@@ -56,16 +57,22 @@ export default function Header() {
                       sizes="(min-width: 1024px) 100vw, (min-width: 768px) 40vw, 33vw"
                       src="/images/logo-black.png"
                     />
+                    <p className="p3 text-dark-blue !font-bold pt-3">Strategic Plan</p>
                   </a>
-                  <a title="Logo Desktop" className="hidden lg:block" href="/">
-                    <Image
-                      alt="Logo Bay Area Air Quality"
-                      fetchPriority="high"
-                      width="343"
-                      height="54"
-                      sizes="(min-width: 1024px) 100vw, (min-width: 768px) 40vw, 33vw"
-                      src="/images/logo-white.png"
-                    />
+                  <a className="hidden lg:block" href="/">
+                    <span className="sr-only">Strategic Plan Home</span>
+                    <div className="flex flex-row items-center">
+                      <Image
+                        alt="Logo Bay Area Air Quality"
+                        fetchPriority="high"
+                        width="154"
+                        height="82"
+                        sizes="(min-width: 1024px) 100vw, (min-width: 768px) 40vw, 33vw"
+                        src="/images/baaqmd4white.png"
+                        className="shrink-0 pr-5 border-r border-white border-solid"
+                      />
+                      <p className="pl-5 h6 text-white !font-bold">Strategic Plan</p>
+                    </div>
                   </a>
                 </section>
                 <section id="main-menu" className=""></section>
