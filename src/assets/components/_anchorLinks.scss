@@ -8,6 +8,11 @@
     padding-bottom: 3.75rem;
     background-color: var(--soft-white);
 
+    @include respond-to(lg) {
+      padding-inline: 6.25rem;
+      padding-bottom: 0;
+    }
+
     @include respond-to(lx) {
       position: sticky;
       background-color: var(--white);

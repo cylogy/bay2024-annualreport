@@ -122,7 +122,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
             aria-labelledby="mainmenulabel"
             className="!flex justify-between items-center py-[15px]"
           >
-            <section className="">
+            <section>
               <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
                 Main Menu
               </h2>
