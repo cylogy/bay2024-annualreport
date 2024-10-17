@@ -36,7 +36,7 @@ export const WhiteBkg = (props: RichTextExtProps): JSX.Element => {
   );
   return (
     <section
-      className="bg-white py-[36px] lg:py-[96px] max-w-[58.2rem] mx-auto"
+      className="bg-white py-9 lg:py-20 lx:py-24 max-w-[58.2rem] mx-auto"
       id={props.fields?.AnchorID.value}
     >
       <div className="component-content rich-text-container container text-dark-blue">{text}</div>
