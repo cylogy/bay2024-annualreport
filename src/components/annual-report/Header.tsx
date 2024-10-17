@@ -1,11 +1,13 @@
 import {
   GetStaticComponentProps,
   ImageField,
+  Text,
   LayoutServiceData,
   Link,
   LinkField,
   useSitecoreContext,
   useComponentProps,
+  Field,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 import ChevronDown from 'assets/svg/ChevronDown';
 import LinkIcon from 'assets/svg/LinkIcon';
@@ -21,8 +23,10 @@ type HeaderProps = ComponentProps & {
   layoutData: LayoutServiceData;
   fields: {
     LogoDesktop: ImageField;
+    MainLinkLogo: ImageField;
     LogoMobile: ImageField;
     MainLink: LinkField;
+    LogoDescription: Field<string>;
   };
 };
 
@@ -36,13 +40,12 @@ export const Default = (props: HeaderProps): JSX.Element => {
   const [openMenu, setOpenMenu] = useState(false);
   const mobile = useIsMobile(1023);
   const navRef = useRef<HTMLUListElement>(null);
-
   const handleMenuItemClick = (menuItem: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!e.currentTarget.href.includes('#')) return;
     e.preventDefault();
     setActiveMenuItem(activeMenuItem === menuItem ? null : menuItem);
   };
-
+  console.log(props);
   const handleClickOutside = (event: MouseEvent) => {
     if (navRef.current && !navRef.current.contains(event.target as Node)) {
       setOpenMenu(false);
@@ -102,15 +105,29 @@ export const Default = (props: HeaderProps): JSX.Element => {
                   title: MainLink?.value?.title,
                   target: MainLink?.value?.target,
                 }}
-                className="flex items-center text-white gap-[10px]"
+                className="flex items-center text-white gap-[12px]"
               >
+                <NextImage
+                  field={props.fields.MainLinkLogo}
+                  className="object-contain object-center h-[24px] max-w-[100px] w-auto "
+                  fetchPriority={mobile ? 'high' : 'low'}
+                  priority={mobile}
+                />
+
                 <span>Air District Main Site</span>
                 <LinkIcon theme="light" />
               </Link>
             )}
             {pageEditing && (
               <>
-                <Link field={MainLink} className="flex items-center text-white gap-[10px]"></Link>
+                <Link field={MainLink} className="flex items-center text-white gap-[12px]">
+                  <NextImage
+                    field={props.fields.MainLinkLogo}
+                    className="object-contain object-center h-[24px] max-w-[100px] w-auto "
+                    fetchPriority={mobile ? 'high' : 'low'}
+                    priority={mobile}
+                  />
+                </Link>
                 <LinkIcon theme="light" />
               </>
             )}
@@ -122,24 +139,43 @@ export const Default = (props: HeaderProps): JSX.Element => {
             aria-labelledby="mainmenulabel"
             className="!flex justify-between items-center py-[15px]"
           >
-            <section>
+            <section className="flex-none">
               <h2 id="mainmenulabel" className="hidden" aria-hidden="true">
                 Main Menu
               </h2>
-              <Link field={{ href: '/', title: 'Logo Mobile' }} className="block lg:hidden">
+              <Link field={{ href: '/' }} className="block lg:hidden">
+                <span className="sr-only">Strategic Plan Home</span>
                 <NextImage
                   field={props.fields.LogoMobile}
-                  className="object-cover max-w-[200px]"
+                  className="object-contain object-center h-[26px] max-w-[250px] w-auto "
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
+                <Text
+                  tag="p"
+                  className="p3 text-dark-blue !font-bold pt-3"
+                  field={props.fields.LogoDescription}
+                ></Text>
               </Link>
-              <Link field={{ href: '/', title: 'Logo Desktop' }} className="hidden lg:block">
-                <NextImage
-                  field={props.fields.LogoDesktop}
-                  fetchPriority={mobile ? 'low' : 'high'}
-                  priority={!mobile}
-                />
+              <Link field={{ href: '/ ' }} className="hidden lg:block">
+                <span className="sr-only">Strategic Plan Home</span>
+                <div className="flex flex-row items-center">
+                  <NextImage
+                    className={`shrink-0 pr-5 ${
+                      props.fields.LogoDescription.value &&
+                      'border-r-[1px] border-white border-solid'
+                    }`}
+                    field={props.fields.LogoDesktop}
+                    fetchPriority={mobile ? 'low' : 'high'}
+                    priority={!mobile}
+                  />
+
+                  <Text
+                    tag="p"
+                    className="pl-5 h6 text-white !font-bold inline-block flex-none"
+                    field={props.fields.LogoDescription}
+                  ></Text>
+                </div>
               </Link>
             </section>
 
@@ -242,7 +278,7 @@ export const Default = (props: HeaderProps): JSX.Element => {
                                       loading="lazy"
                                     />
                                     <div>
-                                      <p className="menu-title">{child?.name}</p>
+                                      <p className="menu-title">{child?.title?.jsonValue.value}</p>
                                       <p className="menu-description">
                                         {child?.description?.jsonValue?.value}
                                       </p>

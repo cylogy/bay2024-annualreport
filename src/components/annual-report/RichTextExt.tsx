@@ -27,3 +27,19 @@ export const Default = (props: RichTextExtProps): JSX.Element => {
     </section>
   );
 };
+
+export const WhiteBkg = (props: RichTextExtProps): JSX.Element => {
+  const text = props.fields ? (
+    <JssRichText field={props.fields.Text} />
+  ) : (
+    <span className="is-empty-hint">Rich Text Extended</span>
+  );
+  return (
+    <section
+      className="bg-white py-[36px] lg:py-[96px] max-w-[58.2rem] mx-auto"
+      id={props.fields?.AnchorID.value}
+    >
+      <div className="component-content rich-text-container container text-dark-blue">{text}</div>
+    </section>
+  );
+};
