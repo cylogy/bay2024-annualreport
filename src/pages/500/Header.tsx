@@ -21,6 +21,15 @@ export default function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <Image
+                    alt="Logo Bay Area Air Quality"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    className="object-contain object-center h-[24px] max-w-[100px] w-auto"
+                    sizes="(min-width: 1024px) 100vw, (min-width: 768px) 40vw, 33vw"
+                    src="/images/frame-4914-png.png"
+                  />
                   <span>Air District Main Site</span>
                   <svg
                     width="24"
