@@ -13,23 +13,25 @@ const NotFound = (): JSX.Element => (
     </Head>
     <Header />
     <Hero title="Page not found" message="We can´t seem to find the page you are looking for." />
-    <div className="container my-28 text-dark-blue">
-      <div className="max-w-[50rem] space-y-4">
-        <h2>404. Oops, nothing here.</h2>
-        <h5>Here are some helpful links instead:</h5>
-        <ul>
-          <li>
-            <a href="https://strategicplan.baaqmd.gov/">Home Page</a>
-          </li>
-          <li>
-            <a href="https://strategicplan.baaqmd.gov/about/strategic-plan">
-              Strategic Plan Overview and Scope
-            </a>
-          </li>
-          <li>
-            <a href="https://strategicplan.baaqmd.gov/contact-us">Contact us</a>
-          </li>
-        </ul>
+    <div className="py-[36px] lg:py-[96px]">
+      <div className="component rich-text container-anchors  col-12">
+        <div className="component-content rich-text-container lg:max-w-[879px] text-dark-blue">
+          <h2 className="pb-16">404. Oops, nothing here.</h2>
+          <h5>Here are some helpful links instead:</h5>
+          <ul>
+            <li>
+              <a href="https://strategicplan.baaqmd.gov/">Home Page</a>
+            </li>
+            <li>
+              <a href="https://strategicplan.baaqmd.gov/about/strategic-plan">
+                Strategic Plan Overview and Scope
+              </a>
+            </li>
+            <li>
+              <a href="https://strategicplan.baaqmd.gov/contact-us">Contact us</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <Footer />
