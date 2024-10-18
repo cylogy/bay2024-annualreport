@@ -9,7 +9,11 @@ const ServerError = (): JSX.Element => (
       <title>500: That's an error</title>
     </Head>
     <Header />
-    <Hero />
+    <Hero
+      title="Uh oh!"
+      message="Well this is unexpected. An error has occurred and we're working to fix the problem. We'll
+          be up and running shortly."
+    />
     <div className="container my-28 text-dark-blue">
       <div className="max-w-[50rem] space-y-4">
         <h2>500. That's an error.</h2>
