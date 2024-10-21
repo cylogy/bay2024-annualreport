@@ -147,34 +147,32 @@ export const Default = (props: HeaderProps): JSX.Element => {
                 <span className="sr-only">Strategic Plan Home</span>
                 <NextImage
                   field={props.fields.LogoMobile}
-                  className="object-contain object-center h-[26px] max-w-[250px] w-auto "
+                  className="object-contain object-center h-[26px] max-w-[250px] w-auto"
                   fetchPriority={mobile ? 'high' : 'low'}
                   priority={mobile}
                 />
                 <Text
-                  tag="p"
-                  className="p3 text-dark-blue !font-bold pt-3"
+                  tag="span"
+                  className="p3 block text-dark-blue !font-bold pt-3"
                   field={props.fields.LogoDescription}
-                ></Text>
+                />
               </Link>
-              <Link field={{ href: '/ ' }} className="hidden lg:block">
+              <Link field={{ href: '/' }} className="hidden lg:block">
                 <span className="sr-only">Strategic Plan Home</span>
                 <div className="flex flex-row items-center">
                   <NextImage
                     className={`shrink-0 pr-5 ${
-                      props.fields.LogoDescription.value &&
-                      'border-r-[1px] border-white border-solid'
+                      props.fields.LogoDescription.value && 'border-r border-white border-solid'
                     }`}
                     field={props.fields.LogoDesktop}
                     fetchPriority={mobile ? 'low' : 'high'}
                     priority={!mobile}
                   />
-
                   <Text
-                    tag="p"
+                    tag="span"
                     className="pl-5 h6 text-white !font-bold inline-block flex-none"
                     field={props.fields.LogoDescription}
-                  ></Text>
+                  />
                 </div>
               </Link>
             </section>

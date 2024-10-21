@@ -3,16 +3,6 @@ import React, { useState, useEffect } from 'react';
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Function to handle the scroll event
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  // Function to scroll to the top
   const handleScrollToTop = () => {
     window.scrollTo({
       behavior: 'smooth',
@@ -21,10 +11,9 @@ const ScrollToTop = () => {
   };
 
   useEffect(() => {
+    const toggleVisibility = () => setIsVisible(window.pageYOffset > 300);
     window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
+    return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   return (

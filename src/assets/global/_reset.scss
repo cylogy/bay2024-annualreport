@@ -184,3 +184,8 @@ table {
     padding-inline: 6.25rem;
   }
 }
+
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  margin-inline: .375rem;
+}

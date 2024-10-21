@@ -119,6 +119,10 @@ const nextConfig = {
         port: '',
       },
       {
+        hostname: 'media-strategicplan.baaqmd.gov',
+        port: '',
+      },
+      {
         hostname: 'sc-qa.baaqmd.gov',
         port: '',
       },

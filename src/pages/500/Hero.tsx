@@ -1,6 +1,10 @@
 import Image from 'next/image';
+interface HeroProps {
+  title: string;
+  message: string;
+}
 
-export default function Hero() {
+export default function Hero({ title, message }: HeroProps) {
   return (
     <div className="hero hero--secondary">
       <Image
@@ -14,11 +18,8 @@ export default function Hero() {
       />
       <div className="hero__background"></div>
       <div className="hero__content space-y-6 flex flex-col items-center container">
-        <h1>Uh oh!</h1>
-        <p>
-          Well this is unexpected. An error has occurred and we're working to fix the problem. We'll
-          be up and running shortly.
-        </p>
+        <h1>{title}</h1>
+        <p>{message}</p>
       </div>
       <div className="block relative w-full h-[150px]">
         <svg viewBox="0 0 500 150">
